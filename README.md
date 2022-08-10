@@ -10,3 +10,4 @@ This repo is about Smart Meeting Record and Broadcast System. The entire hardwar
 6. [YouTube-ESP32 SD Card Audio Recording](https://www.youtube.com/watch?v=bVru6M862HY)
 7. [GitHub-esp32_SoundRecorder](https://github.com/MhageGH/esp32_SoundRecorder)
 8. [GitHub-ESP32 I2S Audio](https://github.com/atomic14/esp32_audio) (Most important) esp32_audio/i2s_sampling/src/
+
