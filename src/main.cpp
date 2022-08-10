@@ -1,6 +1,5 @@
 #include <Arduino.h>
 
-// Stop button is attached to PIN 0 (IO0)
 #define BTN_STOP_ALARM 0
 
 hw_timer_t *timer = NULL;
@@ -9,6 +8,9 @@ portMUX_TYPE timerMux = portMUX_INITIALIZER_UNLOCKED;
 
 volatile uint32_t isrCounter = 0;
 volatile uint32_t lastIsrAt = 0;
+
+// Serial port for debugging
+int baud_rate = 921600;
 
 // ADC frequency setting
 int frequency = 20000;            // Hz
@@ -26,13 +28,14 @@ const int gpio_pin[4] = {32, 33, 25, 26}; // Audio Channel Control Pin Num
 
 // Power Estimation variables
 float alpha = 0.99;
-int v[4] = {0};
-float Pn[4] = {0};
-float Pn_1[4] = {0};
+int v[4];
+float Pn[4];
+float Pn_1[4];
 
 // Channel Control
 int tolerance = 100; // need experiment
 
+// Sort function
 void sort_array(float array[], int size)
 {
   for (int i = 0; i < size; i++)
@@ -40,12 +43,13 @@ void sort_array(float array[], int size)
     if (array[i] > array[i + 1])
     {
       int temp = array[i];
-      array[i] = array[i + 1];
-      array[i + 1] = temp;
+      // array[i] = array[i + 1]; // bugged
+      // array[i + 1] = temp; // bugged
     }
   }
 }
 
+// GPIO setup
 void setup_gpio()
 {
   pinMode(gpio_pin[0], OUTPUT);
@@ -54,6 +58,7 @@ void setup_gpio()
   pinMode(gpio_pin[3], OUTPUT);
 }
 
+// ADC setup
 void setup_adc()
 {
   adc_value[0] = analogRead(adc_pin[0]);
@@ -64,12 +69,13 @@ void setup_adc()
   // need to add checks for adc_value[i] < adc_max_add_one
 }
 
+// Power Estimation
 void power_estimation()
 {
   for (int i = 0; i < 4; i++)
   {
     v[i] = analogReadMilliVolts(adc_pin[i]);
-    Pn_1[i] = Pn[i] * alpha + (1 - alpha) * v[i] * v[i];
+    // Pn_1[i] = Pn[i] * alpha + (1 - alpha) * v[i] * v[i]; // error
     Pn[i] = Pn_1[i];
   }
 }
@@ -87,14 +93,14 @@ void channel_control()
         // turn the channel on
         // if the power is higher than the threshold
         // if it's the highest power of all channels
-        digitalWrite(gpio_pin[i], HIGH);
+        // digitalWrite(gpio_pin[i], HIGH); // bugged
       }
       else
       {
         // turn the channel off
         // if the power is lower than the threshold
         // if it isn't the highest power of all channels
-        digitalWrite(gpio_pin[i], LOW);
+        // digitalWrite(gpio_pin[i], LOW); // bugged
       }
     }
   }
@@ -111,8 +117,7 @@ void ARDUINO_ISR_ATTR onTimer()
   // Give a semaphore that we can check in the loop
   xSemaphoreGiveFromISR(timerSemaphore, NULL);
   // It is safe to use digitalRead/Write here if you want to toggle an output
-  power_estimation();
-  // channel_control();
+  // power_estimation(); // currently can't cope with fast interrupts (bugged)
 }
 
 // Setting up timer interrupt
@@ -143,10 +148,13 @@ void setup_timer()
 
 void setup()
 {
-  Serial.begin(921600);
-  setup_gpio();
+  Serial.begin(baud_rate);
+  setup_gpio(); // seems to not setting up pins correctly
   setup_adc();
   setup_timer();
+
+  pinMode(36, OUTPUT);
+  digitalWrite(36, LOW);
 }
 
 void loop()
@@ -167,7 +175,7 @@ void loop()
     Serial.print(isrTime);
     Serial.println(" ms");
     // Control the audio channel
-    channel_control(); // only need to execute several times per second
+    // channel_control(); // only need to execute several times per second
   }
   // If button is pressed
   if (digitalRead(BTN_STOP_ALARM) == LOW)
