@@ -18,3 +18,7 @@
       3. Build the codes.
       4. Copy the exception codes and paste them into Arduino IDE/tools/ESP Exception Decoder
       5. Use the error line number and check codes back in vscode and try to solve it.
+   5. Following steps:
+      1. Try [ESP32-Audio Sampling Example](https://www.toptal.com/embedded/esp32-audio-sampling).
+      2. Try find examples of high frequency timer interrupt.
+      3. Try "Expressif IoT Development Framework"
