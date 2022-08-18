@@ -1,4 +1,4 @@
-1. 20220810 05:?? 
+1. 20220810 05:?? Read ADC with loop
    1. Codes with ability to perform timer triggered interrupt event which perform power estimation are pushed to the repo.
    2. Codes are not tested with ESP32 yet.
    3. This project source is build with vscode platformio arduino framework instead of arduino or ESP32 IDF since it is currently the only method to work programming wise (not tested with ESP32). Following are steps are how to create new project.
@@ -8,7 +8,7 @@
          1. In file "platformio.ini", add "monitor_speed = 921600".
          2. In file "main.cpp", add "Serial.begin(921600)" in setup function.
       4. (Noe necessary) Copy all the files to desired destination.
-2. 20220811 00:44
+2. 20220811 00:44 Interrupt Reading ADC
    1. Full program was tested with ESP32, and found few bugs which are tagged as "bugged".
    2. Majority of the bugs are related to variable operations, and therefore I think declaring with the right embedded variable type should solve the problems.
    3. Another problem beside programing bugges is the high frequency interrupt operation. The experiment proofs that it's currently impossible to operate anything when the frequency is set too high (probably > 1000 Hz).
@@ -22,3 +22,8 @@
       1. Try [ESP32-Audio Sampling Example](https://www.toptal.com/embedded/esp32-audio-sampling).
       2. Try find examples of high frequency timer interrupt.
       3. Try "Expressif IoT Development Framework"
+3. 20220818 21:49 Dual Core Burst Read
+   1. This version of code is tested on "./MS Phase6/MCU/ESP32_Platformio_1/src/main.cpp", and moved to "./MS Phase6/MCU/SMRBS-ESP32/lib/dual_core_adc_burst.cpp".
+   2. It utilize one of the core to burst read adc values and store it inside SRAM, the other core to perform other functionality such as printing out values.
+   3. Based on the test result, no bug was found, except the burst read is not confind to sampling rate, but the highest possible rate.
+   4. Needs to find a way to trigger "analogRead" or "analogReadMilliVolts" by accurate sampling rate.
