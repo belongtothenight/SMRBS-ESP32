@@ -23,7 +23,7 @@
       2. Try find examples of high frequency timer interrupt.
       3. Try "Expressif IoT Development Framework"
 3. 20220818 21:49 Dual Core Burst Read
-   1. This version of code is tested on "./MS Phase6/MCU/ESP32_Platformio_1/src/main.cpp", and moved to "./MS Phase6/MCU/SMRBS-ESP32/lib/dual_core_adc_burst.cpp".
+   1. This version of code is tested on "./MS Phase6/MCU/ESP32_Platformio_1/src/main.cpp", and moved to "./MS Phase6/MCU/SMRBS-ESP32/lib/dual_core_adc_burst_read.cpp".
    2. It utilize one of the core to burst read adc values and store it inside SRAM, the other core to perform other functionality such as printing out values.
    3. Based on the test result, no bug was found, except the burst read is not confind to sampling rate, but the highest possible rate.
    4. Needs to find a way to trigger "analogRead" or "analogReadMilliVolts" by accurate sampling rate.
