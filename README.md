@@ -21,3 +21,4 @@ This repo is about Smart Meeting Record and Broadcast System. The entire hardwar
 6. [GitHub-ADC I2S mode with multiple channel pattern](https://github.com/espressif/esp-idf/pull/1991/commits)
 7. [ESPRESSIF/Discussion Forum-Need help with ESP32 ADC DMA continuous read configuration](https://www.esp32.com/viewtopic.php?f=13&t=27603)
 8. [ESPRESSIF/ESP-IDF Programming Guide/ADC](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/adc_continuous.html?highlight=adc%20sampling%20rate#adc-configurations)
+9. [ESPRESSIF/ESP32 Hardware Design Guildline](https://www.espressif.com/sites/default/files/documentation/esp32_hardware_design_guidelines_en.pdf)
