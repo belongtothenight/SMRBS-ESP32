@@ -1,0 +1,20 @@
+=========================================================First time
+cd "PROJECT_PATH"
+xcopy /e /i %IDF_PATH%"PROJECT_PATH" "PROJECT_NAME"
+idf.py set-target esp32
+idf.py menuconfig
+press "s" 
+press "enter"
+press "esc"
+=========================================================Routine
+idf.py build
+wait till done...
+
+hold "BOOT" 
+press_and_release "EN"
+release "BOOT"
+idf.py -p "COM_PORT" flash
+wait till done...
+
+idf.py monitor
+press "EN"

@@ -1,6 +1,7 @@
 # SMRBS-ESP32
 
 This repo is about Smart Meeting Record and Broadcast System. The entire hardware system is controlled with ESP32.
+[Go to log]()
 
 ## Documentations
 
