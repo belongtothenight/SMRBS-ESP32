@@ -1,3 +1,5 @@
+# Update Log
+
 1. 20220810 05:?? Read ADC with loop
    1. Codes with ability to perform timer triggered interrupt event which perform power estimation are pushed to the repo.
    2. Codes are not tested with ESP32 yet.
@@ -31,4 +33,4 @@
    1. After some digging, the only available example code with multiple channel I2S DMA ADC example is in [esp-idf](https://github.com/espressif/esp-idf/tree/master/examples/peripherals/adc/continuous_read), so I instead use "ESP-IDF" trying to run this example. Using extension in VSCode encounters a lot of bugs, so I use ESP-IDF 4.4 CMD instead to select target, build, flash, monitor, only use VSCode to program.
    2. When building the example, the include statement doesn't work, no similiar issue was found in the internet, so I fired a [post](https://github.com/espressif/esp-idf/issues/9776) of issue on GitHub and hope this will be solved.
    3. The directory of example is "C:\Users\dachu\esp\esp-idf\examples\peripherals\adc\continuous_read_test".
-   4. A list of procedures for programming using ESP-IDF. Path: "C:\Users\dachu\esp\button trigger.txt".
+   4. A list of procedures for programming using ESP-IDF. Path: "C:\Users\dachu\esp\button trigger.txt". [Go to list](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/info/button%20trigger.txt)
