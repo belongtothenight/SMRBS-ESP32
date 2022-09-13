@@ -1,3 +1,6 @@
+/*
+Platformio
+*/
 #include <Arduino.h>
 
 const char adc_channel[4] = {'A', 'B', 'C', 'D'};
