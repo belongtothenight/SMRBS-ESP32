@@ -399,4 +399,5 @@ FodyWeavers.xsd
 
 # Custom
 .pio/
-.vscode/
+src/.vscode/
+src/build
