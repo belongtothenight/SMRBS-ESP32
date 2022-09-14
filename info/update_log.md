@@ -36,3 +36,4 @@
    4. A list of procedures for programming using ESP-IDF. Path: "C:\Users\dachu\esp\button trigger.txt". [Go to list](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/info/button%20trigger.txt)
 5. 20220914 18:37 Change from Platformio to ESP-IDF.
    1. Successfully flashed and monitored sample code from GitHub after reinstalling ESP-IDF release v5.0.
+   2. After testing, due to path issue cpp files can't be properly included in repo folders, so futher experiment will be done in "C:\Users\dachu\esp\espidf\examples\peripherals\adc\dma_read_test".
