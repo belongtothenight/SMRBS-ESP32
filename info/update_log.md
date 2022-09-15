@@ -36,4 +36,12 @@
    4. A list of procedures for programming using ESP-IDF. Path: "C:\Users\dachu\esp\button trigger.txt". [Go to list](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/info/button%20trigger.txt)
 5. 20220914 18:37 Change from Platformio to ESP-IDF.
    1. Successfully flashed and monitored sample code from GitHub after reinstalling ESP-IDF release v5.0.
-   2. After testing, due to path issue cpp files can't be properly included in repo folders, so futher experiment will be done in "C:\Users\dachu\esp\espidf\examples\peripherals\adc\dma_read_test".
+   2. After testing, due to path issue cpp files can't be properly included in repo folders, so futher experiment will be done in "C:\Users\dachu\esp\test\dma_read".
+6. 20220915 20:15
+   1. After reinstalling esp-idf v5.0 and recloning esp-idf from github, the default sample code "continuous_read" works perfectly.
+   2. Modified and obtained purified version of sample code with target limited to "ESP32".
+   3. Steps to build a project from ESP-IDF 5.0 CMD
+      1. Copy the folder containing all the project files like CMake.txt, **.cpp, etc.
+      2. Copy the folder ".vscode_sample" into the project folder including the file "c_cpp_properties.json".
+      3. Save vscode workplace in the project folder.
+      4. Follow [this file](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/info/button%20trigger.txt) to use ESP-IDF 5.0 CMD to build, flash, and monitor.
