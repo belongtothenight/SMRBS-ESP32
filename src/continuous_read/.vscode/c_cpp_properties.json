@@ -13,7 +13,6 @@
                 ],
                 "limitSymbolsToIncludedHeaders": false
             },
-            "compilerPath": "xtensa-esp32-elf-gcc",
             "cStandard": "c17",
             "cppStandard": "c++17",
             "compileCommands": "${workspaceFolder}/build/compile_commands.json"
