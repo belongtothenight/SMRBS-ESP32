@@ -45,3 +45,10 @@
       2. Copy the folder ".vscode_sample" into the project folder including the file "c_cpp_properties.json".
       3. Save vscode workplace in the project folder.
       4. Follow [this file](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/info/button%20trigger.txt) to use ESP-IDF 5.0 CMD to build, flash, and monitor.
+7. 20220920 ~ 20221003
+   1. Start to test algorithm with raspberri pi 4 by setting up the environment.
+   2. Environment can't be setup, VGA output no signal. Using raspberry pi official image flasher can't fix this bug, alterating the "config.txt" file or manually activating SSH functionality doesn't work as well. No way to successfully connect to raspberri pi with ethernet or even with network adaptor. Tried multiple times repeatly flashing images of operating system and it still doesn't work.
+   3. Use SD Card Formatter and balenaEtcher to flash official image into SD card.
+   4. On 20221003, finally after connecting to VGA output and power, it successfully boot up for the first time. Later the day, all initial setup including SSH, VNC are setup and nothing seems wrong this time.
+   5. Tried to install drivers of seeed 6-channel microphone array by official documentation but failed due to unknown reason.
+8. 20221004
