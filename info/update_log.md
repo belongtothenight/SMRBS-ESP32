@@ -52,3 +52,4 @@
    4. On 20221003, finally after connecting to VGA output and power, it successfully boot up for the first time. Later the day, all initial setup including SSH, VNC are setup and nothing seems wrong this time.
    5. Tried to install drivers of seeed 6-channel microphone array by official documentation but failed due to unknown reason.
 8. 20221004
+   1. Cannot successfully install seeed driver, later cannot perform update and upgrade, somehow internet interface is gone. OS reinstall is needed.
