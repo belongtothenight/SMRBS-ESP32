@@ -53,3 +53,5 @@
    5. Tried to install drivers of seeed 6-channel microphone array by official documentation but failed due to unknown reason.
 8. 20221004
    1. Cannot successfully install seeed driver, later cannot perform update and upgrade, somehow internet interface is gone. OS reinstall is needed.
+   2. Perform OS reflash fixed this problem. Re-installed seeed-voicecard, still doesn't work. It's because the master branch of this repo is deprecated and no longer being updated.
+   3. A fix for this problem is found in HinTak branch, ![link](https://github.com/HinTak/seeed-voicecard). After cloning seeed-voicecard and install it, it's successfully installed and can be used with audacity to record 6 channel audio. But currently having problem transfering mp3 file back to laptop to examinate.
