@@ -58,3 +58,5 @@
 9. 20221005
    1. Project progress are all inside GitHub's project tab ![link](https://github.com/users/belongtothenight/projects/1).
    2. After fresh installing OS and seeed-voicecard, menu bar disappear again, and the only option now is to find a way to trigger vnc interface by command in order to transfer file between raspberry pi and my laptop.
+10. 20221006
+    1. After removing "lxplug-volumepulse", menu bar re-appear and the audacity still can record. File transfer is therefore possible. ![link](https://raspberrypi.stackexchange.com/questions/122579/after-fresh-install-of-raspberry-os-the-menu-bar-is-missing-in-tightvnc-session)
