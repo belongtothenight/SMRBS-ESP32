@@ -7,7 +7,7 @@ This repo is about Smart Meeting Record and Broadcast System. The entire hardwar
 
 ## Repo Structure
 
-- algorithm (Raspberry Pi 4)
+- algorithm (Raspberry Pi 4 + ReSpeaker 6 Microphone Array)
 - info
 - src (ESP32)
 
