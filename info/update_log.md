@@ -62,4 +62,5 @@
     1. After removing "lxplug-volumepulse", menu bar re-appear and the audacity still can record. File transfer is therefore possible. ![link](https://raspberrypi.stackexchange.com/questions/122579/after-fresh-install-of-raspberry-os-the-menu-bar-is-missing-in-tightvnc-session)
     2. All necessary tests in ![link](https://wiki.seeedstudio.com/ReSpeaker_6-Mic_Circular_Array_kit_for_Raspberry_Pi/) have all being conduct except realtime sound source localization and tracking section, which is cause by cmake missing package.
 11. 20221007
-    1. Sucessfully recorded audio data and plot it as picture.
+    1. Sucessfully recorded audio data and plot it as picture. <https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/alg_test1.py>
+    2. Sucessfully recorded audio data from 4 channels simultaniously and plot it as picture. <https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/alg_test2.py>
