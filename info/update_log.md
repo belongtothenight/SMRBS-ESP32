@@ -62,5 +62,12 @@
     1. After removing "lxplug-volumepulse", menu bar re-appear and the audacity still can record. File transfer is therefore possible. ![link](https://raspberrypi.stackexchange.com/questions/122579/after-fresh-install-of-raspberry-os-the-menu-bar-is-missing-in-tightvnc-session)
     2. All necessary tests in ![link](https://wiki.seeedstudio.com/ReSpeaker_6-Mic_Circular_Array_kit_for_Raspberry_Pi/) have all being conduct except realtime sound source localization and tracking section, which is cause by cmake missing package.
 11. 20221007
-    1. Sucessfully recorded audio data and plot it as picture. <https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/alg_test1.py>
-    2. Sucessfully recorded audio data from 4 channels simultaniously and plot it as picture. <https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/alg_test2.py>
+    1. Finished recording audio data and plot it as picture. <https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/alg_test1.py>
+    2. Finished recording audio data from 4 channels simultaniously and plot it as picture. <https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/alg_test2.py>
+    3. Implemented the power estimation algorithm previously realized in HT32F52352. The calculation currently implemented is really slow, vectorization might help accelerate this. <https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/alg_test3.py>
+       1. This algorithm relys on "SAMPLE_DOWNSIZE" parameter to downsize original sample value to prevent overflow.
+       2. If overflow error occurs, this algorithm is going to automatically skip the sample.
+       3. If the parameter "SAMPLE_DOWNSIZE" is not adjusted properly, algorithm is going to keep skipping samples.
+       4. The approach of using pre-defined parameter to downsize sample is going to perform poorly when the input signal is either too big/loud or too small/soft.
+       5. In every sample process routine, automatic "SAMPLE_DOWNSIZE" adjustment can be helpful.
+       6. If some routine skipped too many samples or perform too poorly, the algorithm should be able to automatically abandon that group of samples.
