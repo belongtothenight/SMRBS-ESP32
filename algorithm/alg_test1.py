@@ -40,7 +40,7 @@ while times < TOTAL_PIC:
     plt.plot(pcm)
     plt.title('pic' + str(times))
 # plt.show()
-    plt.savefig('/home/pi/code/pic/chx1/p{0}.png'.format(times))
+    plt.savefig('/home/pi/code/alg_test1_chx1/p{0}.png'.format(times))
     # prevent overlapping
     plt.clf()
 # sleep(0.1)

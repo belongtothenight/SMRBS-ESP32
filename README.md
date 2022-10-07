@@ -1,7 +1,15 @@
 # SMRBS-ESP32
 
+![Repo Size](https://img.shields.io/github/repo-size/belongtothenight/SMRBS-ESP32) ![Code Size](https://img.shields.io/github/languages/code-size/belongtothenight/SMRBS-ESP32) ![File Count](https://img.shields.io/github/directory-file-count/belongtothenight/SMRBS-ESP32/src) ![Commit Per Month](https://img.shields.io/github/commit-activity/m/belongtothenight/SMRBS-ESP32)
+
 This repo is about Smart Meeting Record and Broadcast System. The entire hardware system is controlled with ESP32.
 [Go to log](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/info/update_log.md)
+
+## Repo Structure
+
+- algorithm (Raspberry Pi 4)
+- info
+- src (ESP32)
 
 ## Documentations
 
@@ -25,3 +33,9 @@ This repo is about Smart Meeting Record and Broadcast System. The entire hardwar
 7. [ESPRESSIF/Discussion Forum-Need help with ESP32 ADC DMA continuous read configuration](https://www.esp32.com/viewtopic.php?f=13&t=27603)
 8. [ESPRESSIF/ESP-IDF Programming Guide/ADC](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/adc_continuous.html?highlight=adc%20sampling%20rate#adc-configurations)
 9. [ESPRESSIF/ESP32 Hardware Design Guildline](https://www.espressif.com/sites/default/files/documentation/esp32_hardware_design_guidelines_en.pdf)
+
+### 20221007
+
+1. [ReSpeaker 6-Mic Circular Array kit for Raspberry Pi](https://wiki.seeedstudio.com/ReSpeaker_6-Mic_Circular_Array_kit_for_Raspberry_Pi/)
+2. [PyAudio Documentation](https://people.csail.mit.edu/hubert/pyaudio/docs/#class-stream)
+3. [GitHub pyAudio Analysis](https://github.com/tyiannak/pyAudioAnalysis)
