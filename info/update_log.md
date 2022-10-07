@@ -71,3 +71,7 @@
        4. The approach of using pre-defined parameter to downsize sample is going to perform poorly when the input signal is either too big/loud or too small/soft.
        5. In every sample process routine, automatic "SAMPLE_DOWNSIZE" adjustment can be helpful.
        6. If some routine skipped too many samples or perform too poorly, the algorithm should be able to automatically abandon that group of samples.
+    4. What next?
+       1. Change "CHUNK" to smaller numbers around 128 to decrease calculation time and interval.
+       2. Try to get a stable curve of power instead of lots of spikes.
+       3. Implement 11.3.5 + 11.3.6
