@@ -54,17 +54,17 @@
 8. 20221004
    1. Cannot successfully install seeed driver, later cannot perform update and upgrade, somehow internet interface is gone. OS reinstall is needed.
    2. Perform OS reflash fixed this problem. Re-installed seeed-voicecard, still doesn't work. It's because the master branch of this repo is deprecated and no longer being updated.
-   3. A fix for this problem is found in HinTak branch, ![link](https://github.com/HinTak/seeed-voicecard). After cloning seeed-voicecard and install it, it's successfully installed and can be used with audacity to record 6 channel audio. But currently having problem transfering mp3 file back to laptop to examinate.
+   3. A fix for this problem is found in HinTak branch, [link](https://github.com/HinTak/seeed-voicecard). After cloning seeed-voicecard and install it, it's successfully installed and can be used with audacity to record 6 channel audio. But currently having problem transfering mp3 file back to laptop to examinate.
 9. 20221005
-   1. Project progress are all inside GitHub's project tab ![link](https://github.com/users/belongtothenight/projects/1).
+   1. Project progress are all inside GitHub's project tab [link](https://github.com/users/belongtothenight/projects/1).
    2. After fresh installing OS and seeed-voicecard, menu bar disappear again, and the only option now is to find a way to trigger vnc interface by command in order to transfer file between raspberry pi and my laptop.
 10. 20221006
-    1. After removing "lxplug-volumepulse", menu bar re-appear and the audacity still can record. File transfer is therefore possible. ![link](https://raspberrypi.stackexchange.com/questions/122579/after-fresh-install-of-raspberry-os-the-menu-bar-is-missing-in-tightvnc-session)
-    2. All necessary tests in ![link](https://wiki.seeedstudio.com/ReSpeaker_6-Mic_Circular_Array_kit_for_Raspberry_Pi/) have all being conduct except realtime sound source localization and tracking section, which is cause by cmake missing package.
+    1. After removing "lxplug-volumepulse", menu bar re-appear and the audacity still can record. File transfer is therefore possible. [link](https://raspberrypi.stackexchange.com/questions/122579/after-fresh-install-of-raspberry-os-the-menu-bar-is-missing-in-tightvnc-session)
+    2. All necessary tests in [link](https://wiki.seeedstudio.com/ReSpeaker_6-Mic_Circular_Array_kit_for_Raspberry_Pi/) have all being conduct except realtime sound source localization and tracking section, which is cause by cmake missing package.
 11. 20221007
-    1. Finished recording audio data and plot it as picture. <https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/alg_test1.py>
-    2. Finished recording audio data from 4 channels simultaniously and plot it as picture. <https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/alg_test2.py>
-    3. Implemented the power estimation algorithm previously realized in HT32F52352. The calculation currently implemented is really slow, vectorization might help accelerate this. <https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/alg_test3.py>
+    1. Finished recording audio data and plot it as picture. [alg_test1](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/alg_test1.py)
+    2. Finished recording audio data from 4 channels simultaniously and plot it as picture. [alg_test2](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/alg_test2.py)
+    3. Implemented the power estimation algorithm previously realized in HT32F52352. The calculation currently implemented is really slow, vectorization might help accelerate this. [alg_test3.py](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/alg_test3.py)
        1. This algorithm relys on "SAMPLE_DOWNSIZE" parameter to downsize original sample value to prevent overflow.
        2. If overflow error occurs, this algorithm is going to automatically skip the sample.
        3. If the parameter "SAMPLE_DOWNSIZE" is not adjusted properly, algorithm is going to keep skipping samples.
@@ -75,3 +75,9 @@
        1. Change "CHUNK" to smaller numbers around 128 to decrease calculation time and interval.
        2. Try to get a stable curve of power instead of lots of spikes.
        3. Implement 11.3.5 + 11.3.6
+12. 20221011
+    1. Sucessfully understand and added additional functions to pixel_ring model. All files are zipped to "pixel_ring_mod.7z" in "./algorithm/pixel_ring_mod.7z". Test file is [pixel_ring_test.py](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/pixel_ring_test.py)
+    2. To install this
+       1. unzip.
+       2. "cd" to the root folder of unzipped "pixel_ring_mod.7z".
+       3. "pip install -U -e .".
