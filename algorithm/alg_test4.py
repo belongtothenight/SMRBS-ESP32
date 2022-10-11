@@ -17,6 +17,7 @@ Improvement:
 3. Add LED (ring_pixel) indicating which direction is decided.
 4. Store data temperary and plot all data after execution is completed. *(data isn't inspected yet)
 5. Matplotlib can't be threaded.
+6. Auto skip if skipped too many times.
 '''
 
 # Parameters
@@ -30,8 +31,8 @@ POWER_CNT = 100  # how many samples to finish calculation # not used yet
 ALPHA = 0.99
 SAMPLE_DOWNSIZE = 2000  # sample = sample / SAMPLE_DOWNSIZE
 IMG_PATH = '/home/pi/code/alg_test4/'
-PLOT_P = False # plot power of each measurement # if TOTAL_PIC>10 it is going to take forever
-PLOT_D = True # plot decision of microphone
+PLOT_P = False  # plot power of each measurement # if TOTAL_PIC>10 it is going to take forever
+PLOT_D = True  # plot decision of microphone
 
 # Mem
 mem_p_a = []
@@ -67,7 +68,8 @@ while times < TOTAL_PIC:
     frames_d = []
 
     # get data
-    data = stream.read(CHUNK, exception_on_overflow=False) # prevent over flow error
+    # prevent over flow error
+    data = stream.read(CHUNK, exception_on_overflow=False)
     a = np.frombuffer(data, dtype=np.int16)[0::8]
     b = np.frombuffer(data, dtype=np.int16)[1::8]
     c = np.frombuffer(data, dtype=np.int16)[2::8]
@@ -156,7 +158,7 @@ print('start plotting')
 plt_title = ['mic1', 'mic2', 'mic3', 'mic4', 'stacked', 'decision']
 if PLOT_P:
     for i in range(TOTAL_PIC):
-        plt.figure(figsize=(16,9))
+        plt.figure(figsize=(16, 9))
         plt.plot(mem_p_a[i])
         plt.plot(mem_p_b[i])
         plt.plot(mem_p_c[i])
@@ -167,12 +169,13 @@ if PLOT_P:
         plt.clf()
         print('{0}/{1}'.format(i+1, TOTAL_PIC))
 if PLOT_D:
-    plt.figure(figsize=(16,9))
+    plt.figure(figsize=(16, 9))
     plt.hlines(mem_p_disc, range(TOTAL_PIC), range(1, TOTAL_PIC+1))
-    plt.title(plt_title[5] + ' mic=[{0}, {1}, {2}, {3}]%'.format(n1, n2, n3, n4))
+    plt.title(plt_title[5] +
+              ' mic=[{0}, {1}, {2}, {3}]%'.format(n1, n2, n3, n4))
     plt.ylim((0, 5))
     plt.savefig(join(IMG_PATH, 'p_decision_{0}.png'.format(TOTAL_PIC)))
-    
+
 print('* done plotting')
 
 # LED END

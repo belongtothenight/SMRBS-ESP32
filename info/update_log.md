@@ -81,3 +81,4 @@
        1. unzip.
        2. "cd" to the root folder of unzipped "pixel_ring_mod.7z".
        3. "pip install -U -e .".
+    3. Re-examine previously finished alg_test4.py and altered how the result are presented and fix some bugs.
