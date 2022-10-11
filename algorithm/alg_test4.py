@@ -6,13 +6,18 @@ import numpy as np
 from matplotlib import pyplot as plt
 from time import sleep
 import array
+from pixel_ring import pixel_ring
+from gpiozero import LED
 
 '''
 Improvement:
 1. Change chunk to 128
 2. Generate plot with output decision result using power estimation result.
+3. Add LED (ring_pixel) indicating which direction is decided.
+4. Store data temperary and plot all data after execution is completed. *(data isn't inspected yet)
 '''
 
+# Parameters
 RESPEAKER_RATE = 16000
 RESPEAKER_CHANNELS = 8
 RESPEAKER_WIDTH = 2
@@ -25,6 +30,24 @@ POWER_CNT = 100  # how many samples to finish calculation
 ALPHA = 0.99
 SAMPLE_DOWNSIZE = 2000  # sample = sample / SAMPLE_DOWNSIZE
 
+# Mem
+mem_p_a = []
+mem_p_b = []
+mem_p_c = []
+mem_p_d = []
+mem_p_disc = []
+mem_sk = []
+mem_n1 = []
+mem_n2 = []
+mem_n3 = []
+mem_n4 = []
+
+# LED initialize
+power = LED(5)
+power.on()
+pixel_ring.set_brightness(10)
+pixel_ring.wakeup()
+# MIC initialize
 p = pyaudio.PyAudio()
 stream = p.open(
     rate=RESPEAKER_RATE,
@@ -32,10 +55,11 @@ stream = p.open(
     channels=RESPEAKER_CHANNELS,
     input=True,
     input_device_index=RESPEAKER_INDEX,)
+
+pixel_ring.off()
 print("* recording")
 
 times = 0
-
 while times < TOTAL_PIC:
     times += 1
     print('{0}/{1}'.format(times, TOTAL_PIC))
@@ -89,6 +113,14 @@ while times < TOTAL_PIC:
         p_t_c = s_c**2
         p_t_d = s_d**2
         p_t_disc = np.argmax([p_t_a, p_t_b, p_t_c, p_t_d]) + 1
+        if p_t_disc == 1:
+            pixel_ring.open1()
+        elif p_t_disc == 2:
+            pixel_ring.open2()
+        elif p_t_disc == 3:
+            pixel_ring.open3()
+        else:
+            pixel_ring.open4()
         try:
             p_a.append(ALPHA*p_t_a+(1-ALPHA)*(p_a[-1]**2))
             p_b.append(ALPHA*p_t_b+(1-ALPHA)*(p_b[-1]**2))
@@ -98,10 +130,13 @@ while times < TOTAL_PIC:
         except:
             # skip if overflow
             sk += 1
+
+    # skip if skipping too much
     if sk > CHUNK * 0.3:
         times -= 1
         continue
-    print('processing')
+
+    # calculate percentage
     unique, counts = np.unique(p_disc, return_counts=True)
     mic = dict(zip(unique, counts))
     try:
@@ -121,34 +156,53 @@ while times < TOTAL_PIC:
     except:
         n4 = 0
 
-    print('plotting')
-    # plot
-    plt_title = ['mic1', 'mic2', 'mic3', 'mic4', 'stacked', 'decision']
+    # store data in mem
+    mem_p_a.append(p_a)
+    mem_p_b.append(p_b)
+    mem_p_c.append(p_c)
+    mem_p_d.append(p_d)
+    mem_p_disc.append(p_disc)
+    mem_sk.append(sk)
+    mem_n1.append(n1)
+    mem_n2.append(n2)
+    mem_n3.append(n3)
+    mem_n4.append(n4)
+
+print("* done recording")
+print('start plotting')
+# plot
+plt_title = ['mic1', 'mic2', 'mic3', 'mic4', 'stacked', 'decision']
+for i in range(TOTAL_PIC):
     fig, axs = plt.subplots(2, 3, figsize=(24, 12))
-    fig.suptitle('pic' + str(times))
-    axs[0, 0].plot(p_a)
-    axs[0, 1].plot(p_b)
-    axs[1, 0].plot(p_c)
-    axs[1, 1].plot(p_d)
-    axs[0, 2].plot(p_a)
-    axs[0, 2].plot(p_b)
-    axs[0, 2].plot(p_c)
-    axs[0, 2].plot(p_d)
-    axs[1, 2].step(range(len(p_disc)), p_disc)
+    fig.suptitle('pic' + str(i + 1))
+    axs[0, 0].plot(mem_p_a[i])
+    axs[0, 1].plot(mem_p_b[i])
+    axs[1, 0].plot(mem_p_c[i])
+    axs[1, 1].plot(mem_p_d[i])
+    axs[0, 2].plot(mem_p_a[i])
+    axs[0, 2].plot(mem_p_b[i])
+    axs[0, 2].plot(mem_p_c[i])
+    axs[0, 2].plot(mem_p_d[i])
+    axs[1, 2].step(range(len(mem_p_disc[i])), mem_p_disc[i])
     axs[1, 2].set_ylim([1, 4])
     axs[0, 0].set_title(plt_title[0])
     axs[0, 1].set_title(plt_title[1])
     axs[1, 0].set_title(plt_title[2])
     axs[1, 1].set_title(plt_title[3])
     axs[0, 2].set_title(plt_title[4] + ' skipped ' +
-                        str(sk) + '/' + str(CHUNK))
+                        str(mem_sk[i]) + '/' + str(CHUNK))
     axs[0, 2].legend(['mic1', 'mic2', 'mic3', 'mic4'])
-    axs[1, 2].set_title(plt_title[5] + ' mic=[{0}, {1}, {2}, {3}]%'.format(n1, n2, n3, n4))
+    axs[1, 2].set_title(plt_title[5] + ' mic=[{0}, {1}, {2}, {3}]%'.format(mem_n1[i], mem_n2[i], mem_n3[i], mem_n4[i]))
 
-    plt.savefig('/home/pi/code/alg_test4/p{0}.png'.format(times))
+    plt.savefig('/home/pi/code/alg_test4/p{0}.png'.format(i + 1))
     plt.clf()
+    print('{0}/{1}'.format(i+1, TOTAL_PIC))
+print('* done plotting')
 
-print("* done recording")
+# LED END
+pixel_ring.off()
+power.off()
+# MIC END
 stream.stop_stream()
 stream.close()
 p.terminate()
