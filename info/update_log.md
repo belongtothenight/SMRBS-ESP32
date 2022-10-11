@@ -82,3 +82,4 @@
        2. "cd" to the root folder of unzipped "pixel_ring_mod.7z".
        3. "pip install -U -e .".
     3. Re-examine previously finished alg_test4.py and altered how the result are presented and fix some bugs.
+    4. Tested parameters "chunk", "alpha", "sample_downsize" individually with ["alg_test5_chunk.py"](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/alg_test5_chunk.py), ["alg_test5_alpha.py"](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/alg_test5_alpha.py), ["alg_test5_sampledownsize.py"](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/alg_test5_sampledownsize.py).
