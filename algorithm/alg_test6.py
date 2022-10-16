@@ -104,14 +104,6 @@ class PE():
         self.d8 = array.array('h')
         self.d8.frombytes(b''.join(t))
         self.d8 = list(self.d8)
-        self.d1avg = sum(self.d1) / len(self.d1)
-        self.d2avg = sum(self.d2) / len(self.d2)
-        self.d3avg = sum(self.d3) / len(self.d3)
-        self.d4avg = sum(self.d4) / len(self.d4)
-        self.d5avg = sum(self.d5) / len(self.d5)
-        self.d6avg = sum(self.d6) / len(self.d6)
-        self.d7avg = sum(self.d7) / len(self.d7)
-        self.d8avg = sum(self.d8) / len(self.d8)
         # drop first few samples
         self.d1 = self.d1[self.samp_dp:]
         self.d2 = self.d2[self.samp_dp:]
@@ -130,6 +122,14 @@ class PE():
         self.d6 = [x/self.samp_ds for x in self.d6]
         self.d7 = [x/self.samp_ds for x in self.d7]
         self.d8 = [x/self.samp_ds for x in self.d8]
+        self.d1avg = sum(self.d1) / len(self.d1)
+        self.d2avg = sum(self.d2) / len(self.d2)
+        self.d3avg = sum(self.d3) / len(self.d3)
+        self.d4avg = sum(self.d4) / len(self.d4)
+        self.d5avg = sum(self.d5) / len(self.d5)
+        self.d6avg = sum(self.d6) / len(self.d6)
+        self.d7avg = sum(self.d7) / len(self.d7)
+        self.d8avg = sum(self.d8) / len(self.d8)
         # print
         if pf:
             print(self.d1)
@@ -280,7 +280,7 @@ class PE():
         plt.legend()
         plt.show()
 
-    def plt_cb1(self, cl=False):
+    def plt_cb11(self, cl=False):
         # combined: s+p
         if cl:
             plt.clf()
@@ -361,7 +361,7 @@ class PE():
         axs[1, 2].legend()
         plt.show()
 
-    def plt_cb2(self, cl=False):
+    def plt_cb12(self, cl=False):
         # combined: v+p+pe1+dc
         if cl:
             plt.clf()
@@ -374,11 +374,11 @@ class PE():
         axs[0, 0].set_ylabel('V/W (scaled)')
         axs[0, 0].axhline(0, color='black')
         axs[0, 0].axvline(0, color='black')
-        axs[0, 0].axhline(self.p1avg, color='red',
+        axs[0, 0].axhline(self.d1avg, color='red',
                           label='savg={0:.2f}'.format(self.d1avg))
         axs[0, 0].axhline(self.p1avg, color='purple',
                           label='pavg={0:.2f}'.format(self.p1avg))
-        axs[0, 0].axhline(self.p1avg, color='pink',
+        axs[0, 0].axhline(self.pe11avg, color='pink',
                           label='pe1avg={0:.2f}'.format(self.pe11avg))
         axs[0, 0].plot(self.d1, label='signal')
         axs[0, 0].plot(self.p1, label='power')
@@ -389,11 +389,11 @@ class PE():
         axs[0, 1].set_ylabel('V/W (scaled)')
         axs[0, 1].axhline(0, color='black')
         axs[0, 1].axvline(0, color='black')
-        axs[0, 1].axhline(self.p1avg, color='red',
+        axs[0, 1].axhline(self.d2avg, color='red',
                           label='savg={0:.2f}'.format(self.d2avg))
-        axs[0, 1].axhline(self.p1avg, color='purple',
+        axs[0, 1].axhline(self.p2avg, color='purple',
                           label='pavg={0:.2f}'.format(self.p2avg))
-        axs[0, 1].axhline(self.p1avg, color='pink',
+        axs[0, 1].axhline(self.pe12avg, color='pink',
                           label='pe1avg={0:.2f}'.format(self.pe12avg))
         axs[0, 1].plot(self.d2, label='signal')
         axs[0, 1].plot(self.p2, label='power')
@@ -404,11 +404,11 @@ class PE():
         axs[0, 2].set_ylabel('V/W (scaled)')
         axs[0, 2].axhline(0, color='black')
         axs[0, 2].axvline(0, color='black')
-        axs[0, 2].axhline(self.p1avg, color='red',
+        axs[0, 2].axhline(self.d3avg, color='red',
                           label='savg={0:.2f}'.format(self.d3avg))
-        axs[0, 2].axhline(self.p1avg, color='purple',
+        axs[0, 2].axhline(self.p3avg, color='purple',
                           label='pavg={0:.2f}'.format(self.p3avg))
-        axs[0, 2].axhline(self.p1avg, color='pink',
+        axs[0, 2].axhline(self.pe13avg, color='pink',
                           label='pe1avg={0:.2f}'.format(self.pe13avg))
         axs[0, 2].plot(self.d3, label='signal')
         axs[0, 2].plot(self.p3, label='power')
@@ -419,11 +419,11 @@ class PE():
         axs[1, 0].set_ylabel('V/W (scaled)')
         axs[1, 0].axhline(0, color='black')
         axs[1, 0].axvline(0, color='black')
-        axs[1, 0].axhline(self.p1avg, color='red',
+        axs[1, 0].axhline(self.d4avg, color='red',
                           label='savg={0:.2f}'.format(self.d4avg))
-        axs[1, 0].axhline(self.p1avg, color='purple',
+        axs[1, 0].axhline(self.p4avg, color='purple',
                           label='pavg={0:.2f}'.format(self.p4avg))
-        axs[1, 0].axhline(self.p1avg, color='pink',
+        axs[1, 0].axhline(self.pe14avg, color='pink',
                           label='pe1avg={0:.2f}'.format(self.pe14avg))
         axs[1, 0].plot(self.d4, label='signal')
         axs[1, 0].plot(self.p4, label='power')
@@ -434,11 +434,11 @@ class PE():
         axs[1, 1].set_ylabel('V/W (scaled)')
         axs[1, 1].axhline(0, color='black')
         axs[1, 1].axvline(0, color='black')
-        axs[1, 1].axhline(self.p1avg, color='red',
+        axs[1, 1].axhline(self.d5avg, color='red',
                           label='savg={0:.2f}'.format(self.d5avg))
-        axs[1, 1].axhline(self.p1avg, color='purple',
+        axs[1, 1].axhline(self.p5avg, color='purple',
                           label='pavg={0:.2f}'.format(self.p5avg))
-        axs[1, 1].axhline(self.p1avg, color='pink',
+        axs[1, 1].axhline(self.pe15avg, color='pink',
                           label='pe1avg={0:.2f}'.format(self.pe15avg))
         axs[1, 1].plot(self.d5, label='signal')
         axs[1, 1].plot(self.p5, label='power')
@@ -449,11 +449,11 @@ class PE():
         axs[1, 2].set_ylabel('V/W (scaled)')
         axs[1, 2].axhline(0, color='black')
         axs[1, 2].axvline(0, color='black')
-        axs[1, 2].axhline(self.p1avg, color='red',
+        axs[1, 2].axhline(self.d6avg, color='red',
                           label='savg={0:.2f}'.format(self.d6avg))
-        axs[1, 2].axhline(self.p1avg, color='purple',
+        axs[1, 2].axhline(self.p6avg, color='purple',
                           label='pavg={0:.2f}'.format(self.p6avg))
-        axs[1, 2].axhline(self.p1avg, color='pink',
+        axs[1, 2].axhline(self.pe16avg, color='pink',
                           label='pe1avg={0:.2f}'.format(self.pe16avg))
         axs[1, 2].plot(self.d6, label='signal')
         axs[1, 2].plot(self.p6, label='power')
@@ -483,7 +483,7 @@ if __name__ == '__main__':
     # pe.plt_s()
     # pe.plt_p()
     # pe.plt_pe1()
-    # pe.plt_cb1()
-    pe.plt_cb2()
+    # pe.plt_cb11()
+    pe.plt_cb12()
 
     pe.terminate()
