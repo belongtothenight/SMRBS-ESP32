@@ -84,4 +84,9 @@
     3. Re-examine previously finished [alg_test4.py](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/alg_test4.py) and altered how the result are presented and fix some bugs.
     4. Tested parameters "chunk", "alpha", "sample_downsize" individually with ["alg_test5_chunk.py"](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/alg_test5_chunk.py), ["alg_test5_alpha.py"](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/alg_test5_alpha.py), ["alg_test5_sampledownsize.py"](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/alg_test5_sampledownsize.py).
 13. 20221016
-    1.
+    1. Finished ["alg_test6.py"](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/alg_test6.py).
+       1. The output files is written mostly in model.
+       2. Plots are correctly labeled, with legends provided.
+       3. Samples are downsized with 2k, no pyoverflow error ever occur(probably once?).
+       4. The start section of samples are dumped to prevent spike at the begining.
+       5. Results are stored in ["alg_test6"](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/alg_test6).
