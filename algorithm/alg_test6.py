@@ -136,7 +136,7 @@ class PE():
             print(self.d7)
             print(self.d8)
 
-    def cal_pow(self, pf=False):
+    def pow(self, pf=False):
         self.p1 = [x**2 for x in self.d1]
         self.p2 = [x**2 for x in self.d2]
         self.p3 = [x**2 for x in self.d3]
@@ -165,6 +165,10 @@ class PE():
 
     def pe1(self, pf=False):
         self.pe11 = []
+        self.pe11.append(0)
+        for i in range(self.chunk - self.samp_dp):
+            self.pe11.append(
+                self.alpha*self.pe11[i] + (1-self.alpha)*self.p1[i])
 
     def cal_st(self):
         # calculate statatistics
@@ -211,8 +215,17 @@ class PE():
         plt.show()
 
     def plt_pe1(self, cl=False):
-        # decision
-        pass
+        # power estimation 1
+        if cl:
+            plt.clf()
+        plt.title('power')
+        plt.xlabel('Sample')
+        plt.ylabel('V (scaled)')
+        plt.axhline(0, color='black')
+        plt.axvline(0, color='black')
+        l1 = plt.plot(self.pe11, label='ch1')
+        plt.legend()
+        plt.show()
 
     def plt_cb1(self, cl=False):
         # combined: s+p
@@ -299,12 +312,27 @@ class PE():
         # combined: v+p+pe1+dc
         pass
 
+    def terminate(self):
+        # LED
+        pixel_ring.off()
+        self.power.off()
+        # MIC
+        self.stream.stop_stream()
+        self.stream.close()
+        self.p.terminate()
+        print('PE terminated')
+
 
 # <<main>>
 if __name__ == '__main__':
     pe = PE(chunk_=500)
     pe.read_6ch_data()
-    pe.cal_pow()
-    pe.plt_cb1()
+    pe.pow()
+    pe.pe1()
+
     # pe.plt_s()
     # pe.plt_p()
+    pe.plt_pe1()
+    # pe.plt_cb1()
+
+    pe.terminate()
