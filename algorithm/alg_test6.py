@@ -99,6 +99,14 @@ class PE():
         self.d8 = array.array('h')
         self.d8.frombytes(b''.join(t))
         self.d8 = list(self.d8)
+        self.d1avg = sum(self.d1) / len(self.d1)
+        self.d2avg = sum(self.d2) / len(self.d2)
+        self.d3avg = sum(self.d3) / len(self.d3)
+        self.d4avg = sum(self.d4) / len(self.d4)
+        self.d5avg = sum(self.d5) / len(self.d5)
+        self.d6avg = sum(self.d6) / len(self.d6)
+        self.d7avg = sum(self.d7) / len(self.d7)
+        self.d8avg = sum(self.d8) / len(self.d8)
         # drop first few samples
         self.d1 = self.d1[self.samp_dp:]
         self.d2 = self.d2[self.samp_dp:]
@@ -137,6 +145,14 @@ class PE():
         self.p6 = [x**2 for x in self.d6]
         self.p7 = [x**2 for x in self.d7]
         self.p8 = [x**2 for x in self.d8]
+        self.p1avg = sum(self.p1)/len(self.p1)
+        self.p2avg = sum(self.p2)/len(self.p2)
+        self.p3avg = sum(self.p3)/len(self.p3)
+        self.p4avg = sum(self.p4)/len(self.p4)
+        self.p5avg = sum(self.p5)/len(self.p5)
+        self.p6avg = sum(self.p6)/len(self.p6)
+        self.p7avg = sum(self.p7)/len(self.p7)
+        self.p8avg = sum(self.p8)/len(self.p8)
         if pf:
             print(self.p1)
             print(self.p2)
@@ -148,7 +164,7 @@ class PE():
             print(self.p8)
 
     def pe1(self, pf=False):
-        pass
+        self.pe11 = []
 
     def cal_st(self):
         # calculate statatistics
@@ -169,8 +185,8 @@ class PE():
         l4 = plt.plot(self.d4, label='ch4')
         l5 = plt.plot(self.d5, label='ch5')
         l6 = plt.plot(self.d6, label='ch6')
-        l7 = plt.plot(self.d7, label='ch7')
-        l8 = plt.plot(self.d8, label='ch8')
+        # l7 = plt.plot(self.d7, label='ch7')
+        # l8 = plt.plot(self.d8, label='ch8')
         plt.legend()
         plt.show()
 
@@ -189,12 +205,12 @@ class PE():
         l4 = plt.plot(self.p4, label='ch4')
         l5 = plt.plot(self.p5, label='ch5')
         l6 = plt.plot(self.p6, label='ch6')
-        l7 = plt.plot(self.p7, label='ch7')
-        l8 = plt.plot(self.p8, label='ch8')
+        # l7 = plt.plot(self.p7, label='ch7')
+        # l8 = plt.plot(self.p8, label='ch8')
         plt.legend()
         plt.show()
 
-    def plt_dc(self, cl=False):
+    def plt_pe1(self, cl=False):
         # decision
         pass
 
@@ -202,14 +218,81 @@ class PE():
         # combined: s+p
         if cl:
             plt.clf()
-        plt.title('signal + power')
-        plt.xlabel('Sample')
-        plt.ylabel('V/W (scaled)')
-        plt.axhline(0, color='black')
-        plt.axvline(0, color='black')
-        l1 = plt.plot(self.d1, label='signal')
-        l2 = plt.plot(self.p1, label='power')
-        plt.legend()
+        fig, axs = plt.subplots(2, 3, figsize=(10, 4))
+        fig.suptitle('signal + power')
+        fig.tight_layout(pad=0.3)
+        axs[0, 0].set_title('ch1')
+        axs[0, 0].set_xlabel('Sample')
+        axs[0, 0].set_ylabel('V/W (scaled)')
+        axs[0, 0].axhline(0, color='black')
+        axs[0, 0].axvline(0, color='black')
+        axs[0, 0].axhline(self.p1avg, color='red',
+                          label='savg={0:.2f}'.format(self.d1avg))
+        axs[0, 0].axhline(self.p1avg, color='purple',
+                          label='pavg={0:.2f}'.format(self.p1avg))
+        axs[0, 0].plot(self.d1, label='signal')
+        axs[0, 0].plot(self.p1, label='power')
+        axs[0, 0].legend()
+        axs[0, 1].set_title('ch2')
+        axs[0, 1].set_xlabel('Sample')
+        axs[0, 1].set_ylabel('V/W (scaled)')
+        axs[0, 1].axhline(0, color='black')
+        axs[0, 1].axvline(0, color='black')
+        axs[0, 1].axhline(self.p1avg, color='red',
+                          label='savg={0:.2f}'.format(self.d2avg))
+        axs[0, 1].axhline(self.p1avg, color='purple',
+                          label='pavg={0:.2f}'.format(self.p2avg))
+        axs[0, 1].plot(self.d2, label='signal')
+        axs[0, 1].plot(self.p2, label='power')
+        axs[0, 1].legend()
+        axs[0, 2].set_title('ch3')
+        axs[0, 2].set_xlabel('Sample')
+        axs[0, 2].set_ylabel('V/W (scaled)')
+        axs[0, 2].axhline(0, color='black')
+        axs[0, 2].axvline(0, color='black')
+        axs[0, 2].axhline(self.p1avg, color='red',
+                          label='savg={0:.2f}'.format(self.d3avg))
+        axs[0, 2].axhline(self.p1avg, color='purple',
+                          label='pavg={0:.2f}'.format(self.p3avg))
+        axs[0, 2].plot(self.d3, label='signal')
+        axs[0, 2].plot(self.p3, label='power')
+        axs[0, 2].legend()
+        axs[1, 0].set_title('ch4')
+        axs[1, 0].set_xlabel('Sample')
+        axs[1, 0].set_ylabel('V/W (scaled)')
+        axs[1, 0].axhline(0, color='black')
+        axs[1, 0].axvline(0, color='black')
+        axs[1, 0].axhline(self.p1avg, color='red',
+                          label='savg={0:.2f}'.format(self.d4avg))
+        axs[1, 0].axhline(self.p1avg, color='purple',
+                          label='pavg={0:.2f}'.format(self.p4avg))
+        axs[1, 0].plot(self.d4, label='signal')
+        axs[1, 0].plot(self.p4, label='power')
+        axs[1, 0].legend()
+        axs[1, 1].set_title('ch5')
+        axs[1, 1].set_xlabel('Sample')
+        axs[1, 1].set_ylabel('V/W (scaled)')
+        axs[1, 1].axhline(0, color='black')
+        axs[1, 1].axvline(0, color='black')
+        axs[1, 1].axhline(self.p1avg, color='red',
+                          label='savg={0:.2f}'.format(self.d5avg))
+        axs[1, 1].axhline(self.p1avg, color='purple',
+                          label='pavg={0:.2f}'.format(self.p5avg))
+        axs[1, 1].plot(self.d5, label='signal')
+        axs[1, 1].plot(self.p5, label='power')
+        axs[1, 1].legend()
+        axs[1, 2].set_title('ch6')
+        axs[1, 2].set_xlabel('Sample')
+        axs[1, 2].set_ylabel('V/W (scaled)')
+        axs[1, 2].axhline(0, color='black')
+        axs[1, 2].axvline(0, color='black')
+        axs[1, 2].axhline(self.p1avg, color='red',
+                          label='savg={0:.2f}'.format(self.d6avg))
+        axs[1, 2].axhline(self.p1avg, color='purple',
+                          label='pavg={0:.2f}'.format(self.p6avg))
+        axs[1, 2].plot(self.d6, label='signal')
+        axs[1, 2].plot(self.p6, label='power')
+        axs[1, 2].legend()
         plt.show()
 
     def plt_cb2(self, cl=False):
@@ -223,3 +306,5 @@ if __name__ == '__main__':
     pe.read_6ch_data()
     pe.cal_pow()
     pe.plt_cb1()
+    # pe.plt_s()
+    # pe.plt_p()
