@@ -166,9 +166,37 @@ class PE():
     def pe1(self, pf=False):
         self.pe11 = []
         self.pe11.append(0)
+        self.pe12 = []
+        self.pe12.append(0)
+        self.pe13 = []
+        self.pe13.append(0)
+        self.pe14 = []
+        self.pe14.append(0)
+        self.pe15 = []
+        self.pe15.append(0)
+        self.pe16 = []
+        self.pe16.append(0)
+        self.pe17 = []
+        self.pe17.append(0)
+        self.pe18 = []
+        self.pe18.append(0)
         for i in range(self.chunk - self.samp_dp):
             self.pe11.append(
                 self.alpha*self.pe11[i] + (1-self.alpha)*self.p1[i])
+            self.pe12.append(
+                self.alpha*self.pe12[i] + (1-self.alpha)*self.p2[i])
+            self.pe13.append(
+                self.alpha*self.pe13[i] + (1-self.alpha)*self.p3[i])
+            self.pe14.append(
+                self.alpha*self.pe14[i] + (1-self.alpha)*self.p4[i])
+            self.pe15.append(
+                self.alpha*self.pe15[i] + (1-self.alpha)*self.p5[i])
+            self.pe16.append(
+                self.alpha*self.pe16[i] + (1-self.alpha)*self.p6[i])
+            self.pe17.append(
+                self.alpha*self.pe17[i] + (1-self.alpha)*self.p7[i])
+            self.pe18.append(
+                self.alpha*self.pe18[i] + (1-self.alpha)*self.p8[i])
 
     def cal_st(self):
         # calculate statatistics
@@ -224,6 +252,13 @@ class PE():
         plt.axhline(0, color='black')
         plt.axvline(0, color='black')
         l1 = plt.plot(self.pe11, label='ch1')
+        l2 = plt.plot(self.pe12, label='ch2')
+        l3 = plt.plot(self.pe13, label='ch3')
+        l4 = plt.plot(self.pe14, label='ch4')
+        l5 = plt.plot(self.pe15, label='ch5')
+        l6 = plt.plot(self.pe16, label='ch6')
+        # l7 = plt.plot(self.pe17, label='ch7')
+        # l8 = plt.plot(self.pe18, label='ch8')
         plt.legend()
         plt.show()
 
