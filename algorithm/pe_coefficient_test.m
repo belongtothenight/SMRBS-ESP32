@@ -1,4 +1,4 @@
-function pe(alpha)
+function pe_coefficient_test(alpha)
 clc;
 t=0:0.01:100;
 x=sin(2*pi*t);

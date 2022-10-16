@@ -11,6 +11,11 @@ from time import sleep
 from pixel_ring import pixel_ring
 from gpiozero import LED
 
+'''
+1. Reorganized from "alg_test5.py".
+2. Fixed power estimation bug.
+'''
+
 # <<parameters>>
 RESPEAKER_RATE = 16000
 RESPEAKER_CHANNELS = 8
@@ -197,6 +202,19 @@ class PE():
                 self.alpha*self.pe17[i] + (1-self.alpha)*self.p7[i])
             self.pe18.append(
                 self.alpha*self.pe18[i] + (1-self.alpha)*self.p8[i])
+        self.pe11avg = sum(self.pe11)/len(self.pe11)
+        self.pe12avg = sum(self.pe12)/len(self.pe12)
+        self.pe13avg = sum(self.pe13)/len(self.pe13)
+        self.pe14avg = sum(self.pe14)/len(self.pe14)
+        self.pe15avg = sum(self.pe15)/len(self.pe15)
+        self.pe16avg = sum(self.pe16)/len(self.pe16)
+        self.pe17avg = sum(self.pe17)/len(self.pe17)
+        self.pe18avg = sum(self.pe18)/len(self.pe18)
+
+    def dc1(self):
+        index_max = np.argmax([self.pe11[-1], self.pe12[-1], self.pe13[-1],
+                              self.pe14[-1], self.pe15[-1], self.pe16[-1]])
+        self.max_ch = index_max + 1
 
     def cal_st(self):
         # calculate statatistics
@@ -345,7 +363,103 @@ class PE():
 
     def plt_cb2(self, cl=False):
         # combined: v+p+pe1+dc
-        pass
+        if cl:
+            plt.clf()
+        fig, axs = plt.subplots(2, 3, figsize=(10, 4))
+        fig.suptitle(
+            'signal + power + power estimation =>ch{0}'.format(self.max_ch))
+        fig.tight_layout(pad=0.3)
+        axs[0, 0].set_title('ch1 pe1={0:.2f}'.format(self.pe11[-1]))
+        axs[0, 0].set_xlabel('Sample')
+        axs[0, 0].set_ylabel('V/W (scaled)')
+        axs[0, 0].axhline(0, color='black')
+        axs[0, 0].axvline(0, color='black')
+        axs[0, 0].axhline(self.p1avg, color='red',
+                          label='savg={0:.2f}'.format(self.d1avg))
+        axs[0, 0].axhline(self.p1avg, color='purple',
+                          label='pavg={0:.2f}'.format(self.p1avg))
+        axs[0, 0].axhline(self.p1avg, color='pink',
+                          label='pe1avg={0:.2f}'.format(self.pe11avg))
+        axs[0, 0].plot(self.d1, label='signal')
+        axs[0, 0].plot(self.p1, label='power')
+        axs[0, 0].plot(self.pe11, label='pe1')
+        axs[0, 0].legend()
+        axs[0, 1].set_title('ch2 pe1={0:.2f}'.format(self.pe12[-1]))
+        axs[0, 1].set_xlabel('Sample')
+        axs[0, 1].set_ylabel('V/W (scaled)')
+        axs[0, 1].axhline(0, color='black')
+        axs[0, 1].axvline(0, color='black')
+        axs[0, 1].axhline(self.p1avg, color='red',
+                          label='savg={0:.2f}'.format(self.d2avg))
+        axs[0, 1].axhline(self.p1avg, color='purple',
+                          label='pavg={0:.2f}'.format(self.p2avg))
+        axs[0, 1].axhline(self.p1avg, color='pink',
+                          label='pe1avg={0:.2f}'.format(self.pe12avg))
+        axs[0, 1].plot(self.d2, label='signal')
+        axs[0, 1].plot(self.p2, label='power')
+        axs[0, 1].plot(self.pe12, label='pe1')
+        axs[0, 1].legend()
+        axs[0, 2].set_title('ch3 pe1={0:.2f}'.format(self.pe13[-1]))
+        axs[0, 2].set_xlabel('Sample')
+        axs[0, 2].set_ylabel('V/W (scaled)')
+        axs[0, 2].axhline(0, color='black')
+        axs[0, 2].axvline(0, color='black')
+        axs[0, 2].axhline(self.p1avg, color='red',
+                          label='savg={0:.2f}'.format(self.d3avg))
+        axs[0, 2].axhline(self.p1avg, color='purple',
+                          label='pavg={0:.2f}'.format(self.p3avg))
+        axs[0, 2].axhline(self.p1avg, color='pink',
+                          label='pe1avg={0:.2f}'.format(self.pe13avg))
+        axs[0, 2].plot(self.d3, label='signal')
+        axs[0, 2].plot(self.p3, label='power')
+        axs[0, 2].plot(self.pe13, label='pe1')
+        axs[0, 2].legend()
+        axs[1, 0].set_title('ch4 pe1={0:.2f}'.format(self.pe14[-1]))
+        axs[1, 0].set_xlabel('Sample')
+        axs[1, 0].set_ylabel('V/W (scaled)')
+        axs[1, 0].axhline(0, color='black')
+        axs[1, 0].axvline(0, color='black')
+        axs[1, 0].axhline(self.p1avg, color='red',
+                          label='savg={0:.2f}'.format(self.d4avg))
+        axs[1, 0].axhline(self.p1avg, color='purple',
+                          label='pavg={0:.2f}'.format(self.p4avg))
+        axs[1, 0].axhline(self.p1avg, color='pink',
+                          label='pe1avg={0:.2f}'.format(self.pe14avg))
+        axs[1, 0].plot(self.d4, label='signal')
+        axs[1, 0].plot(self.p4, label='power')
+        axs[1, 0].plot(self.pe14, label='pe1')
+        axs[1, 0].legend()
+        axs[1, 1].set_title('ch5 pe1={0:.2f}'.format(self.pe15[-1]))
+        axs[1, 1].set_xlabel('Sample')
+        axs[1, 1].set_ylabel('V/W (scaled)')
+        axs[1, 1].axhline(0, color='black')
+        axs[1, 1].axvline(0, color='black')
+        axs[1, 1].axhline(self.p1avg, color='red',
+                          label='savg={0:.2f}'.format(self.d5avg))
+        axs[1, 1].axhline(self.p1avg, color='purple',
+                          label='pavg={0:.2f}'.format(self.p5avg))
+        axs[1, 1].axhline(self.p1avg, color='pink',
+                          label='pe1avg={0:.2f}'.format(self.pe15avg))
+        axs[1, 1].plot(self.d5, label='signal')
+        axs[1, 1].plot(self.p5, label='power')
+        axs[1, 1].plot(self.pe15, label='pe1')
+        axs[1, 1].legend()
+        axs[1, 2].set_title('ch6 pe1={0:.2f}'.format(self.pe16[-1]))
+        axs[1, 2].set_xlabel('Sample')
+        axs[1, 2].set_ylabel('V/W (scaled)')
+        axs[1, 2].axhline(0, color='black')
+        axs[1, 2].axvline(0, color='black')
+        axs[1, 2].axhline(self.p1avg, color='red',
+                          label='savg={0:.2f}'.format(self.d6avg))
+        axs[1, 2].axhline(self.p1avg, color='purple',
+                          label='pavg={0:.2f}'.format(self.p6avg))
+        axs[1, 2].axhline(self.p1avg, color='pink',
+                          label='pe1avg={0:.2f}'.format(self.pe16avg))
+        axs[1, 2].plot(self.d6, label='signal')
+        axs[1, 2].plot(self.p6, label='power')
+        axs[1, 2].plot(self.pe16, label='pe1')
+        axs[1, 2].legend()
+        plt.show()
 
     def terminate(self):
         # LED
@@ -364,10 +478,12 @@ if __name__ == '__main__':
     pe.read_6ch_data()
     pe.pow()
     pe.pe1()
+    pe.dc1()
 
     # pe.plt_s()
     # pe.plt_p()
-    pe.plt_pe1()
+    # pe.plt_pe1()
     # pe.plt_cb1()
+    pe.plt_cb2()
 
     pe.terminate()

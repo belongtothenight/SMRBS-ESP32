@@ -1,0 +1,6 @@
+source: smarphone
+volumn: max
+signal_type: sine
+frequency_hz: 500
+direction: mic2
+distance_cm: 30
