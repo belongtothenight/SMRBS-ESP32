@@ -53,6 +53,44 @@ class PE():
         self.samp_ds = sampds
         self.chunk = chunk_
         self.alpha = alpha_
+        # MEM
+        self.mem_d1 = []
+        self.mem_d2 = []
+        self.mem_d3 = []
+        self.mem_d4 = []
+        self.mem_d5 = []
+        self.mem_d6 = []
+        self.mem_p1 = []
+        self.mem_p2 = []
+        self.mem_p3 = []
+        self.mem_p4 = []
+        self.mem_p5 = []
+        self.mem_p6 = []
+        self.mem_pe11 = []
+        self.mem_pe12 = []
+        self.mem_pe13 = []
+        self.mem_pe14 = []
+        self.mem_pe15 = []
+        self.mem_pe16 = []
+        self.mem_d1avg = []
+        self.mem_d2avg = []
+        self.mem_d3avg = []
+        self.mem_d4avg = []
+        self.mem_d5avg = []
+        self.mem_d6avg = []
+        self.mem_p1avg = []
+        self.mem_p2avg = []
+        self.mem_p3avg = []
+        self.mem_p4avg = []
+        self.mem_p5avg = []
+        self.mem_p6avg = []
+        self.mem_pe11avg = []
+        self.mem_pe12avg = []
+        self.mem_pe13avg = []
+        self.mem_pe14avg = []
+        self.mem_pe15avg = []
+        self.mem_pe16avg = []
+        self.mem_max_ch = []
         # LED
         self.power = LED(5)
         self.power.on()
@@ -231,6 +269,46 @@ class PE():
         # calculate statatistics
         pass
 
+    def store_data(self):
+        # store data in memory
+        self.mem_d1.append(self.d1)
+        self.mem_d2.append(self.d2)
+        self.mem_d3.append(self.d3)
+        self.mem_d4.append(self.d4)
+        self.mem_d5.append(self.d5)
+        self.mem_d6.append(self.d6)
+        self.mem_p1.append(self.p1)
+        self.mem_p2.append(self.p2)
+        self.mem_p3.append(self.p3)
+        self.mem_p4.append(self.p4)
+        self.mem_p5.append(self.p5)
+        self.mem_p6.append(self.p6)
+        self.mem_pe11.append(self.pe11)
+        self.mem_pe12.append(self.pe12)
+        self.mem_pe13.append(self.pe13)
+        self.mem_pe14.append(self.pe14)
+        self.mem_pe15.append(self.pe15)
+        self.mem_pe16.append(self.pe16)
+        self.mem_d1avg.append(self.d1avg)
+        self.mem_d2avg.append(self.d2avg)
+        self.mem_d3avg.append(self.d3avg)
+        self.mem_d4avg.append(self.d4avg)
+        self.mem_d5avg.append(self.d5avg)
+        self.mem_d6avg.append(self.d6avg)
+        self.mem_p1avg.append(self.p1avg)
+        self.mem_p2avg.append(self.p2avg)
+        self.mem_p3avg.append(self.p3avg)
+        self.mem_p4avg.append(self.p4avg)
+        self.mem_p5avg.append(self.p5avg)
+        self.mem_p6avg.append(self.p6avg)
+        self.mem_pe11avg.append(self.pe11avg)
+        self.mem_pe12avg.append(self.pe12avg)
+        self.mem_pe13avg.append(self.pe13avg)
+        self.mem_pe14avg.append(self.pe14avg)
+        self.mem_pe15avg.append(self.pe15avg)
+        self.mem_pe16avg.append(self.pe16avg)
+        self.mem_max_ch.append(self.max_ch)
+
     def plt_s(self, cl=False):
         # signal
         if cl:
@@ -378,97 +456,97 @@ class PE():
             plt.clf()
         fig, axs = plt.subplots(2, 3, figsize=(20, 10))
         fig.suptitle(
-            'signal + power + power estimation =>ch{0}'.format(self.max_ch))
+            'signal + power + power estimation =>ch{0}'.format(self.mem_max_ch[fi]))
         fig.tight_layout(pad=3, h_pad=3, w_pad=3)
-        axs[0, 0].set_title('ch1 pe1={0:.2f}'.format(self.pe11[-1]))
+        axs[0, 0].set_title('ch1 pe1={0:.2f}'.format(self.mem_pe11[-1]))
         axs[0, 0].set_xlabel('Sample')
         axs[0, 0].set_ylabel('V/W (scaled)')
         axs[0, 0].axhline(0, color='black')
         axs[0, 0].axvline(0, color='black')
-        axs[0, 0].axhline(self.d1avg, color='red',
-                          label='savg={0:.2f}'.format(self.d1avg))
-        axs[0, 0].axhline(self.p1avg, color='purple',
-                          label='pavg={0:.2f}'.format(self.p1avg))
-        axs[0, 0].axhline(self.pe11avg, color='pink',
-                          label='pe1avg={0:.2f}'.format(self.pe11avg))
-        axs[0, 0].plot(self.d1, label='signal')
-        axs[0, 0].plot(self.p1, label='power')
-        axs[0, 0].plot(self.pe11, label='pe1')
+        axs[0, 0].axhline(self.mem_d1avg[fi], color='red',
+                          label='savg={0:.2f}'.format(self.mem_d1avg[fi]))
+        axs[0, 0].axhline(self.mem_p1avg[fi], color='purple',
+                          label='pavg={0:.2f}'.format(self.mem_p1avg[fi]))
+        axs[0, 0].axhline(self.mem_pe11avg[fi], color='pink',
+                          label='pe1avg={0:.2f}'.format(self.mem_pe11avg[fi]))
+        axs[0, 0].plot(self.mem_d1[fi], label='signal')
+        axs[0, 0].plot(self.mem_p1[fi], label='power')
+        axs[0, 0].plot(self.mem_pe11[fi], label='pe1')
         axs[0, 0].legend()
-        axs[0, 1].set_title('ch2 pe1={0:.2f}'.format(self.pe12[-1]))
+        axs[0, 1].set_title('ch2 pe1={0:.2f}'.format(self.mem_pe12[-1]))
         axs[0, 1].set_xlabel('Sample')
         axs[0, 1].set_ylabel('V/W (scaled)')
         axs[0, 1].axhline(0, color='black')
         axs[0, 1].axvline(0, color='black')
-        axs[0, 1].axhline(self.d2avg, color='red',
-                          label='savg={0:.2f}'.format(self.d2avg))
-        axs[0, 1].axhline(self.p2avg, color='purple',
-                          label='pavg={0:.2f}'.format(self.p2avg))
-        axs[0, 1].axhline(self.pe12avg, color='pink',
-                          label='pe1avg={0:.2f}'.format(self.pe12avg))
-        axs[0, 1].plot(self.d2, label='signal')
-        axs[0, 1].plot(self.p2, label='power')
-        axs[0, 1].plot(self.pe12, label='pe1')
+        axs[0, 1].axhline(self.mem_d2avg[fi], color='red',
+                          label='savg={0:.2f}'.format(self.mem_d2avg[fi]))
+        axs[0, 1].axhline(self.mem_p2avg[fi], color='purple',
+                          label='pavg={0:.2f}'.format(self.mem_p2avg[fi]))
+        axs[0, 1].axhline(self.mem_pe12avg[fi], color='pink',
+                          label='pe1avg={0:.2f}'.format(self.mem_pe12avg[fi]))
+        axs[0, 1].plot(self.mem_d2[fi], label='signal')
+        axs[0, 1].plot(self.mem_p2[fi], label='power')
+        axs[0, 1].plot(self.mem_pe12[fi], label='pe1')
         axs[0, 1].legend()
-        axs[0, 2].set_title('ch3 pe1={0:.2f}'.format(self.pe13[-1]))
+        axs[0, 2].set_title('ch3 pe1={0:.2f}'.format(self.mem_pe13[-1]))
         axs[0, 2].set_xlabel('Sample')
         axs[0, 2].set_ylabel('V/W (scaled)')
         axs[0, 2].axhline(0, color='black')
         axs[0, 2].axvline(0, color='black')
-        axs[0, 2].axhline(self.d3avg, color='red',
-                          label='savg={0:.2f}'.format(self.d3avg))
-        axs[0, 2].axhline(self.p3avg, color='purple',
-                          label='pavg={0:.2f}'.format(self.p3avg))
-        axs[0, 2].axhline(self.pe13avg, color='pink',
-                          label='pe1avg={0:.2f}'.format(self.pe13avg))
-        axs[0, 2].plot(self.d3, label='signal')
-        axs[0, 2].plot(self.p3, label='power')
-        axs[0, 2].plot(self.pe13, label='pe1')
+        axs[0, 2].axhline(self.mem_d3avg[fi], color='red',
+                          label='savg={0:.2f}'.format(self.mem_d3avg[fi]))
+        axs[0, 2].axhline(self.mem_p3avg[fi], color='purple',
+                          label='pavg={0:.2f}'.format(self.mem_p3avg[fi]))
+        axs[0, 2].axhline(self.mem_pe13avg[fi], color='pink',
+                          label='pe1avg={0:.2f}'.format(self.mem_pe13avg[fi]))
+        axs[0, 2].plot(self.mem_d3[fi], label='signal')
+        axs[0, 2].plot(self.mem_p3[fi], label='power')
+        axs[0, 2].plot(self.mem_pe13[fi], label='pe1')
         axs[0, 2].legend()
-        axs[1, 0].set_title('ch4 pe1={0:.2f}'.format(self.pe14[-1]))
+        axs[1, 0].set_title('ch4 pe1={0:.2f}'.format(self.mem_pe14[-1]))
         axs[1, 0].set_xlabel('Sample')
         axs[1, 0].set_ylabel('V/W (scaled)')
         axs[1, 0].axhline(0, color='black')
         axs[1, 0].axvline(0, color='black')
-        axs[1, 0].axhline(self.d4avg, color='red',
-                          label='savg={0:.2f}'.format(self.d4avg))
-        axs[1, 0].axhline(self.p4avg, color='purple',
-                          label='pavg={0:.2f}'.format(self.p4avg))
-        axs[1, 0].axhline(self.pe14avg, color='pink',
-                          label='pe1avg={0:.2f}'.format(self.pe14avg))
-        axs[1, 0].plot(self.d4, label='signal')
-        axs[1, 0].plot(self.p4, label='power')
-        axs[1, 0].plot(self.pe14, label='pe1')
+        axs[1, 0].axhline(self.mem_d4avg[fi], color='red',
+                          label='savg={0:.2f}'.format(self.mem_d4avg[fi]))
+        axs[1, 0].axhline(self.mem_p4avg[fi], color='purple',
+                          label='pavg={0:.2f}'.format(self.mem_p4avg[fi]))
+        axs[1, 0].axhline(self.mem_pe14avg[fi], color='pink',
+                          label='pe1avg={0:.2f}'.format(self.mem_pe14avg[fi]))
+        axs[1, 0].plot(self.mem_d4[fi], label='signal')
+        axs[1, 0].plot(self.mem_p4[fi], label='power')
+        axs[1, 0].plot(self.mem_pe14[fi], label='pe1')
         axs[1, 0].legend()
-        axs[1, 1].set_title('ch5 pe1={0:.2f}'.format(self.pe15[-1]))
+        axs[1, 1].set_title('ch5 pe1={0:.2f}'.format(self.mem_pe15[-1]))
         axs[1, 1].set_xlabel('Sample')
         axs[1, 1].set_ylabel('V/W (scaled)')
         axs[1, 1].axhline(0, color='black')
         axs[1, 1].axvline(0, color='black')
-        axs[1, 1].axhline(self.d5avg, color='red',
-                          label='savg={0:.2f}'.format(self.d5avg))
-        axs[1, 1].axhline(self.p5avg, color='purple',
-                          label='pavg={0:.2f}'.format(self.p5avg))
-        axs[1, 1].axhline(self.pe15avg, color='pink',
-                          label='pe1avg={0:.2f}'.format(self.pe15avg))
-        axs[1, 1].plot(self.d5, label='signal')
-        axs[1, 1].plot(self.p5, label='power')
-        axs[1, 1].plot(self.pe15, label='pe1')
+        axs[1, 1].axhline(self.mem_d5avg[fi], color='red',
+                          label='savg={0:.2f}'.format(self.mem_d5avg[fi]))
+        axs[1, 1].axhline(self.mem_p5avg[fi], color='purple',
+                          label='pavg={0:.2f}'.format(self.mem_p5avg[fi]))
+        axs[1, 1].axhline(self.mem_pe15avg[fi], color='pink',
+                          label='pe1avg={0:.2f}'.format(self.mem_pe15avg[fi]))
+        axs[1, 1].plot(self.mem_d5[fi], label='signal')
+        axs[1, 1].plot(self.mem_p5[fi], label='power')
+        axs[1, 1].plot(self.mem_pe15[fi], label='pe1')
         axs[1, 1].legend()
-        axs[1, 2].set_title('ch6 pe1={0:.2f}'.format(self.pe16[-1]))
+        axs[1, 2].set_title('ch6 pe1={0:.2f}'.format(self.mem_pe16[-1]))
         axs[1, 2].set_xlabel('Sample')
         axs[1, 2].set_ylabel('V/W (scaled)')
         axs[1, 2].axhline(0, color='black')
         axs[1, 2].axvline(0, color='black')
-        axs[1, 2].axhline(self.d6avg, color='red',
-                          label='savg={0:.2f}'.format(self.d6avg))
-        axs[1, 2].axhline(self.p6avg, color='purple',
-                          label='pavg={0:.2f}'.format(self.p6avg))
-        axs[1, 2].axhline(self.pe16avg, color='pink',
-                          label='pe1avg={0:.2f}'.format(self.pe16avg))
-        axs[1, 2].plot(self.d6, label='signal')
-        axs[1, 2].plot(self.p6, label='power')
-        axs[1, 2].plot(self.pe16, label='pe1')
+        axs[1, 2].axhline(self.mem_d6avg[fi], color='red',
+                          label='savg={0:.2f}'.format(self.mem_d6avg[fi]))
+        axs[1, 2].axhline(self.mem_p6avg[fi], color='purple',
+                          label='pavg={0:.2f}'.format(self.mem_p6avg[fi]))
+        axs[1, 2].axhline(self.mem_pe16avg[fi], color='pink',
+                          label='pe1avg={0:.2f}'.format(self.mem_pe16avg[fi]))
+        axs[1, 2].plot(self.mem_d6[fi], label='signal')
+        axs[1, 2].plot(self.mem_p6[fi], label='power')
+        axs[1, 2].plot(self.mem_pe16[fi], label='pe1')
         axs[1, 2].legend()
         if show:
             plt.show()
@@ -478,7 +556,6 @@ class PE():
     def param_test(self, param, min, max, inc):
         test_range = np.round(np.arange(min, max, inc).tolist(), 2)
         test_length = len(test_range)
-        result = []
         if param == 'rep_cnt':
             # getting averaged data (skip for now)
             test_range = [int(x) for x in test_range]
@@ -489,8 +566,9 @@ class PE():
                 self.pow()
                 self.pe1()
                 self.dc1()
+                self.store_data()
+            for i in range(test_length):
                 self.plt_cb12(fn=param, fi=i+1, save=True)
-                result.append(self.max_ch)
         elif param == 'samp_dp':
             test_range = [int(x) for x in test_range]
             for i in range(test_length):
@@ -500,8 +578,9 @@ class PE():
                 self.pow()
                 self.pe1()
                 self.dc1()
+                self.store_data()
+            for i in range(test_length):
                 self.plt_cb12(fn=param, fi=i+1, save=True)
-                result.append(self.max_ch)
         elif param == 'samp_ds':
             pass
         elif param == 'chunk':
@@ -509,7 +588,7 @@ class PE():
             pass
         elif param == 'alpha':
             pass
-        print(result)
+        print(self.mem_max_ch)
 
 
 # <<main>>
