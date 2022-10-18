@@ -10,11 +10,6 @@ from time import sleep
 from pixel_ring import pixel_ring
 from gpiozero import LED
 
-'''
-Improvement:
-1. Patameter testing.
-'''
-
 # Parameters
 RESPEAKER_RATE = 16000
 RESPEAKER_CHANNELS = 8
@@ -31,8 +26,8 @@ PLOT_P = False  # plot power of each measurement # if TOTAL_PIC>10 it is going t
 PLOT_D = False  # plot decision of microphone
 PLOT_T = True   # plot trend of decision
 
-MIN = 50 # testing parameter min
-MAX = 100 # testing parameter max
+MIN = 50  # testing parameter min
+MAX = 100  # testing parameter max
 
 # LED initialize
 power = LED(5)
@@ -60,12 +55,13 @@ for x in range(MIN, MAX):
     mem_p_c = []
     mem_p_d = []
     mem_p_disc = []
-    chunk = x # set value to testing parameter
+    chunk = x  # set value to testing parameter
     times_p += 1
     times = 0
     while times < TOTAL_PIC:
         times += 1
-        print('{0}/{1}'.format(times + (times_p-1) * TOTAL_PIC, length * TOTAL_PIC))
+        print('{0}/{1}'.format(times + (times_p-1)
+              * TOTAL_PIC, length * TOTAL_PIC))
         frames_a = []
         frames_b = []
         frames_c = []
@@ -135,7 +131,7 @@ for x in range(MIN, MAX):
         mem_p_c.append(p_c)
         mem_p_d.append(p_d)
         mem_p_disc.append(p_disc)
-        
+
     # calculate percentage
     unique, counts = np.unique(mem_p_disc, return_counts=True)
     mic = dict(zip(unique, counts))
@@ -178,9 +174,10 @@ for x in range(MIN, MAX):
         plt.savefig(join(IMG_PATH, 'p_decision_{0}.png'.format(TOTAL_PIC)))
     param_test_result.append(mem_p_disc)
     # print('* done plotting')
-param_test_result = ((np.array(param_test_result)).squeeze()).tolist() # 2D to 1D
+param_test_result = (
+    (np.array(param_test_result)).squeeze()).tolist()  # 2D to 1D
 result = []
-for element in param_test_result:    
+for element in param_test_result:
     unique, counts = np.unique(element, return_counts=True)
     result.append(dict(zip(unique, counts)))
 mic1 = []

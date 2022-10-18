@@ -17,6 +17,11 @@ from gpiozero import LED
 2. Testing code based on "alg_test5_alpha.py".
 3. Add LED control.
 '''
+'''
+1. test store_data()
+2. test param_test()
+3. change pixel_ring library "open(channel)" to accept parameter to light up different LED
+'''
 
 # <<parameters>>
 RESPEAKER_RATE = 16000
@@ -46,6 +51,8 @@ testing_length = len(testing_range)
 
 
 class PE():
+    '''------PE core------'''
+
     def __init__(self, repcnt=rep_cnt, sampdp=samp_dp, sampds=samp_ds, chunk_=chunk, alpha_=alpha):
         # PARAM
         self.rep_cnt = repcnt
@@ -117,7 +124,7 @@ class PE():
         self.p.terminate()
         print('PE terminated')
 
-    def read_6ch_data(self, pf=False):
+    def read_data(self, pf=False):
         # pf: print flag
         data = self.stream.read(self.chunk, exception_on_overflow=False)
         # byte to list
@@ -260,10 +267,24 @@ class PE():
         self.pe17avg = sum(self.pe17)/len(self.pe17)
         self.pe18avg = sum(self.pe18)/len(self.pe18)
 
-    def dc1(self):
+    def dc1(self, led=False):
         index_max = np.argmax([self.pe11[-1], self.pe12[-1], self.pe13[-1],
                               self.pe14[-1], self.pe15[-1], self.pe16[-1]])
         self.max_ch = index_max + 1
+        if led:
+            pixel_ring.open(self.max_ch)
+            # if self.max_ch == 1:
+            #     pixel_ring.open1()
+            # elif self.max_ch == 2:
+            #     pixel_ring.open2()
+            # elif self.max_ch == 3:
+            #     pixel_ring.open3()
+            # elif self.max_ch == 4:
+            #     pixel_ring.open4()
+            # elif self.max_ch == 5:
+            #     pixel_ring.open5()
+            # else:
+            #     pixel_ring.open6()
 
     def cal_st(self):
         # calculate statatistics
@@ -553,6 +574,8 @@ class PE():
         if save:
             plt.savefig(join(IMG_PATH, fn + '_{0}.png'.format(fi)), dpi=300)
 
+    '''------PE extension------'''
+
     def param_test(self, param, min, max, inc):
         test_range = np.round(np.arange(min, max, inc).tolist(), 2)
         test_length = len(test_range)
@@ -562,10 +585,10 @@ class PE():
             for i in range(test_length):
                 print('{0}/{1}'.format(i+1, test_length), end='\r')
                 self.rep_cnt = test_range[i]
-                self.read_6ch_data()
+                self.read_data()
                 self.pow()
                 self.pe1()
-                self.dc1()
+                self.dc1(led=False)
                 self.store_data()
             for i in range(test_length):
                 self.plt_cb12(fn=param, fi=i+1, save=True)
@@ -574,10 +597,10 @@ class PE():
             for i in range(test_length):
                 print('{0}/{1}'.format(i+1, test_length), end='\r')
                 self.samp_dp = test_range[i]
-                self.read_6ch_data()
+                self.read_data()
                 self.pow()
                 self.pe1()
-                self.dc1()
+                self.dc1(led=False)
                 self.store_data()
             for i in range(test_length):
                 self.plt_cb12(fn=param, fi=i+1, save=True)
@@ -597,7 +620,7 @@ class PE():
 if __name__ == '__main__':
     pe = PE(chunk_=500)
     pe.param_test('samp_dp', 0, 200, 100)
-    # pe.read_6ch_data()
+    # pe.read_data()
     # pe.pow()
     # pe.pe1()
     # pe.dc1()

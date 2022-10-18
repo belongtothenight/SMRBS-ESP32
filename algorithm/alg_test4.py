@@ -10,16 +10,6 @@ from time import sleep
 from pixel_ring import pixel_ring
 from gpiozero import LED
 
-'''
-Improvement:
-1. Change chunk to 128
-2. Generate plot with output decision result using power estimation result.
-3. Add LED (ring_pixel) indicating which direction is decided.
-4. Store data temperary and plot all data after execution is completed. *(data isn't inspected yet)
-5. Matplotlib can't be threaded.
-6. Auto skip if skipped too many times.
-'''
-
 # Parameters
 RESPEAKER_RATE = 16000
 RESPEAKER_CHANNELS = 8

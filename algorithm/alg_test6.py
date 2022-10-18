@@ -11,11 +11,6 @@ from time import sleep
 from pixel_ring import pixel_ring
 from gpiozero import LED
 
-'''
-1. Reorganized from "alg_test5.py".
-2. Fixed power estimation bug.
-'''
-
 # <<parameters>>
 RESPEAKER_RATE = 16000
 RESPEAKER_CHANNELS = 8
