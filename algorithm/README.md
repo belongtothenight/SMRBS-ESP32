@@ -34,22 +34,22 @@ Not recorded.
     - PE.\_\_init__()
     - PE.terminate()
   - PE core/gather data
-    - ==PE.read_data()==
+    - *PE.read_data()
     - PE.pow()
   - PE core/algorithm
     - PE.pe1()
   - PE core/process data
     - PE.dc1()
     - PE.cal_st()
-    - ==PE.store_data()==
+    - *PE.store_data()
   - PE core/plot data
     - PE.plt_s()
     - PE.plt_p()
     - PE.plt_pe1()
     - PE.plt_cb11()
     - PE.plt_cb12()
-- ==PE extension==
-  - ==PE.param_test()==
+- *PE extension
+  - *PE.param_test()
 
 ## 2. Change Log
 

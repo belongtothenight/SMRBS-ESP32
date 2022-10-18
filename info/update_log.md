@@ -90,3 +90,5 @@
        3. Samples are downsized with 2k, no pyoverflow error ever occur(probably once?).
        4. The start section of samples are dumped to prevent spike at the begining.
        5. Results are stored in ["alg_test6"](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/alg_test6).
+14. 20221018
+    1. Add [README.md](https://github.com/belongtothenight/SMRBS-ESP32/tree/main/algorithm/README.md) of algorithm.
