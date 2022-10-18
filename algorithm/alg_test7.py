@@ -379,7 +379,7 @@ class PE():
         fig, axs = plt.subplots(2, 3, figsize=(20, 10))
         fig.suptitle(
             'signal + power + power estimation =>ch{0}'.format(self.max_ch))
-        fig.tight_layout(pad=2, h_pad=3, w_pad=3)
+        fig.tight_layout(pad=3, h_pad=3, w_pad=3)
         axs[0, 0].set_title('ch1 pe1={0:.2f}'.format(self.pe11[-1]))
         axs[0, 0].set_xlabel('Sample')
         axs[0, 0].set_ylabel('V/W (scaled)')
@@ -470,8 +470,6 @@ class PE():
         axs[1, 2].plot(self.p6, label='power')
         axs[1, 2].plot(self.pe16, label='pe1')
         axs[1, 2].legend()
-        # fm = plt.get_current_fig_manager()
-        # fm.resize(*fm.window.maxsize())
         if show:
             plt.show()
         if save:
@@ -519,7 +517,7 @@ class PE():
 
 if __name__ == '__main__':
     pe = PE(chunk_=500)
-    pe.param_test('samp_dp', 20, 50, 5)
+    pe.param_test('samp_dp', 0, 200, 100)
     # pe.read_6ch_data()
     # pe.pow()
     # pe.pe1()
