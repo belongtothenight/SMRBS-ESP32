@@ -92,3 +92,5 @@
        5. Results are stored in ["alg_test6"](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/alg_test6).
 14. 20221018
     1. Add [README.md](https://github.com/belongtothenight/SMRBS-ESP32/tree/main/algorithm/README.md) of algorithm.
+15. 20221021
+    1. Finished pixel_ring control test on ["alg_test7_working.py"](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/alg_test7_working.py).
