@@ -222,7 +222,7 @@ class PE():
         self.pe17avg = sum(self.pe17)/len(self.pe17)
         self.pe18avg = sum(self.pe18)/len(self.pe18)
 
-    def dc1(self, led=False):
+    def dc1(self, led=True):
         index_max = np.argmax([self.pe11[-1], self.pe12[-1], self.pe13[-1],
                               self.pe14[-1], self.pe15[-1], self.pe16[-1]])
         self.max_ch = index_max + 1
