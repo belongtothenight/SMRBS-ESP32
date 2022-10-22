@@ -75,3 +75,5 @@ Not recorded.
 | 17  | alg_test7.py                | Add pixel_ring control.                                     |
 | 18  | alg_test7.py                | Remove unused channels.                                     |
 | 19  | alg_test7.py                | Separate plotting with recording.                           |
+| 20  | alg_test7.py                | Add continuous running mode.                                |
+| 21  | alg_test7.py                | Add parameter testing mode.                                 |

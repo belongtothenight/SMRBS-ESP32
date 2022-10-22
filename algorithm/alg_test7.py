@@ -12,22 +12,12 @@ from time import sleep
 from pixel_ring import pixel_ring
 from gpiozero import LED
 
-'''
-1. Parameter testing.
-2. Testing code based on "alg_test5_alpha.py".
-3. Add LED control.
-4. Delete unused channels.
-5. Separate plotting with recording.
-Maybe add sigmoid function before power calculation.
-'''
-
 # <<parameters>>
 RESPEAKER_RATE = 16000
 RESPEAKER_CHANNELS = 8
 RESPEAKER_WIDTH = 2
 RESPEAKER_INDEX = 2  # refer to input device id # run getDeviceInfo.py to get index
 
-rep_cnt = 100   # repeat count of same setting while gathering data
 samp_dp = 20    # sample to drop at the beginning of each run
 samp_ds = 2000  # sample = sample / samp_ds (sample_downsize)
 chunk = 100     # number of samples to read from stream
@@ -54,9 +44,8 @@ class PE():
 
     # ====================
     # PE core/setup
-    def __init__(self, repcnt=rep_cnt, sampdp=samp_dp, sampds=samp_ds, chunk_=chunk, alpha_=alpha):
+    def __init__(self, sampdp=samp_dp, sampds=samp_ds, chunk_=chunk, alpha_=alpha):
         # PARAM
-        self.rep_cnt = repcnt
         self.samp_dp = sampdp
         self.samp_ds = sampds
         self.chunk = chunk_
@@ -585,7 +574,6 @@ class PE():
         Continuous perform power estimation with same set of parameters.
         '''
         print('start continuous run')
-        # self.rep_cnt =
         # self.samp_dp =
         # self.samp_ds =
         # self.chunk =
@@ -612,18 +600,7 @@ class PE():
         print('Start parameter test')
         test_range = np.round(np.arange(min, max, inc).tolist(), 2)
         test_length = len(test_range)
-        if param == 'rep_cnt':
-            # getting averaged data (skip for now)
-            test_range = [int(x) for x in test_range]
-            for i in range(test_length):
-                print('{0}/{1}'.format(i+1, test_length), end='\r')
-                self.rep_cnt = test_range[i]
-                self.read_data()
-                self.pow()
-                self.pe1()
-                self.dc1()
-                self.store_data()
-        elif param == 'samp_dp':
+        if param == 'samp_dp':
             test_range = [int(x) for x in test_range]
             print('start testing samp_dp')
             for i in range(test_length):
@@ -642,12 +619,57 @@ class PE():
                     self.plt_cb12(fn=param, fi=i, save=True)
                 print('\nend plotting samp_dp')
         elif param == 'samp_ds':
-            pass
+            print('start testing samp_ds')
+            for i in range(test_length):
+                print('{0}/{1}'.format(i+1, test_length), end='\r')
+                self.samp_ds = test_range[i]
+                self.read_data()
+                self.pow()
+                self.pe1()
+                self.dc1()
+                self.store_data()
+            print('\nend testing samp_ds')
+            if plot:
+                print('start plotting samp_ds')
+                for i in range(test_length):
+                    print('{0}/{1}'.format(i+1, test_length), end='\r')
+                    self.plt_cb12(fn=param, fi=i, save=True)
+                print('\nend plotting samp_ds')
         elif param == 'chunk':
             test_range = [int(x) for x in test_range]
-            pass
+            print('start testing chunk')
+            for i in range(test_length):
+                print('{0}/{1}'.format(i+1, test_length), end='\r')
+                self.chunk = test_range[i]
+                self.read_data()
+                self.pow()
+                self.pe1()
+                self.dc1()
+                self.store_data()
+            print('\nend testing chunk')
+            if plot:
+                print('start plotting chunk')
+                for i in range(test_length):
+                    print('{0}/{1}'.format(i+1, test_length), end='\r')
+                    self.plt_cb12(fn=param, fi=i, save=True)
+                print('\nend plotting chunk')
         elif param == 'alpha':
-            pass
+            print('start testing alpha')
+            for i in range(test_length):
+                print('{0}/{1}'.format(i+1, test_length), end='\r')
+                self.alpha = test_range[i]
+                self.read_data()
+                self.pow()
+                self.pe1()
+                self.dc1()
+                self.store_data()
+            print('\nend testing alpha')
+            if plot:
+                print('start plotting alpha')
+                for i in range(test_length):
+                    print('{0}/{1}'.format(i+1, test_length), end='\r')
+                    self.plt_cb12(fn=param, fi=i, save=True)
+                print('\nend plotting alpha')
         print(self.mem_max_ch)
         print('End parameter test')
 
@@ -657,7 +679,10 @@ class PE():
 
 if __name__ == '__main__':
     pe = PE(chunk_=500)
-    # pe.param_test('samp_dp', 0, 200, 100)
-    pe.continuous_run(100)
-    pe.terminate()
+    pe.param_test('samp_dp', 0, 40, 20)
+    pe.param_test('samp_ds', 1500, 3500, 1000)
+    pe.param_test('chunk', 50, 150, 50)
+    pe.param_test('alpha', 0.992, 0.998, 0.003)
+    pe.continuous_run(2)
     pe.evaluate()
+    pe.terminate()
