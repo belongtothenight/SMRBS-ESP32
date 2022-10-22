@@ -79,7 +79,7 @@ Not recorded.
   - PE.continuous_run()
   - PE.param_test()
 
-### 1.5 [alg1.py](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/alg1.py) (v1.0.0)
+### 1.5 [alg1.py](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/alg1.py) (v1.0.1)
 
 First version of full functionality algorithm.
 

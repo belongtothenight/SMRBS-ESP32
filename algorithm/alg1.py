@@ -359,12 +359,12 @@ class PE():
             ch_pct[i] = ch_cnt[i] / ch_run * 100
         if show:
             print('\nResult of power estimation')
-            print('ch1: {0}\t({1:.2f}%)'.format(ch_cnt[0], ch_pct[0]))
-            print('ch2: {0}\t({1:.2f}%)'.format(ch_cnt[1], ch_pct[1]))
-            print('ch3: {0}\t({1:.2f}%)'.format(ch_cnt[2], ch_pct[2]))
-            print('ch4: {0}\t({1:.2f}%)'.format(ch_cnt[3], ch_pct[3]))
-            print('ch5: {0}\t({1:.2f}%)'.format(ch_cnt[4], ch_pct[4]))
-            print('ch6: {0}\t({1:.2f}%)'.format(ch_cnt[5], ch_pct[5]))
+            print('ch1: {0}\t\t({1:.2f}%)'.format(ch_cnt[0], ch_pct[0]))
+            print('ch2: {0}\t\t({1:.2f}%)'.format(ch_cnt[1], ch_pct[1]))
+            print('ch3: {0}\t\t({1:.2f}%)'.format(ch_cnt[2], ch_pct[2]))
+            print('ch4: {0}\t\t({1:.2f}%)'.format(ch_cnt[3], ch_pct[3]))
+            print('ch5: {0}\t\t({1:.2f}%)'.format(ch_cnt[4], ch_pct[4]))
+            print('ch6: {0}\t\t({1:.2f}%)'.format(ch_cnt[5], ch_pct[5]))
         return ch_cnt
 
     # ====================
@@ -873,18 +873,27 @@ class PE():
 
 
 if __name__ == '__main__':
-    pe = PE(chunk_=500)
-    '''testing parameters'''
-    # pe.param_test1('samp_dp', 0, 100, 5)
-    # pe.param_test1('samp_ds', 1500, 3500, 200)
-    # pe.param_test1('chunk', 20, 150, 10)
-    # pe.param_test1('alpha', 0.992, 0.999, 0.001)
-    '''testing parameters'''
-    # pe.param_test2('samp_dp', 0, 100, 5)
-    # pe.param_test2('samp_ds', 1500, 3500, 200)
-    # pe.param_test2('chunk', 20, 150, 10)
-    # pe.param_test2('alpha', 0.992, 0.999, 0.001)
-    '''execution'''
+    pe = PE(chunk_=300)
+    runs = int(input("How many times do you want to detect? "))
+    pe.continuous_run(runs, plot=False)
+    pe.evaluate()
+    pe.terminate()
+
+'''
+# sample code
+pe = PE(chunk_=500)
+    # >>>>> testing parameters
+    pe.param_test1('samp_dp', 0, 100, 5)
+    pe.param_test1('samp_ds', 1500, 3500, 200)
+    pe.param_test1('chunk', 20, 150, 10)
+    pe.param_test1('alpha', 0.992, 0.999, 0.001)
+    # >>>>> testing parameters
+    pe.param_test2('samp_dp', 0, 100, 5)
+    pe.param_test2('samp_ds', 1500, 3500, 200)
+    pe.param_test2('chunk', 20, 150, 10)
+    pe.param_test2('alpha', 0.992, 0.999, 0.001)
+    # >>>>> execution
     pe.continuous_run(2, plot=False)
     pe.evaluate()
     pe.terminate()
+'''
