@@ -95,4 +95,10 @@
 15. 20221021
     1. Finished pixel_ring control test on ["alg_test7_working.py"](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/alg_test7_working.py).
 16. 20221022
-    1. Add and experimented with "continuous_run" function in ["alg_test7.py"](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/alg_test7.py).
+    1. Finished ["alg_test7.py"](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/alg_test7.py).
+    2. Steps to change [pixel_ring](https://github.com/respeaker/pixel_ring) library.
+       1. In "pixel_ring.py", add function definition.
+       2. In "apa102_pixel_ring.py", add function definition with pattern function.
+       3. In "pattern.py", add details about LEDs, like their RGB values.
+       4. Open terminal, go to directory "pixel_ring", with "cd pixel_ring".
+       5. Install library with "pip install -U -e ."
