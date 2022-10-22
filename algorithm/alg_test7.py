@@ -17,6 +17,7 @@ from gpiozero import LED
 2. Testing code based on "alg_test5_alpha.py".
 3. Add LED control.
 4. Delete unused channels.
+5. Separate plotting with recording.
 Maybe add sigmoid function before power calculation.
 '''
 
@@ -614,6 +615,12 @@ class PE():
         print(self.mem_max_ch)
         print('End parameter test')
 
+    def evaluate(self):
+        '''
+        Evaluate the performance of power estimation.
+        '''
+        pass
+
 
 # <<main>>
 
@@ -623,3 +630,4 @@ if __name__ == '__main__':
     # pe.param_test('samp_dp', 0, 200, 100)
     pe.continuous_run(100)
     pe.terminate()
+    pe.evaluate()

@@ -51,6 +51,7 @@ Not recorded.
 - *PE extension
   - *PE.continuous_run()
   - *PE.param_test()
+  - *PE.evaluate()
 
 ## 2. Change Log
 
@@ -73,3 +74,5 @@ Not recorded.
 | 15  | alg_test6.py                | Expand to 6 channel processing.                             |
 | 16  | alg_test7.py                | Add parameter testing ability.                              |
 | 17  | alg_test7.py                | Add pixel_ring control.                                     |
+| 18  | alg_test7.py                | Remove unused channels.                                     |
+| 19  | alg_test7.py                | Separate plotting with recording.                           |
