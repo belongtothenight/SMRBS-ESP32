@@ -103,3 +103,4 @@
        4. Open terminal, go to directory "pixel_ring", with "cd pixel_ring".
        5. Install library with "pip install -U -e ."
     3. Finished ["alg_test8.py"](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/alg_test8.py).
+    4. Finished ["alg1.py"](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/alg1.py).

@@ -79,6 +79,34 @@ Not recorded.
   - PE.continuous_run()
   - PE.param_test()
 
+### 1.5 [alg1.py](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/alg1.py) (v1.0.0)
+
+First version of full functionality algorithm.
+
+- PE core
+  - PE core/setup
+    - PE.\_\_init__()
+    - PE.terminate()
+  - PE core/gather data
+    - PE.read_data()
+    - PE.pow()
+  - PE core/algorithm
+    - PE.pe1()
+  - PE core/process data
+    - PE.dc1()
+    - PE.store_data()
+    - PE.evaluate()
+  - PE core/plot data
+    - PE.plt_s()
+    - PE.plt_p()
+    - PE.plt_pe1()
+    - PE.plt_cb11()
+    - PE.plt_cb12()
+- PE extension
+  - PE.continuous_run()
+  - PE.param_test1()
+  - PE.param_test2()
+
 ## 2. Change Log
 
 | No. | File                        | Detail                                                      |
@@ -105,3 +133,4 @@ Not recorded.
 | 20  | alg_test7.py                | Add continuous running mode.                                |
 | 21  | alg_test7.py                | Add parameter testing mode.                                 |
 | 22  | alg_test8.py                | Rewrite parameter testing mode.                             |
+| 23  | alg1.py                     | Combined functional subfunctions.                           |
