@@ -1,0 +1,54 @@
+source: smarphone --bluetooth--> speaker
+volumn: max * 0.25
+signal_type: sine
+frequency_hz: 500
+distance_cm: 20
+run: 5
+
+1. direction: mic1
+ch1: 3	(60.00%)
+ch2: 0	(0.00%)
+ch3: 1	(20.00%)
+ch4: 1	(20.00%)
+ch5: 0	(0.00%)
+ch6: 0	(0.00%)
+
+2. direction: mic2
+ch1: 2	(40.00%)
+ch2: 2	(40.00%)
+ch3: 0	(0.00%)
+ch4: 1	(20.00%)
+ch5: 0	(0.00%)
+ch6: 0	(0.00%)
+
+3. direction: mic3
+ch1: 2	(40.00%)
+ch2: 0	(0.00%)
+ch3: 3	(60.00%)
+ch4: 0	(0.00%)
+ch5: 0	(0.00%)
+ch6: 0	(0.00%)
+
+4. direction: mic4
+ch1: 0	(0.00%)
+ch2: 2	(40.00%)
+ch3: 0	(0.00%)
+ch4: 3	(60.00%)
+ch5: 0	(0.00%)
+ch6: 0	(0.00%)
+
+5. direction: mic5
+ch1: 0	(0.00%)
+ch2: 0	(0.00%)
+ch3: 2	(40.00%)
+ch4: 0	(0.00%)
+ch5: 3	(60.00%)
+ch6: 0	(0.00%)
+
+6. direction: mic6
+ch1: 0	(0.00%)
+ch2: 0	(0.00%)
+ch3: 0	(0.00%)
+ch4: 2	(40.00%)
+ch5: 1	(20.00%)
+ch6: 2	(40.00%)

@@ -49,6 +49,11 @@ testing_length = len(testing_range)
 
 
 class PE():
+    # ==============================================================================
+    # PE core
+
+    # ====================
+    # PE core/setup
     def __init__(self, repcnt=rep_cnt, sampdp=samp_dp, sampds=samp_ds, chunk_=chunk, alpha_=alpha):
         # PARAM
         self.rep_cnt = repcnt
@@ -120,7 +125,9 @@ class PE():
         self.p.terminate()
         print('PE terminated')
 
-    def read_6ch_data(self, pf=False):
+    # ====================
+    # PE core/gather data
+    def read_data(self, pf=False):
         # pf: print flag
         data = self.stream.read(self.chunk, exception_on_overflow=False)
         # byte to list
@@ -198,6 +205,8 @@ class PE():
             print(self.p5)
             print(self.p6)
 
+    # ====================
+    # PE core/algorithm
     def pe1(self, pf=False):
         self.pe11 = []
         self.pe11.append(0)
@@ -231,6 +240,8 @@ class PE():
         self.pe15avg = sum(self.pe15)/len(self.pe15)
         self.pe16avg = sum(self.pe16)/len(self.pe16)
 
+    # ====================
+    # PE core/process data
     def dc1(self, led=True):
         index_max = np.argmax([self.pe11[-1], self.pe12[-1], self.pe13[-1],
                               self.pe14[-1], self.pe15[-1], self.pe16[-1]])
@@ -248,10 +259,6 @@ class PE():
                 pixel_ring.open5()
             else:
                 pixel_ring.open6()
-
-    def cal_st(self):
-        # calculate statatistics
-        pass
 
     def store_data(self):
         '''
@@ -302,6 +309,26 @@ class PE():
         # max channel (int)
         self.mem_max_ch.append(self.max_ch)
 
+    def evaluate(self):
+        '''
+        Evaluate the performance of power estimation.
+        '''
+        ch_cnt = [0, 0, 0, 0, 0, 0]
+        ch_pct = [0, 0, 0, 0, 0, 0]
+        ch_run = len(self.mem_max_ch)
+        for i in range(6):
+            ch_cnt[i] = self.mem_max_ch.count(i+1)
+            ch_pct[i] = ch_cnt[i] / ch_run * 100
+        print('\nResult of power estimation')
+        print('ch1: {0}\t({1:.2f}%)'.format(ch_cnt[0], ch_pct[0]))
+        print('ch2: {0}\t({1:.2f}%)'.format(ch_cnt[1], ch_pct[1]))
+        print('ch3: {0}\t({1:.2f}%)'.format(ch_cnt[2], ch_pct[2]))
+        print('ch4: {0}\t({1:.2f}%)'.format(ch_cnt[3], ch_pct[3]))
+        print('ch5: {0}\t({1:.2f}%)'.format(ch_cnt[4], ch_pct[4]))
+        print('ch6: {0}\t({1:.2f}%)'.format(ch_cnt[5], ch_pct[5]))
+
+    # ====================
+    # PE core/plot data
     def plt_s(self, cl=False):
         # signal
         if cl:
@@ -319,6 +346,7 @@ class PE():
         l6 = plt.plot(self.d6, label='ch6')
         plt.legend()
         plt.show()
+        plt.close()
 
     def plt_p(self, cl=False):
         # power
@@ -337,6 +365,7 @@ class PE():
         l6 = plt.plot(self.p6, label='ch6')
         plt.legend()
         plt.show()
+        plt.close()
 
     def plt_pe1(self, cl=False):
         # power estimation 1
@@ -355,6 +384,7 @@ class PE():
         l6 = plt.plot(self.pe16, label='ch6')
         plt.legend()
         plt.show()
+        plt.close()
 
     def plt_cb11(self, cl=False):
         # combined: s+p
@@ -436,6 +466,7 @@ class PE():
         axs[1, 2].plot(self.p6, label='power')
         axs[1, 2].legend()
         plt.show()
+        plt.close()
 
     def plt_cb12(self, cl=False, fn='', fi=0, show=False, save=True):
         # combined: v+p+pe1+dc
@@ -545,8 +576,11 @@ class PE():
             plt.show()
         if save:
             plt.savefig(join(IMG_PATH, fn + '_{0}.png'.format(fi+1)), dpi=300)
+        plt.close()
 
-    def continuous_run(self, times):
+    # =========================================================================
+    # PE extension
+    def continuous_run(self, times, plot=False):
         '''
         Continuous perform power estimation with same set of parameters.
         '''
@@ -558,19 +592,20 @@ class PE():
         # self.alpha =
         for i in range(times):
             print('{0}/{1}'.format(i+1, times), end='\r')
-            self.read_6ch_data()
+            self.read_data()
             self.pow()
             self.pe1()
             self.dc1()
             self.store_data()
         print('\nend continuous run')
-        print('start plotting')
-        for i in range(times):
-            print('{0}/{1}'.format(i+1, times), end='\r')
-            self.plt_cb12(fn='conti', fi=i, save=True)
-        print('\nend plotting')
+        if plot:
+            print('start plotting')
+            for i in range(times):
+                print('{0}/{1}'.format(i+1, times), end='\r')
+                self.plt_cb12(fn='conti', fi=i, save=True)
+            print('\nend plotting')
 
-    def param_test(self, param, min, max, inc):
+    def param_test(self, param, min, max, inc, plot=False):
         '''
         Do power estimation with different set of parameters.
         '''
@@ -583,7 +618,7 @@ class PE():
             for i in range(test_length):
                 print('{0}/{1}'.format(i+1, test_length), end='\r')
                 self.rep_cnt = test_range[i]
-                self.read_6ch_data()
+                self.read_data()
                 self.pow()
                 self.pe1()
                 self.dc1()
@@ -594,17 +629,18 @@ class PE():
             for i in range(test_length):
                 print('{0}/{1}'.format(i+1, test_length), end='\r')
                 self.samp_dp = test_range[i]
-                self.read_6ch_data()
+                self.read_data()
                 self.pow()
                 self.pe1()
                 self.dc1()
                 self.store_data()
             print('\nend testing samp_dp')
-            print('start plotting samp_dp')
-            for i in range(test_length):
-                print('{0}/{1}'.format(i+1, test_length), end='\r')
-                self.plt_cb12(fn=param, fi=i, save=True)
-            print('\nend plotting samp_dp')
+            if plot:
+                print('start plotting samp_dp')
+                for i in range(test_length):
+                    print('{0}/{1}'.format(i+1, test_length), end='\r')
+                    self.plt_cb12(fn=param, fi=i, save=True)
+                print('\nend plotting samp_dp')
         elif param == 'samp_ds':
             pass
         elif param == 'chunk':
@@ -614,12 +650,6 @@ class PE():
             pass
         print(self.mem_max_ch)
         print('End parameter test')
-
-    def evaluate(self):
-        '''
-        Evaluate the performance of power estimation.
-        '''
-        pass
 
 
 # <<main>>

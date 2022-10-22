@@ -40,8 +40,8 @@ Not recorded.
     - PE.pe1()
   - PE core/process data
     - PE.dc1()
-    - PE.cal_st()
     - *PE.store_data()
+    - *PE.evaluate()
   - PE core/plot data
     - PE.plt_s()
     - PE.plt_p()
@@ -51,7 +51,6 @@ Not recorded.
 - *PE extension
   - *PE.continuous_run()
   - *PE.param_test()
-  - *PE.evaluate()
 
 ## 2. Change Log
 
