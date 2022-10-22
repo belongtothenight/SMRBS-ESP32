@@ -102,3 +102,4 @@
        3. In "pattern.py", add details about LEDs, like their RGB values.
        4. Open terminal, go to directory "pixel_ring", with "cd pixel_ring".
        5. Install library with "pip install -U -e ."
+    3. Finished ["alg_test8.py"](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/alg_test8.py).

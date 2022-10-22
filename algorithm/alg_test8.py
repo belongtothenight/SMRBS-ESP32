@@ -347,7 +347,7 @@ class PE():
         # max channel (int)
         self.mem_max_ch = []
 
-    def evaluate(self):
+    def evaluate(self, show=True):
         '''
         Evaluate the performance of power estimation.
         '''
@@ -357,13 +357,15 @@ class PE():
         for i in range(6):
             ch_cnt[i] = self.mem_max_ch.count(i+1)
             ch_pct[i] = ch_cnt[i] / ch_run * 100
-        print('\nResult of power estimation')
-        print('ch1: {0}\t({1:.2f}%)'.format(ch_cnt[0], ch_pct[0]))
-        print('ch2: {0}\t({1:.2f}%)'.format(ch_cnt[1], ch_pct[1]))
-        print('ch3: {0}\t({1:.2f}%)'.format(ch_cnt[2], ch_pct[2]))
-        print('ch4: {0}\t({1:.2f}%)'.format(ch_cnt[3], ch_pct[3]))
-        print('ch5: {0}\t({1:.2f}%)'.format(ch_cnt[4], ch_pct[4]))
-        print('ch6: {0}\t({1:.2f}%)'.format(ch_cnt[5], ch_pct[5]))
+        if show:
+            print('\nResult of power estimation')
+            print('ch1: {0}\t({1:.2f}%)'.format(ch_cnt[0], ch_pct[0]))
+            print('ch2: {0}\t({1:.2f}%)'.format(ch_cnt[1], ch_pct[1]))
+            print('ch3: {0}\t({1:.2f}%)'.format(ch_cnt[2], ch_pct[2]))
+            print('ch4: {0}\t({1:.2f}%)'.format(ch_cnt[3], ch_pct[3]))
+            print('ch5: {0}\t({1:.2f}%)'.format(ch_cnt[4], ch_pct[4]))
+            print('ch6: {0}\t({1:.2f}%)'.format(ch_cnt[5], ch_pct[5]))
+        return ch_cnt
 
     # ====================
     # PE core/plot data
@@ -649,16 +651,89 @@ class PE():
         axs[0, 0].plot(self.mem_d6avg, label='d6avg')
         axs[0, 0].legend()
         # fig (0, 1)
-
+        axs[0, 1].set_title('averaged power')
+        axs[0, 1].set_xlabel('Run with different parameters')
+        axs[0, 1].set_ylabel('W (scaled)')
+        axs[0, 1].axhline(0, color='black')
+        axs[0, 1].axvline(0, color='black')
+        axs[0, 1].plot(self.mem_p1avg, label='p1avg')
+        axs[0, 1].plot(self.mem_p2avg, label='p2avg')
+        axs[0, 1].plot(self.mem_p3avg, label='p3avg')
+        axs[0, 1].plot(self.mem_p4avg, label='p4avg')
+        axs[0, 1].plot(self.mem_p5avg, label='p5avg')
+        axs[0, 1].plot(self.mem_p6avg, label='p6avg')
+        axs[0, 1].legend()
         # fig (0, 2)
+        axs[0, 2].set_title('averaged power estimation')
+        axs[0, 2].set_xlabel('Run with different parameters')
+        axs[0, 2].set_ylabel('W (scaled)')
+        axs[0, 2].axhline(0, color='black')
+        axs[0, 2].axvline(0, color='black')
+        axs[0, 2].plot(self.mem_pe11avg, label='pe11avg')
+        axs[0, 2].plot(self.mem_pe12avg, label='pe12avg')
+        axs[0, 2].plot(self.mem_pe13avg, label='pe13avg')
+        axs[0, 2].plot(self.mem_pe14avg, label='pe14avg')
+        axs[0, 2].plot(self.mem_pe15avg, label='pe15avg')
+        axs[0, 2].plot(self.mem_pe16avg, label='pe16avg')
+        axs[0, 2].legend()
         # fig (1, 0)
+        lpe11 = []
+        lpe12 = []
+        lpe13 = []
+        lpe14 = []
+        lpe15 = []
+        lpe16 = []
+        for i in range(len(self.mem_pe11)):
+            lpe11.append(self.mem_pe11[i][-1])
+            lpe12.append(self.mem_pe12[i][-1])
+            lpe13.append(self.mem_pe13[i][-1])
+            lpe14.append(self.mem_pe14[i][-1])
+            lpe15.append(self.mem_pe15[i][-1])
+            lpe16.append(self.mem_pe16[i][-1])
+        axs[1, 0].set_title('power estimation')
+        axs[1, 0].set_xlabel('Run with different parameters')
+        axs[1, 0].set_ylabel('W (scaled)')
+        axs[1, 0].axhline(0, color='black')
+        axs[1, 0].axvline(0, color='black')
+        axs[1, 0].plot(lpe11, label='pe11')
+        axs[1, 0].plot(lpe12, label='pe12')
+        axs[1, 0].plot(lpe13, label='pe13')
+        axs[1, 0].plot(lpe14, label='pe14')
+        axs[1, 0].plot(lpe15, label='pe15')
+        axs[1, 0].plot(lpe16, label='pe16')
+        axs[1, 0].legend()
         # fig (1, 1)
+        axs[1, 1].set_title('max channel')
+        axs[1, 1].set_xlabel('Run with different parameters')
+        axs[1, 1].set_ylabel('Channel')
+        axs[1, 1].axhline(0, color='black')
+        axs[1, 1].axvline(0, color='black')
+        axs[1, 1].bar([1, 2, 3, 4, 5, 6], self.evaluate(False))
         # fig (1, 2)
-        # axs[0, 0].plot(self.mem_p1avg, color='purple', label='pavg')
-        # axs[0, 0].plot(self.mem_pe11avg, color='pink', label='pe1avg')
-        # axs[0, 0].plot(self.mem_max_ch, color='green', label='max_ch')
+        axs[1, 2].set_title('power estimation in detail')
+        axs[1, 2].set_xlabel('Samples')
+        axs[1, 2].set_ylabel('W (scaled)')
+        axs[1, 2].axhline(0, color='black')
+        axs[1, 2].axvline(0, color='black')
+        for i in range(len(self.mem_pe11)):
+            axs[1, 2].plot(self.mem_pe11[i], label='pe11_{0}'.format(i+1))
+            axs[1, 2].plot(self.mem_pe12[i], label='pe12_{0}'.format(i+1))
+            axs[1, 2].plot(self.mem_pe13[i], label='pe13_{0}'.format(i+1))
+            axs[1, 2].plot(self.mem_pe14[i], label='pe14_{0}'.format(i+1))
+            axs[1, 2].plot(self.mem_pe15[i], label='pe15_{0}'.format(i+1))
+            axs[1, 2].plot(self.mem_pe16[i], label='pe16_{0}'.format(i+1))
+
+        # xticks
         plt.sca(axs[0, 0])
         plt.xticks(range(len(xtick)), xtick)
+        plt.sca(axs[0, 1])
+        plt.xticks(range(len(xtick)), xtick)
+        plt.sca(axs[0, 2])
+        plt.xticks(range(len(xtick)), xtick)
+        plt.sca(axs[1, 0])
+        plt.xticks(range(len(xtick)), xtick)
+        plt.sca(axs[1, 1])
+        plt.xticks(range(1, 7), ['ch1', 'ch2', 'ch3', 'ch4', 'ch5', 'ch6'])
         if show:
             plt.show()
         if save:
@@ -749,10 +824,22 @@ class PE():
 
 if __name__ == '__main__':
     pe = PE(chunk_=500)
+    # test runs
     pe.param_test('samp_dp', 0, 40, 20)
     pe.param_test('samp_ds', 1500, 3500, 1000)
     pe.param_test('chunk', 50, 150, 50)
     pe.param_test('alpha', 0.992, 0.998, 0.003)
+    # real runs
+    pe.param_test('samp_dp', 0, 100, 5)
+    pe.param_test('samp_ds', 1500, 3500, 200)
+    pe.param_test('chunk', 20, 150, 10)
+    pe.param_test('alpha', 0.992, 0.999, 0.001)
     # pe.continuous_run(2)
     pe.evaluate()
     pe.terminate()
+
+'''
+Following errors happened:
+1. ZeroDivisionError: division by zero (line 161, 359)
+2. Extreme values in fig (0, 2), (1, 0), (1, 2)
+'''

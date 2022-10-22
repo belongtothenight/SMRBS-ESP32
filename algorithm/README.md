@@ -104,3 +104,4 @@ Not recorded.
 | 19  | alg_test7.py                | Separate plotting with recording.                           |
 | 20  | alg_test7.py                | Add continuous running mode.                                |
 | 21  | alg_test7.py                | Add parameter testing mode.                                 |
+| 22  | alg_test8.py                | Rewrite parameter testing mode.                             |
