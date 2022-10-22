@@ -17,6 +17,7 @@ from gpiozero import LED
 2. Testing code based on "alg_test5_alpha.py".
 3. Add LED control.
 4. Delete unused channels.
+Maybe add sigmoid function before power calculation.
 '''
 
 # <<parameters>>
@@ -251,6 +252,55 @@ class PE():
         # calculate statatistics
         pass
 
+    def store_data(self):
+        '''
+        store data in memory
+        '''
+        # signal (list)
+        self.mem_d1.append(self.d1)
+        self.mem_d2.append(self.d2)
+        self.mem_d3.append(self.d3)
+        self.mem_d4.append(self.d4)
+        self.mem_d5.append(self.d5)
+        self.mem_d6.append(self.d6)
+        # power (list)
+        self.mem_p1.append(self.p1)
+        self.mem_p2.append(self.p2)
+        self.mem_p3.append(self.p3)
+        self.mem_p4.append(self.p4)
+        self.mem_p5.append(self.p5)
+        self.mem_p6.append(self.p6)
+        # power estimation (list)
+        self.mem_pe11.append(self.pe11)
+        self.mem_pe12.append(self.pe12)
+        self.mem_pe13.append(self.pe13)
+        self.mem_pe14.append(self.pe14)
+        self.mem_pe15.append(self.pe15)
+        self.mem_pe16.append(self.pe16)
+        # signal average (float)
+        self.mem_d1avg.append(self.d1avg)
+        self.mem_d2avg.append(self.d2avg)
+        self.mem_d3avg.append(self.d3avg)
+        self.mem_d4avg.append(self.d4avg)
+        self.mem_d5avg.append(self.d5avg)
+        self.mem_d6avg.append(self.d6avg)
+        # power average (float)
+        self.mem_p1avg.append(self.p1avg)
+        self.mem_p2avg.append(self.p2avg)
+        self.mem_p3avg.append(self.p3avg)
+        self.mem_p4avg.append(self.p4avg)
+        self.mem_p5avg.append(self.p5avg)
+        self.mem_p6avg.append(self.p6avg)
+        # power estimation average (float)
+        self.mem_pe11avg.append(self.pe11avg)
+        self.mem_pe12avg.append(self.pe12avg)
+        self.mem_pe13avg.append(self.pe13avg)
+        self.mem_pe14avg.append(self.pe14avg)
+        self.mem_pe15avg.append(self.pe15avg)
+        self.mem_pe16avg.append(self.pe16avg)
+        # max channel (int)
+        self.mem_max_ch.append(self.max_ch)
+
     def plt_s(self, cl=False):
         # signal
         if cl:
@@ -392,22 +442,22 @@ class PE():
             plt.clf()
         fig, axs = plt.subplots(2, 3, figsize=(20, 10))
         fig.suptitle(
-            'signal + power + power estimation =>ch{0}'.format(self.max_ch))
+            'signal + power + power estimation =>ch{0}'.format(self.mem_max_ch[-1]))
         fig.tight_layout(pad=3, h_pad=3, w_pad=3)
-        axs[0, 0].set_title('ch1 pe1={0:.2f}'.format(self.pe11[-1]))
+        axs[0, 0].set_title('ch1 pe1={0:.2f}'.format(self.mem_pe11[-1][-1]))
         axs[0, 0].set_xlabel('Sample')
         axs[0, 0].set_ylabel('V/W (scaled)')
         axs[0, 0].axhline(0, color='black')
         axs[0, 0].axvline(0, color='black')
-        axs[0, 0].axhline(self.d1avg, color='red',
-                          label='savg={0:.2f}'.format(self.d1avg))
-        axs[0, 0].axhline(self.p1avg, color='purple',
-                          label='pavg={0:.2f}'.format(self.p1avg))
-        axs[0, 0].axhline(self.pe11avg, color='pink',
-                          label='pe1avg={0:.2f}'.format(self.pe11avg))
-        axs[0, 0].plot(self.d1, label='signal')
-        axs[0, 0].plot(self.p1, label='power')
-        axs[0, 0].plot(self.pe11, label='pe1')
+        axs[0, 0].axhline(self.mem_d1avg[-1], color='red',
+                          label='savg={0:.2f}'.format(self.mem_d1avg[-1]))
+        axs[0, 0].axhline(self.mem_p1avg[-1], color='purple',
+                          label='pavg={0:.2f}'.format(self.mem_p1avg[-1]))
+        axs[0, 0].axhline(self.mem_pe11avg[-1], color='pink',
+                          label='pe1avg={0:.2f}'.format(self.mem_pe11avg[-1]))
+        axs[0, 0].plot(self.mem_d1[-1], label='signal')
+        axs[0, 0].plot(self.mem_p1[-1], label='power')
+        axs[0, 0].plot(self.mem_pe11[-1], label='pe1')
         axs[0, 0].legend()
         axs[0, 1].set_title('ch2 pe1={0:.2f}'.format(self.pe12[-1]))
         axs[0, 1].set_xlabel('Sample')
@@ -517,7 +567,6 @@ class PE():
         print('Start parameter test')
         test_range = np.round(np.arange(min, max, inc).tolist(), 2)
         test_length = len(test_range)
-        result = []
         if param == 'rep_cnt':
             # getting averaged data (skip for now)
             test_range = [int(x) for x in test_range]
@@ -529,7 +578,7 @@ class PE():
                 self.pe1()
                 self.dc1()
                 # self.plt_cb12(fn=param, fi=i+1, save=True)
-                result.append(self.max_ch)
+                self.store_data()
         elif param == 'samp_dp':
             test_range = [int(x) for x in test_range]
             for i in range(test_length):
@@ -539,8 +588,10 @@ class PE():
                 self.pow()
                 self.pe1()
                 self.dc1()
-                # self.plt_cb12(fn=param, fi=i+1, save=True)
-                result.append(self.max_ch)
+                self.store_data()
+            for i in range(test_length):
+                print('{0}/{1}'.format(i+1, test_length), end='\r')
+                self.plt_cb12(fn=param, fi=i+1, save=True)
         elif param == 'samp_ds':
             pass
         elif param == 'chunk':
@@ -548,7 +599,7 @@ class PE():
             pass
         elif param == 'alpha':
             pass
-        print(result)
+        print(self.mem_max_ch)
         print('End parameter test')
 
 
@@ -557,6 +608,6 @@ class PE():
 
 if __name__ == '__main__':
     pe = PE(chunk_=500)
-    # pe.param_test('samp_dp', 0, 200, 100)
-    pe.continuous_run(100)
+    pe.param_test('samp_dp', 0, 200, 200)
+    # pe.continuous_run(100)
     pe.terminate()
