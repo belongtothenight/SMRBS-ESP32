@@ -532,7 +532,7 @@ class PE():
 
 if __name__ == '__main__':
     pe = PE(chunk_=500)
-    pe.param_test('samp_dp', 0, 200, 100)
+    pe.param_test('samp_dp', 0, 200, 10)
     # pe.read_6ch_data()
     # pe.pow()
     # pe.pe1()

@@ -49,6 +49,7 @@ Not recorded.
     - PE.plt_cb11()
     - PE.plt_cb12()
 - *PE extension
+  - *PE.continuous_run()
   - *PE.param_test()
 
 ## 2. Change Log

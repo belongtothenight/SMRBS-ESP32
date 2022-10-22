@@ -16,6 +16,7 @@ from gpiozero import LED
 1. Parameter testing.
 2. Testing code based on "alg_test5_alpha.py".
 3. Add LED control.
+4. Delete unused channels.
 '''
 
 # <<parameters>>
@@ -145,14 +146,6 @@ class PE():
         self.d6 = array.array('h')
         self.d6.frombytes(b''.join(t))
         self.d6 = list(self.d6)
-        t = np.frombuffer(data, dtype=np.int16)[6::8]
-        self.d7 = array.array('h')
-        self.d7.frombytes(b''.join(t))
-        self.d7 = list(self.d7)
-        t = np.frombuffer(data, dtype=np.int16)[7::8]
-        self.d8 = array.array('h')
-        self.d8.frombytes(b''.join(t))
-        self.d8 = list(self.d8)
         # drop first few samples
         self.d1 = self.d1[self.samp_dp:]
         self.d2 = self.d2[self.samp_dp:]
@@ -160,8 +153,6 @@ class PE():
         self.d4 = self.d4[self.samp_dp:]
         self.d5 = self.d5[self.samp_dp:]
         self.d6 = self.d6[self.samp_dp:]
-        self.d7 = self.d7[self.samp_dp:]
-        self.d8 = self.d8[self.samp_dp:]
         # downsize samples
         self.d1 = [x/self.samp_ds for x in self.d1]
         self.d2 = [x/self.samp_ds for x in self.d2]
@@ -169,16 +160,12 @@ class PE():
         self.d4 = [x/self.samp_ds for x in self.d4]
         self.d5 = [x/self.samp_ds for x in self.d5]
         self.d6 = [x/self.samp_ds for x in self.d6]
-        self.d7 = [x/self.samp_ds for x in self.d7]
-        self.d8 = [x/self.samp_ds for x in self.d8]
         self.d1avg = sum(self.d1) / len(self.d1)
         self.d2avg = sum(self.d2) / len(self.d2)
         self.d3avg = sum(self.d3) / len(self.d3)
         self.d4avg = sum(self.d4) / len(self.d4)
         self.d5avg = sum(self.d5) / len(self.d5)
         self.d6avg = sum(self.d6) / len(self.d6)
-        self.d7avg = sum(self.d7) / len(self.d7)
-        self.d8avg = sum(self.d8) / len(self.d8)
         # print
         if pf:
             print(self.d1)
@@ -187,8 +174,6 @@ class PE():
             print(self.d4)
             print(self.d5)
             print(self.d6)
-            print(self.d7)
-            print(self.d8)
 
     def pow(self, pf=False):
         self.p1 = [x**2 for x in self.d1]
@@ -197,16 +182,12 @@ class PE():
         self.p4 = [x**2 for x in self.d4]
         self.p5 = [x**2 for x in self.d5]
         self.p6 = [x**2 for x in self.d6]
-        self.p7 = [x**2 for x in self.d7]
-        self.p8 = [x**2 for x in self.d8]
         self.p1avg = sum(self.p1)/len(self.p1)
         self.p2avg = sum(self.p2)/len(self.p2)
         self.p3avg = sum(self.p3)/len(self.p3)
         self.p4avg = sum(self.p4)/len(self.p4)
         self.p5avg = sum(self.p5)/len(self.p5)
         self.p6avg = sum(self.p6)/len(self.p6)
-        self.p7avg = sum(self.p7)/len(self.p7)
-        self.p8avg = sum(self.p8)/len(self.p8)
         if pf:
             print(self.p1)
             print(self.p2)
@@ -214,8 +195,6 @@ class PE():
             print(self.p4)
             print(self.p5)
             print(self.p6)
-            print(self.p7)
-            print(self.p8)
 
     def pe1(self, pf=False):
         self.pe11 = []
@@ -230,10 +209,6 @@ class PE():
         self.pe15.append(0)
         self.pe16 = []
         self.pe16.append(0)
-        self.pe17 = []
-        self.pe17.append(0)
-        self.pe18 = []
-        self.pe18.append(0)
         for i in range(self.chunk - self.samp_dp):
             self.pe11.append(
                 self.alpha*self.pe11[i] + (1-self.alpha)*self.p1[i])
@@ -247,20 +222,14 @@ class PE():
                 self.alpha*self.pe15[i] + (1-self.alpha)*self.p5[i])
             self.pe16.append(
                 self.alpha*self.pe16[i] + (1-self.alpha)*self.p6[i])
-            self.pe17.append(
-                self.alpha*self.pe17[i] + (1-self.alpha)*self.p7[i])
-            self.pe18.append(
-                self.alpha*self.pe18[i] + (1-self.alpha)*self.p8[i])
         self.pe11avg = sum(self.pe11)/len(self.pe11)
         self.pe12avg = sum(self.pe12)/len(self.pe12)
         self.pe13avg = sum(self.pe13)/len(self.pe13)
         self.pe14avg = sum(self.pe14)/len(self.pe14)
         self.pe15avg = sum(self.pe15)/len(self.pe15)
         self.pe16avg = sum(self.pe16)/len(self.pe16)
-        self.pe17avg = sum(self.pe17)/len(self.pe17)
-        self.pe18avg = sum(self.pe18)/len(self.pe18)
 
-    def dc1(self, led=False):
+    def dc1(self, led=True):
         index_max = np.argmax([self.pe11[-1], self.pe12[-1], self.pe13[-1],
                               self.pe14[-1], self.pe15[-1], self.pe16[-1]])
         self.max_ch = index_max + 1
@@ -297,8 +266,6 @@ class PE():
         l4 = plt.plot(self.d4, label='ch4')
         l5 = plt.plot(self.d5, label='ch5')
         l6 = plt.plot(self.d6, label='ch6')
-        # l7 = plt.plot(self.d7, label='ch7')
-        # l8 = plt.plot(self.d8, label='ch8')
         plt.legend()
         plt.show()
 
@@ -317,8 +284,6 @@ class PE():
         l4 = plt.plot(self.p4, label='ch4')
         l5 = plt.plot(self.p5, label='ch5')
         l6 = plt.plot(self.p6, label='ch6')
-        # l7 = plt.plot(self.p7, label='ch7')
-        # l8 = plt.plot(self.p8, label='ch8')
         plt.legend()
         plt.show()
 
@@ -337,8 +302,6 @@ class PE():
         l4 = plt.plot(self.pe14, label='ch4')
         l5 = plt.plot(self.pe15, label='ch5')
         l6 = plt.plot(self.pe16, label='ch6')
-        # l7 = plt.plot(self.pe17, label='ch7')
-        # l8 = plt.plot(self.pe18, label='ch8')
         plt.legend()
         plt.show()
 
@@ -521,14 +484,37 @@ class PE():
         axs[1, 2].plot(self.p6, label='power')
         axs[1, 2].plot(self.pe16, label='pe1')
         axs[1, 2].legend()
-        # fm = plt.get_current_fig_manager()
-        # fm.resize(*fm.window.maxsize())
         if show:
             plt.show()
         if save:
             plt.savefig(join(IMG_PATH, fn + '_{0}.png'.format(fi)), dpi=300)
 
+    def continuous_run(self, times):
+        '''
+        Continuous perform power estimation with same set of parameters.
+        '''
+        print('Start continuous run')
+        result = []
+        # self.rep_cnt =
+        # self.samp_dp =
+        # self.samp_ds =
+        # self.chunk =
+        # self.alpha =
+        for i in range(times):
+            self.read_6ch_data()
+            self.pow()
+            self.pe1()
+            self.dc1()
+            # self.plt_cb12(fn=param, fi=i+1, save=True)
+            result.append(self.max_ch)
+        print(result)
+        print('End continuous run')
+
     def param_test(self, param, min, max, inc):
+        '''
+        Do power estimation with different set of parameters.
+        '''
+        print('Start parameter test')
         test_range = np.round(np.arange(min, max, inc).tolist(), 2)
         test_length = len(test_range)
         result = []
@@ -542,7 +528,7 @@ class PE():
                 self.pow()
                 self.pe1()
                 self.dc1()
-                self.plt_cb12(fn=param, fi=i+1, save=True)
+                # self.plt_cb12(fn=param, fi=i+1, save=True)
                 result.append(self.max_ch)
         elif param == 'samp_dp':
             test_range = [int(x) for x in test_range]
@@ -553,7 +539,7 @@ class PE():
                 self.pow()
                 self.pe1()
                 self.dc1()
-                self.plt_cb12(fn=param, fi=i+1, save=True)
+                # self.plt_cb12(fn=param, fi=i+1, save=True)
                 result.append(self.max_ch)
         elif param == 'samp_ds':
             pass
@@ -563,6 +549,7 @@ class PE():
         elif param == 'alpha':
             pass
         print(result)
+        print('End parameter test')
 
 
 # <<main>>
@@ -570,16 +557,6 @@ class PE():
 
 if __name__ == '__main__':
     pe = PE(chunk_=500)
-    pe.param_test('samp_dp', 0, 200, 100)
-    # pe.read_6ch_data()
-    # pe.pow()
-    # pe.pe1()
-    # pe.dc1()
-
-    # pe.plt_s()
-    # pe.plt_p()
-    # pe.plt_pe1()
-    # pe.plt_cb11()
-    # pe.plt_cb12()
-
+    # pe.param_test('samp_dp', 0, 200, 100)
+    pe.continuous_run(100)
     pe.terminate()
