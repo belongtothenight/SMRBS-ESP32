@@ -52,6 +52,33 @@ Not recorded.
   - *PE.continuous_run()
   - *PE.param_test()
 
+### 1.4 [alg_test8.py](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/alg_test8.py)
+
+- PE core
+  - PE core/setup
+    - PE.\_\_init__()
+    - PE.terminate()
+  - PE core/gather data
+    - PE.read_data()
+    - PE.pow()
+  - PE core/algorithm
+    - PE.pe1()
+  - PE core/process data
+    - PE.dc1()
+    - PE.store_data()
+    - *PE.clear_data()
+    - PE.evaluate()
+  - PE core/plot data
+    - PE.plt_s()
+    - PE.plt_p()
+    - PE.plt_pe1()
+    - PE.plt_cb11()
+    - PE.plt_cb12()
+    - *PE.plt_cb13()
+- PE extension
+  - PE.continuous_run()
+  - PE.param_test()
+
 ## 2. Change Log
 
 | No. | File                        | Detail                                                      |

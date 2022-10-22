@@ -298,6 +298,55 @@ class PE():
         # max channel (int)
         self.mem_max_ch.append(self.max_ch)
 
+    def clear_data(self):
+        '''
+        clear data in memory
+        '''
+        # signal (list)
+        self.mem_d1 = []
+        self.mem_d2 = []
+        self.mem_d3 = []
+        self.mem_d4 = []
+        self.mem_d5 = []
+        self.mem_d6 = []
+        # power (list)
+        self.mem_p1 = []
+        self.mem_p2 = []
+        self.mem_p3 = []
+        self.mem_p4 = []
+        self.mem_p5 = []
+        self.mem_p6 = []
+        # power estimation (list)
+        self.mem_pe11 = []
+        self.mem_pe12 = []
+        self.mem_pe13 = []
+        self.mem_pe14 = []
+        self.mem_pe15 = []
+        self.mem_pe16 = []
+        # signal average (float)
+        self.mem_d1avg = []
+        self.mem_d2avg = []
+        self.mem_d3avg = []
+        self.mem_d4avg = []
+        self.mem_d5avg = []
+        self.mem_d6avg = []
+        # power average (float)
+        self.mem_p1avg = []
+        self.mem_p2avg = []
+        self.mem_p3avg = []
+        self.mem_p4avg = []
+        self.mem_p5avg = []
+        self.mem_p6avg = []
+        # power estimation average (float)
+        self.mem_pe11avg = []
+        self.mem_pe12avg = []
+        self.mem_pe13avg = []
+        self.mem_pe14avg = []
+        self.mem_pe15avg = []
+        self.mem_pe16avg = []
+        # max channel (int)
+        self.mem_max_ch = []
+
     def evaluate(self):
         '''
         Evaluate the performance of power estimation.
@@ -573,14 +622,48 @@ class PE():
             plt.savefig(join(IMG_PATH, fn + '_{0}.png'.format(fi+1)), dpi=300)
         plt.close()
 
-    def plt_cb13(self):
+    def plt_cb13(self, xtick, cl=False, fn='', show=False, save=True):
         '''
         x: runs
-        y: davg, pavg, pe1avg, max_ch, pe1[-1]
+        y: davg, pavg, pe1avg, pe1[-1], max_ch
         '''
         # need to change "param_test" to run "continuous_run"
         # "continuous_run" add "plt_cb13" as mode 2
-        pass
+        if cl:
+            plt.clf()
+        fig, axs = plt.subplots(2, 3, figsize=(20, 10))
+        fig.suptitle('param_test: {0}, from {1} to {2}, {3} runs'.format(
+            fn, xtick[0], xtick[-1], len(xtick)))
+        fig.tight_layout(pad=3, h_pad=3, w_pad=3)
+        # fig (0, 0)
+        axs[0, 0].set_title('averaged signal')
+        axs[0, 0].set_xlabel('Run with different parameters')
+        axs[0, 0].set_ylabel('V (scaled)')
+        axs[0, 0].axhline(0, color='black')
+        axs[0, 0].axvline(0, color='black')
+        axs[0, 0].plot(self.mem_d1avg, label='d1avg')
+        axs[0, 0].plot(self.mem_d2avg, label='d2avg')
+        axs[0, 0].plot(self.mem_d3avg, label='d3avg')
+        axs[0, 0].plot(self.mem_d4avg, label='d4avg')
+        axs[0, 0].plot(self.mem_d5avg, label='d5avg')
+        axs[0, 0].plot(self.mem_d6avg, label='d6avg')
+        axs[0, 0].legend()
+        # fig (0, 1)
+
+        # fig (0, 2)
+        # fig (1, 0)
+        # fig (1, 1)
+        # fig (1, 2)
+        # axs[0, 0].plot(self.mem_p1avg, color='purple', label='pavg')
+        # axs[0, 0].plot(self.mem_pe11avg, color='pink', label='pe1avg')
+        # axs[0, 0].plot(self.mem_max_ch, color='green', label='max_ch')
+        plt.sca(axs[0, 0])
+        plt.xticks(range(len(xtick)), xtick)
+        if show:
+            plt.show()
+        if save:
+            plt.savefig(join(IMG_PATH, fn + '.png'), dpi=300)
+        plt.close()
 
     # =========================================================================
     # PE extension
@@ -608,10 +691,19 @@ class PE():
                 self.plt_cb12(fn='conti', fi=i, save=True)
             print('\nend plotting')
 
-    def param_test(self, param, min, max, inc, plot=False):
+    def param_test(self, param, min, max, inc, plot=True):
         '''
         Do power estimation with different set of parameters.
         '''
+
+        def runs():
+            self.read_data()
+            self.pow()
+            self.pe1()
+            self.dc1()
+            self.store_data()
+            pass
+        self.clear_data()
         print('Start parameter test')
         test_range = np.round(np.arange(min, max, inc).tolist(), 2)
         test_length = len(test_range)
@@ -621,71 +713,34 @@ class PE():
             for i in range(test_length):
                 print('{0}/{1}'.format(i+1, test_length), end='\r')
                 self.samp_dp = test_range[i]
-                self.read_data()
-                self.pow()
-                self.pe1()
-                self.dc1()
-                self.store_data()
+                runs()
             print('\nend testing samp_dp')
-            if plot:
-                print('start plotting samp_dp')
-                for i in range(test_length):
-                    print('{0}/{1}'.format(i+1, test_length), end='\r')
-                    self.plt_cb12(fn=param, fi=i, save=True)
-                print('\nend plotting samp_dp')
         elif param == 'samp_ds':
             print('start testing samp_ds')
             for i in range(test_length):
                 print('{0}/{1}'.format(i+1, test_length), end='\r')
                 self.samp_ds = test_range[i]
-                self.read_data()
-                self.pow()
-                self.pe1()
-                self.dc1()
-                self.store_data()
+                runs()
             print('\nend testing samp_ds')
-            if plot:
-                print('start plotting samp_ds')
-                for i in range(test_length):
-                    print('{0}/{1}'.format(i+1, test_length), end='\r')
-                    self.plt_cb12(fn=param, fi=i, save=True)
-                print('\nend plotting samp_ds')
         elif param == 'chunk':
             test_range = [int(x) for x in test_range]
             print('start testing chunk')
             for i in range(test_length):
                 print('{0}/{1}'.format(i+1, test_length), end='\r')
                 self.chunk = test_range[i]
-                self.read_data()
-                self.pow()
-                self.pe1()
-                self.dc1()
-                self.store_data()
+                runs()
             print('\nend testing chunk')
-            if plot:
-                print('start plotting chunk')
-                for i in range(test_length):
-                    print('{0}/{1}'.format(i+1, test_length), end='\r')
-                    self.plt_cb12(fn=param, fi=i, save=True)
-                print('\nend plotting chunk')
         elif param == 'alpha':
             print('start testing alpha')
             for i in range(test_length):
                 print('{0}/{1}'.format(i+1, test_length), end='\r')
                 self.alpha = test_range[i]
-                self.read_data()
-                self.pow()
-                self.pe1()
-                self.dc1()
-                self.store_data()
+                runs()
             print('\nend testing alpha')
-            if plot:
-                print('start plotting alpha')
-                for i in range(test_length):
-                    print('{0}/{1}'.format(i+1, test_length), end='\r')
-                    self.plt_cb12(fn=param, fi=i, save=True)
-                print('\nend plotting alpha')
-        print(self.mem_max_ch)
+        if plot:
+            print('start plotting {0}'.format(param))
+            self.plt_cb13(test_range, fn=param, save=True)
+            print('end plotting {0}'.format(param))
         print('End parameter test')
 
 
@@ -698,6 +753,6 @@ if __name__ == '__main__':
     pe.param_test('samp_ds', 1500, 3500, 1000)
     pe.param_test('chunk', 50, 150, 50)
     pe.param_test('alpha', 0.992, 0.998, 0.003)
-    pe.continuous_run(2)
+    # pe.continuous_run(2)
     pe.evaluate()
     pe.terminate()
