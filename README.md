@@ -4,7 +4,7 @@
 
 <div align="center">
 
-<a href="https://github.com/belongtothenight/SMRBS-ESP32">
+<a href="">
     [![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=belongtothenight&repo=SMRBS-ESP32)](https://github.com/belongtothenight/SMRBS-ESP32)
 </a>
 
