@@ -89,6 +89,7 @@ class PE():
         self.mem_pe15avg = []
         self.mem_pe16avg = []
         self.mem_max_ch = []
+        self.mem_evaluate = []
         # LED
         self.power = LED(5)
         self.power.on()
@@ -358,14 +359,19 @@ class PE():
         for i in range(6):
             ch_cnt[i] = self.mem_max_ch.count(i+1)
             ch_pct[i] = ch_cnt[i] / ch_run * 100
+        self.mem_evaluate.append([
+            '\nResult of power estimation',
+            'ch1: {0}\t\t({1:.2f}%)'.format(ch_cnt[0], ch_pct[0]),
+            'ch2: {0}\t\t({1:.2f}%)'.format(ch_cnt[1], ch_pct[1]),
+            'ch3: {0}\t\t({1:.2f}%)'.format(ch_cnt[2], ch_pct[2]),
+            'ch4: {0}\t\t({1:.2f}%)'.format(ch_cnt[3], ch_pct[3]),
+            'ch5: {0}\t\t({1:.2f}%)'.format(ch_cnt[4], ch_pct[4]),
+            'ch6: {0}\t\t({1:.2f}%)'.format(ch_cnt[5], ch_pct[5]),
+        ])
         if show:
-            print('\nResult of power estimation')
-            print('ch1: {0}\t\t({1:.2f}%)'.format(ch_cnt[0], ch_pct[0]))
-            print('ch2: {0}\t\t({1:.2f}%)'.format(ch_cnt[1], ch_pct[1]))
-            print('ch3: {0}\t\t({1:.2f}%)'.format(ch_cnt[2], ch_pct[2]))
-            print('ch4: {0}\t\t({1:.2f}%)'.format(ch_cnt[3], ch_pct[3]))
-            print('ch5: {0}\t\t({1:.2f}%)'.format(ch_cnt[4], ch_pct[4]))
-            print('ch6: {0}\t\t({1:.2f}%)'.format(ch_cnt[5], ch_pct[5]))
+            for x in self.mem_evaluate:
+                for y in x:
+                    print(y)
         return ch_cnt
 
     # ====================

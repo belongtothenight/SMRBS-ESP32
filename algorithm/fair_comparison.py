@@ -1,8 +1,12 @@
 from alg import PE
 import pandas as pd
+pd.reset_option('display.float_format')
 
-runs = 1000
-pe = PE(chunk_=300, img_path_='fair_comparison')
+export_path = 'fair_comparison/'
+runs = 5
+chunk = 300
+
+pe = PE(chunk_=chunk, img_path_=export_path)
 pe.continuous_run(runs, plot=False)
 pe.evaluate()
 
@@ -13,34 +17,40 @@ lpe14 = []
 lpe15 = []
 lpe16 = []
 for i in range(runs):
-    lpe11.append(pe.pe11[i][-1])
-    lpe12.append(pe.pe12[i][-1])
-    lpe13.append(pe.pe13[i][-1])
-    lpe14.append(pe.pe14[i][-1])
-    lpe15.append(pe.pe15[i][-1])
-    lpe16.append(pe.pe16[i][-1])
+    lpe11.append(pe.mem_pe11[i][-1])
+    lpe12.append(pe.mem_pe12[i][-1])
+    lpe13.append(pe.mem_pe13[i][-1])
+    lpe14.append(pe.mem_pe14[i][-1])
+    lpe15.append(pe.mem_pe15[i][-1])
+    lpe16.append(pe.mem_pe16[i][-1])
 data = {
-    'p1avg': pe.p1avg,
-    'p2avg': pe.p2avg,
-    'p3avg': pe.p3avg,
-    'p4avg': pe.p4avg,
-    'p5avg': pe.p5avg,
-    'p6avg': pe.p6avg,
-    'pe11avg': pe.pe11avg,
-    'pe12avg': pe.pe12avg,
-    'pe13avg': pe.pe13avg,
-    'pe14avg': pe.pe14avg,
-    'pe15avg': pe.pe15avg,
-    'pe16avg': pe.pe16avg,
+    'max_ch': pe.mem_max_ch,
     'pe11': lpe11,
     'pe12': lpe12,
     'pe13': lpe13,
     'pe14': lpe14,
     'pe15': lpe15,
     'pe16': lpe16,
+    'pe11avg': pe.mem_pe11avg,
+    'pe12avg': pe.mem_pe12avg,
+    'pe13avg': pe.mem_pe13avg,
+    'pe14avg': pe.mem_pe14avg,
+    'pe15avg': pe.mem_pe15avg,
+    'pe16avg': pe.mem_pe16avg,
 }
+print()
 df = pd.DataFrame(data)
-df.head()
+df.to_csv(export_path + 'fair_comparison.csv', index=False)
+print(df.shape)
 
+stats = df.describe()
+stats.drop(['max_ch'], axis=1, inplace=True)
+stats.to_csv(export_path + 'fair_comparison_stats.csv')
+print(stats.shape)
+
+with open(export_path + 'fair_comparison_summary.txt', 'a') as f:
+    for x in pe.mem_evaluate:
+        for y in x:
+            f.write(y + '\n')
 
 pe.terminate()
