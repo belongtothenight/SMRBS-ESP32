@@ -2,6 +2,12 @@
 
 ![Repo Size](https://img.shields.io/github/repo-size/belongtothenight/SMRBS-ESP32) ![Code Size](https://img.shields.io/github/languages/code-size/belongtothenight/SMRBS-ESP32) ![Commit Per Month](https://img.shields.io/github/commit-activity/m/belongtothenight/SMRBS-ESP32)
 
+<div align='center'>
+
+    <a href="">![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=belongtothenight&theme=dark&show_icons=true)</a>
+
+</div>
+
 This repo is about Smart Meeting Record and Broadcast System. The entire hardware system is controlled with ESP32.
 [Go to log](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/info/update_log.md)
 
