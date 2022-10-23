@@ -104,3 +104,10 @@
        5. Install library with "pip install -U -e ."
     3. Finished ["alg_test8.py"](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/alg_test8.py).
     4. Finished ["alg1.py"](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/alg1.py).
+17. 20221023
+    1. Creates new issues to work on. [[Issues#14] Abrupt start to audio](https://github.com/belongtothenight/SMRBS-ESP32/issues/14).
+    2. Working on fair comparison.
+       1. Based on [experiment_withfig.txt](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/alg_test7/experiment_withfig.txt), the received signal from each microphone/channel after processed with power estimation is not the same, it is possible that different channel have different gain.
+       2. Specs on [official wiki](https://wiki.seeedstudio.com/ReSpeaker_6-Mic_Circular_Array_kit_for_Raspberry_Pi/) provided the possible options for gain adjustments on both AC101 and AC108 chips ([details](https://github.com/belongtothenight/SMRBS-ESP32/issues/10)).
+       3. Found a [post](https://forum.seeedstudio.com/t/respeaker-6-mic-circular-array-microphone-gain-what-gain-is-set-up-in-ac108-adc/261690/2) on seeed studio forum, no answer to the question and no reply to the post.
+       4. In respeaker/seeed-voicecard, found Programmable Gain Amplifier (PGA) settings in [ac108.c](https://github.com/respeaker/seeed-voicecard/blob/master/ac108.c) by searching "PGA". Nothing seems out of place.
