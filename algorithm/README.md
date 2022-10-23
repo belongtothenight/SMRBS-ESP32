@@ -6,7 +6,7 @@
 
 Not recorded.
 
-### 1.2 [alg_test6.py](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/alg_test/alg_test6.py)
+### 1.2 [alg_test6.py](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/alg_tests/alg_test6.py)
 
 - PE core
   - PE core/setup
@@ -27,7 +27,7 @@ Not recorded.
     - PE.plt_cb11()
     - PE.plt_cb12()
 
-### 1.3 [alg_test7.py](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/alg_test/alg_test7.py)
+### 1.3 [alg_test7.py](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/alg_tests/alg_test7.py)
 
 - PE core
   - PE core/setup
@@ -52,7 +52,7 @@ Not recorded.
   - *PE.continuous_run()
   - *PE.param_test()
 
-### 1.4 [alg_test8.py](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/alg_test/alg_test8.py)
+### 1.4 [alg_test8.py](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/alg_tests/alg_test8.py)
 
 - PE core
   - PE core/setup
