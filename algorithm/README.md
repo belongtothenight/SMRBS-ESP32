@@ -1,8 +1,8 @@
 # Summary of algorithm
 
-"alg_test" files are coded to create custome module for this project/repo.
-"alg" file are the finished module integrated from generations of "alg_test" files.
-Other files are used to do different measurements and experiments based on "alg" module.
+"alg_test" files are coded to create custome module for this project/repo.<br>
+"alg" file are the finished module integrated from generations of "alg_test" files.<br>
+Other files are used to do different measurements and experiments based on "alg" module.<br>
 
 ## 1. ALG Function Structure
 
