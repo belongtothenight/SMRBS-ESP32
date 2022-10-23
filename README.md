@@ -7,7 +7,7 @@
 <div align="center">
 
 <a href="">
-    ![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=belongtothenight&repo=SMRBS-ESP32)
+    [Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=belongtothenight&repo=SMRBS-ESP32)
 </a>
 
 </div>
