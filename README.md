@@ -2,7 +2,7 @@
 
 ![Repo Size](https://img.shields.io/github/repo-size/belongtothenight/SMRBS-ESP32) ![Code Size](https://img.shields.io/github/languages/code-size/belongtothenight/SMRBS-ESP32) ![Commit Per Month](https://img.shields.io/github/commit-activity/m/belongtothenight/SMRBS-ESP32)
 
-<div align='center'>
+<div align="center">
 
     <a href="">![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=belongtothenight&theme=dark&show_icons=true)</a>
 
