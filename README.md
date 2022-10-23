@@ -2,11 +2,14 @@
 
 ![Repo Size](https://img.shields.io/github/repo-size/belongtothenight/SMRBS-ESP32) ![Code Size](https://img.shields.io/github/languages/code-size/belongtothenight/SMRBS-ESP32) ![Commit Per Month](https://img.shields.io/github/commit-activity/m/belongtothenight/SMRBS-ESP32)
 
-<div align="center">
+<!-- head -->
+<script src="https://tarptaeya.github.io/repo-card/repo-card.js"></script>
 
-<a href="">![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=belongtothenight&theme=dark&show_icons=true)</a>
+<!-- inside body, where you want to create the card -->
+<div class="repo-card" data-repo="belongtothenight/SMRBS-ESP32"></div>
 
-</div>
+<!-- NEW: for dark theme just set data-theme attribute -->
+<div class="repo-card" data-repo="belongtothenight/SMRBS-ESP32" data-theme="dark-theme"></div>
 
 This repo is about Smart Meeting Record and Broadcast System. The entire hardware system is controlled with ESP32.
 [Go to log](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/info/update_log.md)
