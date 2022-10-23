@@ -4,7 +4,7 @@
 
 <div align="center">
 
-    <a href="">![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=belongtothenight&theme=dark&show_icons=true)</a>
+<a href="">![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=belongtothenight&theme=dark&show_icons=true)</a>
 
 </div>
 
