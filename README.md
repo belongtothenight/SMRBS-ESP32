@@ -1,6 +1,6 @@
 # SMRBS-ESP32
 
-[Repo Size](https://img.shields.io/github/repo-size/belongtothenight/SMRBS-ESP32) [Code Size](https://img.shields.io/github/languages/code-size/belongtothenight/SMRBS-ESP32) [Commit Per Month](https://img.shields.io/github/commit-activity/m/belongtothenight/SMRBS-ESP32)
+![Repo Size](https://img.shields.io/github/repo-size/belongtothenight/SMRBS-ESP32) ![Code Size](https://img.shields.io/github/languages/code-size/belongtothenight/SMRBS-ESP32) ![Commit Per Month](https://img.shields.io/github/commit-activity/m/belongtothenight/SMRBS-ESP32)
 
 <div align="center">
 
