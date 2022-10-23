@@ -133,4 +133,5 @@ First version of full functionality algorithm.
 | 20  | alg_test7.py                | Add continuous running mode.                                |
 | 21  | alg_test7.py                | Add parameter testing mode.                                 |
 | 22  | alg_test8.py                | Rewrite parameter testing mode.                             |
-| 23  | alg1.py                     | Combined functional subfunctions.                           |
+| 23  | alg.py                      | Combined functional subfunctions.                           |
+| 24  | alg.py                      | Add parameter to customize img export directory.            |
