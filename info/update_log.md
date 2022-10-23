@@ -62,9 +62,9 @@
     1. After removing "lxplug-volumepulse", menu bar re-appear and the audacity still can record. File transfer is therefore possible. [link](https://raspberrypi.stackexchange.com/questions/122579/after-fresh-install-of-raspberry-os-the-menu-bar-is-missing-in-tightvnc-session)
     2. All necessary tests in [link](https://wiki.seeedstudio.com/ReSpeaker_6-Mic_Circular_Array_kit_for_Raspberry_Pi/) have all being conduct except realtime sound source localization and tracking section, which is cause by cmake missing package.
 11. 20221007
-    1. Finished recording audio data and plot it as picture. [alg_test1](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/alg_test1.py)
-    2. Finished recording audio data from 4 channels simultaniously and plot it as picture. [alg_test2](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/alg_test2.py)
-    3. Implemented the power estimation algorithm previously realized in HT32F52352. The calculation currently implemented is really slow, vectorization might help accelerate this. [alg_test3.py](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/alg_test3.py)
+    1. Finished recording audio data and plot it as picture. [alg_test1](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/alg_tests/alg_test1.py)
+    2. Finished recording audio data from 4 channels simultaniously and plot it as picture. [alg_test2](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/alg_tests/alg_test2.py)
+    3. Implemented the power estimation algorithm previously realized in HT32F52352. The calculation currently implemented is really slow, vectorization might help accelerate this. [alg_test3.py](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/alg_tests/alg_test3.py)
        1. This algorithm relys on "SAMPLE_DOWNSIZE" parameter to downsize original sample value to prevent overflow.
        2. If overflow error occurs, this algorithm is going to automatically skip the sample.
        3. If the parameter "SAMPLE_DOWNSIZE" is not adjusted properly, algorithm is going to keep skipping samples.
@@ -81,33 +81,33 @@
        1. unzip.
        2. "cd" to the root folder of unzipped "pixel_ring_mod.7z".
        3. "pip install -U -e .".
-    3. Re-examine previously finished [alg_test4.py](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/alg_test4.py) and altered how the result are presented and fix some bugs.
-    4. Tested parameters "chunk", "alpha", "sample_downsize" individually with ["alg_test5_chunk.py"](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/alg_test5_chunk.py), ["alg_test5_alpha.py"](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/alg_test5_alpha.py), ["alg_test5_sampledownsize.py"](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/alg_test5_sampledownsize.py).
+    3. Re-examine previously finished [alg_test4.py](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/alg_tests/alg_test4.py) and altered how the result are presented and fix some bugs.
+    4. Tested parameters "chunk", "alpha", "sample_downsize" individually with ["alg_test5_chunk.py"](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/alg_tests/alg_test5_chunk.py), ["alg_test5_alpha.py"](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/alg_tests/alg_test5_alpha.py), ["alg_test5_sampledownsize.py"](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/alg_tests/alg_test5_sampledownsize.py).
 13. 20221016
-    1. Finished ["alg_test6.py"](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/alg_test6.py).
+    1. Finished ["alg_test6.py"](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/alg_tests/alg_test6.py).
        1. The output files is written mostly in model.
        2. Plots are correctly labeled, with legends provided.
        3. Samples are downsized with 2k, no pyoverflow error ever occur(probably once?).
        4. The start section of samples are dumped to prevent spike at the begining.
-       5. Results are stored in ["alg_test6"](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/alg_test6).
+       5. Results are stored in ["alg_test6"](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/alg_tests/alg_test6).
 14. 20221018
     1. Add [README.md](https://github.com/belongtothenight/SMRBS-ESP32/tree/main/algorithm/README.md) of algorithm.
 15. 20221021
-    1. Finished pixel_ring control test on ["alg_test7_working.py"](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/alg_test7_working.py).
+    1. Finished pixel_ring control test on ["alg_test7_working.py"](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/alg_tests/alg_test7_working.py).
 16. 20221022
-    1. Finished ["alg_test7.py"](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/alg_test7.py).
+    1. Finished ["alg_test7.py"](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/alg_tests/alg_test7.py).
     2. Steps to change [pixel_ring](https://github.com/respeaker/pixel_ring) library.
        1. In "pixel_ring.py", add function definition.
        2. In "apa102_pixel_ring.py", add function definition with pattern function.
        3. In "pattern.py", add details about LEDs, like their RGB values.
        4. Open terminal, go to directory "pixel_ring", with "cd pixel_ring".
        5. Install library with "pip install -U -e ."
-    3. Finished ["alg_test8.py"](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/alg_test8.py).
+    3. Finished ["alg_test8.py"](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/alg_tests/alg_test8.py).
     4. Finished ["alg1.py"](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/alg1.py).
 17. 20221023
     1. Creates new issues to work on. [[Issues#14] Abrupt start to audio](https://github.com/belongtothenight/SMRBS-ESP32/issues/14).
     2. Working on fair comparison.
-       1. Based on [experiment_withfig.txt](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/alg_test7/experiment_withfig.txt), the received signal from each microphone/channel after processed with power estimation is not the same, it is possible that different channel have different gain.
+       1. Based on [experiment_withfig.txt](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/alg_tests/alg_test7/experiment_withfig.txt), the received signal from each microphone/channel after processed with power estimation is not the same, it is possible that different channel have different gain.
        2. Specs on [official wiki](https://wiki.seeedstudio.com/ReSpeaker_6-Mic_Circular_Array_kit_for_Raspberry_Pi/) provided the possible options for gain adjustments on both AC101 and AC108 chips ([details](https://github.com/belongtothenight/SMRBS-ESP32/issues/10)).
        3. Found a [post](https://forum.seeedstudio.com/t/respeaker-6-mic-circular-array-microphone-gain-what-gain-is-set-up-in-ac108-adc/261690/1) on seeed studio forum, no answer to the question and no reply to the post.
        4. In respeaker/seeed-voicecard, found Programmable Gain Amplifier (PGA) settings in [ac108.c](https://github.com/respeaker/seeed-voicecard/blob/master/ac108.c) by searching "PGA". Nothing seems out of place.
