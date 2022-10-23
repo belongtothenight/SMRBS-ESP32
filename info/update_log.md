@@ -111,4 +111,4 @@
        2. Specs on [official wiki](https://wiki.seeedstudio.com/ReSpeaker_6-Mic_Circular_Array_kit_for_Raspberry_Pi/) provided the possible options for gain adjustments on both AC101 and AC108 chips ([details](https://github.com/belongtothenight/SMRBS-ESP32/issues/10)).
        3. Found a [post](https://forum.seeedstudio.com/t/respeaker-6-mic-circular-array-microphone-gain-what-gain-is-set-up-in-ac108-adc/261690/1) on seeed studio forum, no answer to the question and no reply to the post.
        4. In respeaker/seeed-voicecard, found Programmable Gain Amplifier (PGA) settings in [ac108.c](https://github.com/respeaker/seeed-voicecard/blob/master/ac108.c) by searching "PGA". Nothing seems out of place.
-       5. Trying to do consistancy test on different microphone channels.
+       5. Use ["fair_comparison.py"](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/fair_comparison.py) to do consistancy test on different microphone channels.

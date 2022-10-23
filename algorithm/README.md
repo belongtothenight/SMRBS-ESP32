@@ -1,6 +1,10 @@
 # Summary of algorithm
 
-## 1. Function Structure
+"alg_test" files are coded to create custome module for this project/repo.
+"alg" file are the finished module integrated from generations of "alg_test" files.
+Other files are used to do different measurements and experiments based on "alg" module.
+
+## 1. ALG Function Structure
 
 ### 1.1 alg_test1.py ~ alg_test5.py
 
