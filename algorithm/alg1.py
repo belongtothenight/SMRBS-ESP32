@@ -23,7 +23,7 @@ samp_ds = 2000  # sample = sample / samp_ds (sample_downsize)
 chunk = 100     # number of samples to read from stream
 alpha = 0.99    # power estimation coefficient
 
-IMG_PATH = '/home/pi/code/alg_test8/'
+img_path = '/home/pi/code/alg1/'
 
 PLOT_P = False  # plot power of each measurement # if TOTAL_PIC>10 it is going to take forever
 PLOT_D = False  # plot decision of microphone
@@ -44,12 +44,13 @@ class PE():
 
     # ====================
     # PE core/setup
-    def __init__(self, sampdp=samp_dp, sampds=samp_ds, chunk_=chunk, alpha_=alpha):
+    def __init__(self, sampdp=samp_dp, sampds=samp_ds, chunk_=chunk, alpha_=alpha, img_path_=img_path):
         # PARAM
         self.samp_dp = sampdp
         self.samp_ds = sampds
         self.chunk = chunk_
         self.alpha = alpha_
+        self.img_path = img_path_
         # MEM
         self.mem_d1 = []
         self.mem_d2 = []
@@ -621,7 +622,8 @@ class PE():
         if show:
             plt.show()
         if save:
-            plt.savefig(join(IMG_PATH, fn + '_{0}.png'.format(fi+1)), dpi=300)
+            plt.savefig(join(self.img_path, fn +
+                        '_{0}.png'.format(fi+1)), dpi=300)
         plt.close()
 
     def plt_cb13(self, xtick, cl=False, fn='', show=False, save=True):
@@ -735,7 +737,7 @@ class PE():
         if show:
             plt.show()
         if save:
-            plt.savefig(join(IMG_PATH, fn + '.png'), dpi=300)
+            plt.savefig(join(self.img_path, fn + '.png'), dpi=300)
         plt.close()
 
     # =========================================================================
