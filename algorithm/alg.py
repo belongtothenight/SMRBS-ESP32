@@ -23,7 +23,7 @@ samp_ds = 2000  # sample = sample / samp_ds (sample_downsize)
 chunk = 100     # number of samples to read from stream
 alpha = 0.99    # power estimation coefficient
 
-img_path = '/home/pi/code/alg1/'
+img_path = '/home/pi/code/alg/'
 
 PLOT_P = False  # plot power of each measurement # if TOTAL_PIC>10 it is going to take forever
 PLOT_D = False  # plot decision of microphone
