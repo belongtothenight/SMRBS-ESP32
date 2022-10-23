@@ -81,7 +81,8 @@ Not recorded.
 
 ### 1.5 [alg.py](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/alg.py) (v1.0.2)
 
-First version of full functionality algorithm.
+Full functionality of algorithm module.
+Subfunctionns are tested and integrated to this file.
 
 - PE core
   - PE core/setup
