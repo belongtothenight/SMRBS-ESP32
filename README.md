@@ -4,7 +4,7 @@
 
 ![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=belongtothenight&repo=SMRBS-ESP32)
 
-[Go to log](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/info/update_log.md)
+[Click this to go to experiment log!](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/info/update_log.md)
 
 ## Repo Structure
 
