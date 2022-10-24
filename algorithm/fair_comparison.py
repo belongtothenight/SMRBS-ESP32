@@ -49,7 +49,7 @@ stats.to_csv(export_path + 'fair_comparison_stats.csv')
 print(stats.shape)
 
 with open(export_path + 'fair_comparison_summary.txt', 'a') as f:
-    for x in pe.mem_evaluate:
+    for x in pe.mem_evaluattion:
         for y in x:
             f.write(y + '\n')
 

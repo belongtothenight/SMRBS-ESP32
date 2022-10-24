@@ -119,3 +119,5 @@
        10. Possible solution for different gain from different channels:
            1. Use different scaling parameter for each channel to make all power estimation result roughly the same.
            2. Find gain settings on [seeed/voice-card](https://github.com/respeaker/seeed-voicecard), focusing on [ac101.c](https://github.com/respeaker/seeed-voicecard/blob/master/ac101.c) and [ac108.c](https://github.com/respeaker/seeed-voicecard/blob/master/ac108.c).
+18. 20221024
+    1. Update "alg.py" and "fair_comparison.py" to make evaluation result can be stored and cleared.

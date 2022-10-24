@@ -79,7 +79,7 @@ Not recorded.
   - PE.continuous_run()
   - PE.param_test()
 
-### 1.5 [alg.py](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/alg.py) (v1.0.2)
+### 1.5 [alg.py](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/alg.py) (v1.0.3)
 
 Full functionality of algorithm module.
 Subfunctionns are tested and integrated to this file.
