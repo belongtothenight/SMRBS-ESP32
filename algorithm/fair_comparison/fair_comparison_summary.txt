@@ -50,7 +50,7 @@ ch4: 8		(1.60%)
 ch5: 266		(53.20%)
 ch6: 55		(11.00%)
 
-Result of power estimation
+Result of power estimation ch6
 ch1: 2		(0.40%)
 ch2: 20		(4.00%)
 ch3: 34		(6.80%)
