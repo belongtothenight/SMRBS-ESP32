@@ -3,7 +3,7 @@ import pandas as pd
 pd.reset_option('display.float_format')
 
 export_path = 'fair_comparison/'
-runs = 5
+runs = 100
 chunk = 300
 
 pe = PE(chunk_=chunk, img_path_=export_path)
@@ -40,16 +40,16 @@ data = {
 }
 print()
 df = pd.DataFrame(data)
-df.to_csv(export_path + 'fair_comparison.csv', index=False)
+df.to_csv(export_path + 'fair_comparison_ch.csv', index=False)
 print(df.shape)
 
 stats = df.describe()
 stats.drop(['max_ch'], axis=1, inplace=True)
-stats.to_csv(export_path + 'fair_comparison_stats.csv')
+stats.to_csv(export_path + 'fair_comparison_stats_ch.csv')
 print(stats.shape)
 
 with open(export_path + 'fair_comparison_summary.txt', 'a') as f:
-    for x in pe.mem_evaluattion:
+    for x in pe.mem_evaluation:
         for y in x:
             f.write(y + '\n')
 

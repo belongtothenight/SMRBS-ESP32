@@ -24,6 +24,14 @@ RESPEAKER_CHANNELS = 8
 RESPEAKER_WIDTH = 2
 RESPEAKER_INDEX = 2  # refer to input device id # run getDeviceInfo.py to get index
 
+# volumn compensation
+CH1_SCALE = 3.54
+CH2_SCALE = 3.45
+CH3_SCALE = 1.65
+CH4_SCALE = 1
+CH5_SCALE = 1.31
+CH6_SCALE = 4.35
+
 samp_dp = 20    # sample to drop at the beginning of each run
 samp_ds = 2000  # sample = sample / samp_ds (sample_downsize)
 chunk = 100     # number of samples to read from stream
@@ -231,12 +239,18 @@ class PE():
                 self.alpha*self.pe15[i] + (1-self.alpha)*self.p5[i])
             self.pe16.append(
                 self.alpha*self.pe16[i] + (1-self.alpha)*self.p6[i])
-        self.pe11avg = sum(self.pe11)/len(self.pe11)
-        self.pe12avg = sum(self.pe12)/len(self.pe12)
-        self.pe13avg = sum(self.pe13)/len(self.pe13)
-        self.pe14avg = sum(self.pe14)/len(self.pe14)
-        self.pe15avg = sum(self.pe15)/len(self.pe15)
-        self.pe16avg = sum(self.pe16)/len(self.pe16)
+        self.pe11avg = sum(self.pe11)/len(self.pe11)*CH1_SCALE
+        self.pe12avg = sum(self.pe12)/len(self.pe12)*CH2_SCALE
+        self.pe13avg = sum(self.pe13)/len(self.pe13)*CH3_SCALE
+        self.pe14avg = sum(self.pe14)/len(self.pe14)*CH4_SCALE
+        self.pe15avg = sum(self.pe15)/len(self.pe15)*CH5_SCALE
+        self.pe16avg = sum(self.pe16)/len(self.pe16)*CH6_SCALE
+        self.pe11[-1] *= CH1_SCALE
+        self.pe12[-1] *= CH2_SCALE
+        self.pe13[-1] *= CH3_SCALE
+        self.pe14[-1] *= CH4_SCALE
+        self.pe15[-1] *= CH5_SCALE
+        self.pe16[-1] *= CH6_SCALE
 
     # ====================
     # PE core/process data

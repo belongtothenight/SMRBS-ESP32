@@ -121,3 +121,8 @@
            2. Find gain settings on [seeed/voice-card](https://github.com/respeaker/seeed-voicecard), focusing on [ac101.c](https://github.com/respeaker/seeed-voicecard/blob/master/ac101.c) and [ac108.c](https://github.com/respeaker/seeed-voicecard/blob/master/ac108.c).
 18. 20221024
     1. Update "alg.py" and "fair_comparison.py" to make evaluation result can be stored and cleared.
+19. 20221029
+    1. Try scalling last number of power estimation, and the result doesn't match the expectation. All details are at [fc2](https://github.com/belongtothenight/SMRBS-ESP32/tree/main/algorithm/fair_comparison/fc2).
+    2. Future necessary functionalities.
+       1. Get environtal noise level at launch.
+       2. Set basic voice barrier to ignore noise. (can be variable) Or if the input voltage is not changing.

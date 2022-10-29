@@ -1,0 +1,59 @@
+Experiment detail:
+Put speaker at the relatively same location to different microphpone, to see whether all microphone have the same gain.
+
+Experiment setup:
+source: smarphone --bluetooth--> speaker
+volumn: max * 0.25
+signal_type: sine
+frequency_hz: 500
+distance_cm: 20
+Run: 500
+
+Experiment result:
+Result of power estimation 1
+ch1: 419		(83.80%)
+ch2: 1		(0.20%)
+ch3: 0		(0.00%)
+ch4: 0		(0.00%)
+ch5: 0		(0.00%)
+ch6: 80		(16.00%)
+
+Result of power estimation 2
+ch1: 168		(33.60%)
+ch2: 267		(53.40%)
+ch3: 0		(0.00%)
+ch4: 0		(0.00%)
+ch5: 0		(0.00%)
+ch6: 65		(13.00%)
+
+Result of power estimation 3
+ch1: 142		(28.40%)
+ch2: 283		(56.60%)
+ch3: 0		(0.00%)
+ch4: 0		(0.00%)
+ch5: 0		(0.00%)
+ch6: 75		(15.00%)
+
+Result of power estimation 4
+ch1: 30		(6.00%)
+ch2: 175		(35.00%)
+ch3: 0		(0.00%)
+ch4: 0		(0.00%)
+ch5: 0		(0.00%)
+ch6: 295		(59.00%)
+
+Result of power estimation 5
+ch1: 21		(4.20%)
+ch2: 132		(26.40%)
+ch3: 7		(1.40%)
+ch4: 0		(0.00%)
+ch5: 0		(0.00%)
+ch6: 340		(68.00%)
+
+Result of power estimation 6
+ch1: 21		(4.20%)
+ch2: 143		(28.60%)
+ch3: 0		(0.00%)
+ch4: 0		(0.00%)
+ch5: 0		(0.00%)
+ch6: 336		(67.20%)
