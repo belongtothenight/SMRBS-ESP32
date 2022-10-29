@@ -126,3 +126,4 @@
     2. Future necessary functionalities.
        1. Get environtal noise level at launch.
        2. Set basic voice barrier to ignore noise. (can be variable) Or if the input voltage is not changing.
+    3. Possible option to solve this: use magnitude to get new scaling parameter. To get the magnitude, get the averaged maximum and negative input voltage value and average their absolute value.
