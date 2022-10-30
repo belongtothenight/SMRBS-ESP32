@@ -133,3 +133,10 @@
        2. [Keep Alive](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/bias_comparison/keep_alive) are the result that the entire system is initialized at the start and only once.
        3. The ["bias_observation_summary.txt"](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/bias_observation_summary.txt) stat that it is the initialization process that creates bias. If we read data few times before starting measurement, the bias can be minimize.
     2. Use ["amplitude_comparison.py"](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/amplitude_comparison.py) to gather amplitude data to scale input signal to improve power estimation.
+    3. By applying the scaller parameters obtained from 75% data of ["amplitude_comparison_stats_mix.xlsx"](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/amplitude_comparison/amplitude_comparison_stats_mix.xlsx), the rough test of power estimation doesn't work as well. The data gathered in ["amplitude_comparison"](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/amplitude_comparison) need to be futher analyzed to focus only on certain group of data.
+    4. Use the amplitude data gathered previously, I use only the valid amplitude data (ie, not too large, not close to 0) to calculate mean value, and use that to calculate scaler. Rough result: only channel 5 is now not sensitive. Need to use fair comparison to see whether it works.
+    5. Perform fair comparison with parameter gained in the last step. The result: [fc3](https://github.com/belongtothenight/SMRBS-ESP32/tree/main/algorithm/fair_comparison/fc3).
+       1. Turns out that even with this reasonable looking parameter settings, it doesn't really help with balancing gains between channels. It even made channel 5 really bad.
+       2. Two options are next.
+          1. Use dynamic parameter balancing. (ie, at the start of every run, adjust the params so that all amplitude/power estimation result are roughly the same.)
+          2. Try another approach to solve this instead of power estimation.
