@@ -1,0 +1,18 @@
+Experiment detail:
+Put speaker at the relatively same location to different microphpone, to see whether all microphone have the same gain.
+By processing data directly from input, rather than after power estimation.
+Channel input bias can be checked at the same time.
+
+Experiment setup:
+source: smarphone --bluetooth--> speaker
+volumn: max * 0.25
+signal_type: sine
+frequency_hz: 500
+distance_cm: 20
+Run: 1000
+File: bias_observation.py
+
+Experiment result:
+Get the scaling ratio based on amplitude.
+But the data from channel 5 and 6 is weird, which lacks 25%, 50% data, indicating the values are really low.
+Futher experiment is to use these scaling ratio (amplitude) to compare power estimation result.

@@ -3,7 +3,7 @@ from matplotlib import pyplot as plt
 from time import sleep
 import pandas as pd
 
-chunk = 50  # roughly a sine wave period of 500 Hz
+chunk = 50  # adjust to receive full waveform
 export_path = '/home/pi/code_alg/amplitude_comparison/'
 
 data1 = []

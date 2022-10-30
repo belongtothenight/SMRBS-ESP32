@@ -132,3 +132,4 @@
        1. [Fresh Start](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/bias_comparison/fresh_start) are the result that the entire system is initialized everytime we want to read data.
        2. [Keep Alive](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/bias_comparison/keep_alive) are the result that the entire system is initialized at the start and only once.
        3. The ["bias_observation_summary.txt"](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/bias_observation_summary.txt) stat that it is the initialization process that creates bias. If we read data few times before starting measurement, the bias can be minimize.
+    2. Use ["amplitude_comparison.py"](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/amplitude_comparison.py) to gather amplitude data to scale input signal to improve power estimation.
