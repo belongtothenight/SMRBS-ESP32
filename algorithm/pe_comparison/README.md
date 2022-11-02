@@ -1,6 +1,8 @@
 # pe_comparison
 
-| Directory | Description                    |
-| --------- | ------------------------------ |
-| run1/     | Test run in complete silence.  |
-| run2/     | Might get influenced by voice. |
+Plots created by pe_comparison.py
+
+| Directory | Description                              |
+| --------- | ---------------------------------------- |
+| run1/     | Run in complete silence.                 |
+| run2/     | Result might get influenced by my voice. |
