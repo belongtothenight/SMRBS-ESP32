@@ -435,29 +435,33 @@ class PE():
         plt.show()
         plt.close()
 
-    def plt_pe1(self, cl=False, maxch='0'):
+    def plt_pe1(self, cl=False, maxch='0', fn='', fi=-1, show=False, save=True):
         # power estimation 1
         if cl:
             plt.clf()
+        plt.figure(figsize=(20, 10))
         plt.title('source: ch{0}'.format(maxch))
         plt.xlabel('Sample')
         plt.ylabel('W (scaled)')
         plt.axhline(0, color='black')
         plt.axvline(0, color='black')
         l1 = plt.plot(
-            self.mem_pe11[-1], label='ch1={0:.3f}'.format(self.mem_pe11[-1][-1]))
+            self.mem_pe11[fi], label='ch1={0:.3f}'.format(self.mem_pe11[fi][-1]))
         l2 = plt.plot(
-            self.mem_pe12[-1], label='ch2={0:.3f}'.format(self.mem_pe12[-1][-1]))
+            self.mem_pe12[fi], label='ch2={0:.3f}'.format(self.mem_pe12[fi][-1]))
         l3 = plt.plot(
-            self.mem_pe13[-1], label='ch3={0:.3f}'.format(self.mem_pe13[-1][-1]))
+            self.mem_pe13[fi], label='ch3={0:.3f}'.format(self.mem_pe13[fi][-1]))
         l4 = plt.plot(
-            self.mem_pe14[-1], label='ch4={0:.3f}'.format(self.mem_pe14[-1][-1]))
+            self.mem_pe14[fi], label='ch4={0:.3f}'.format(self.mem_pe14[fi][-1]))
         l5 = plt.plot(
-            self.mem_pe15[-1], label='ch5={0:.3f}'.format(self.mem_pe15[-1][-1]))
+            self.mem_pe15[fi], label='ch5={0:.3f}'.format(self.mem_pe15[fi][-1]))
         l6 = plt.plot(
-            self.mem_pe16[-1], label='ch6={0:.3f}'.format(self.mem_pe16[-1][-1]))
+            self.mem_pe16[fi], label='ch6={0:.3f}'.format(self.mem_pe16[fi][-1]))
         plt.legend()
-        plt.show()
+        if show:
+            plt.show()
+        if save:
+            plt.savefig('{0}pe1_ch{1}.png'.format(fn, maxch))
         plt.close()
 
     def plt_cb11(self, cl=False):

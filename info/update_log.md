@@ -140,3 +140,6 @@
        2. Two options are next.
           1. Use dynamic parameter balancing. (ie, at the start of every run, adjust the params so that all amplitude/power estimation result are roughly the same.)
           2. Try another approach to solve this instead of power estimation.
+21. 20221102
+    1. Use ["pe_comparison.py"](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/pe_comparison.py) to plot power estimation results.
+       1. Results are in [pe_comparison](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/pe_comparison).

@@ -23,18 +23,18 @@ RESPEAKER_WIDTH = 2
 RESPEAKER_INDEX = 2  # refer to input device id # run getDeviceInfo.py to get index
 
 # <<channel scaller>>
-SIG1_SCALE = 1.476979213
-SIG2_SCALE = 1.322764609
-SIG3_SCALE = 1.240418716
-SIG4_SCALE = 1.022989161
-SIG5_SCALE = 1.0
-SIG6_SCALE = 1.558879525
-# SIG1_SCALE = 1.0
-# SIG2_SCALE = 1.0
-# SIG3_SCALE = 1.0
-# SIG4_SCALE = 1.0
+# SIG1_SCALE = 1.476979213
+# SIG2_SCALE = 1.322764609
+# SIG3_SCALE = 1.240418716
+# SIG4_SCALE = 1.022989161
 # SIG5_SCALE = 1.0
-# SIG6_SCALE = 1.0
+# SIG6_SCALE = 1.558879525
+SIG1_SCALE = 1.0
+SIG2_SCALE = 1.0
+SIG3_SCALE = 1.0
+SIG4_SCALE = 1.0
+SIG5_SCALE = 1.0
+SIG6_SCALE = 1.0
 
 samp_dp = 20    # sample to drop at the beginning of each run
 samp_ds = 2000  # sample = sample / samp_ds (sample_downsize)
@@ -435,23 +435,33 @@ class PE():
         plt.show()
         plt.close()
 
-    def plt_pe1(self, cl=False):
+    def plt_pe1(self, cl=False, maxch='0', fn='', fi=-1, show=False, save=True):
         # power estimation 1
         if cl:
             plt.clf()
-        plt.title('power')
+        plt.figure(figsize=(20, 10))
+        plt.title('source: ch{0}'.format(maxch))
         plt.xlabel('Sample')
-        plt.ylabel('V (scaled)')
+        plt.ylabel('W (scaled)')
         plt.axhline(0, color='black')
         plt.axvline(0, color='black')
-        l1 = plt.plot(self.pe11, label='ch1')
-        l2 = plt.plot(self.pe12, label='ch2')
-        l3 = plt.plot(self.pe13, label='ch3')
-        l4 = plt.plot(self.pe14, label='ch4')
-        l5 = plt.plot(self.pe15, label='ch5')
-        l6 = plt.plot(self.pe16, label='ch6')
+        l1 = plt.plot(
+            self.mem_pe11[fi], label='ch1={0:.3f}'.format(self.mem_pe11[fi][-1]))
+        l2 = plt.plot(
+            self.mem_pe12[fi], label='ch2={0:.3f}'.format(self.mem_pe12[fi][-1]))
+        l3 = plt.plot(
+            self.mem_pe13[fi], label='ch3={0:.3f}'.format(self.mem_pe13[fi][-1]))
+        l4 = plt.plot(
+            self.mem_pe14[fi], label='ch4={0:.3f}'.format(self.mem_pe14[fi][-1]))
+        l5 = plt.plot(
+            self.mem_pe15[fi], label='ch5={0:.3f}'.format(self.mem_pe15[fi][-1]))
+        l6 = plt.plot(
+            self.mem_pe16[fi], label='ch6={0:.3f}'.format(self.mem_pe16[fi][-1]))
         plt.legend()
-        plt.show()
+        if show:
+            plt.show()
+        if save:
+            plt.savefig('{0}pe1_ch{1}.png'.format(fn, maxch))
         plt.close()
 
     def plt_cb11(self, cl=False):
