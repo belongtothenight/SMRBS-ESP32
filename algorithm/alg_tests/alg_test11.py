@@ -444,12 +444,18 @@ class PE():
         plt.ylabel('W (scaled)')
         plt.axhline(0, color='black')
         plt.axvline(0, color='black')
-        l1 = plt.plot(self.mem_pe11[-1], label='ch1')
-        l2 = plt.plot(self.mem_pe12[-1], label='ch2')
-        l3 = plt.plot(self.mem_pe13[-1], label='ch3')
-        l4 = plt.plot(self.mem_pe14[-1], label='ch4')
-        l5 = plt.plot(self.mem_pe15[-1], label='ch5')
-        l6 = plt.plot(self.mem_pe16[-1], label='ch6')
+        l1 = plt.plot(
+            self.mem_pe11[-1], label='ch1={0:.3f}'.format(self.mem_pe11[-1][-1]))
+        l2 = plt.plot(
+            self.mem_pe12[-1], label='ch2={0:.3f}'.format(self.mem_pe12[-1][-1]))
+        l3 = plt.plot(
+            self.mem_pe13[-1], label='ch3={0:.3f}'.format(self.mem_pe13[-1][-1]))
+        l4 = plt.plot(
+            self.mem_pe14[-1], label='ch4={0:.3f}'.format(self.mem_pe14[-1][-1]))
+        l5 = plt.plot(
+            self.mem_pe15[-1], label='ch5={0:.3f}'.format(self.mem_pe15[-1][-1]))
+        l6 = plt.plot(
+            self.mem_pe16[-1], label='ch6={0:.3f}'.format(self.mem_pe16[-1][-1]))
         plt.legend()
         plt.show()
         plt.close()
