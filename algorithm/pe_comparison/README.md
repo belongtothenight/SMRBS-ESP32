@@ -5,14 +5,14 @@
 Plots created by pe_comparison.py<br>
 Each subfolder contains a file named "summary.txt" contains all experiment related info.<br>
 
-| Directory/File | Description                                                 |
-| -------------- | ----------------------------------------------------------- |
-| run1/          | Run in complete silence. (before recording video)           |
-| run2/          | Result might get influenced by my voice. (during recording) |
-| run3/          | White noise, 0.6 volume, speaker high.                      |
-| run4/          | White noise, full volume, speaker high.                     |
-| run5/          | White noise, 0.6 volume, speaker low.                       |
-| run6/          | White noise, full volume, speaker low.                      |
+| Date     | Directory/File | Description                                                 |
+| -------- | -------------- | ----------------------------------------------------------- |
+| 20221102 | run1/          | Run in complete silence. (before recording video)           |
+| 20221102 | run2/          | Result might get influenced by my voice. (during recording) |
+| 20221103 | run3/          | White noise, 0.6 volume, speaker high.                      |
+| 20221103 | run4/          | White noise, full volume, speaker high.                     |
+| 20221103 | run5/          | White noise, 0.6 volume, speaker low.                       |
+| 20221103 | run6/          | White noise, full volume, speaker low.                      |
 
 ## Notice
 
