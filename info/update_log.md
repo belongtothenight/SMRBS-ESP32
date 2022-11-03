@@ -142,4 +142,13 @@
           2. Try another approach to solve this instead of power estimation.
 21. 20221102
     1. Use ["pe_comparison.py"](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/pe_comparison.py) to plot power estimation results.
-       1. Results are in [pe_comparison](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/pe_comparison).
+       1. Result: [run1](https://github.com/belongtothenight/SMRBS-ESP32/tree/main/algorithm/pe_comparison/run1).
+       2. Result: [run2](https://github.com/belongtothenight/SMRBS-ESP32/tree/main/algorithm/pe_comparison/run2)
+22. 20221103
+    1. Update ["pe_comparison.py"](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/pe_comparison.py) to seperate quit file and export plot functionality.
+    2. Run ["pe_comparison.py"](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/pe_comparison.py) with white noise. (mostly used for masking environmental noises. Consist of all frequency across the spectrum.)
+       1. Result: [run3](https://github.com/belongtothenight/SMRBS-ESP32/tree/main/algorithm/pe_comparison/run3)
+       2. Result: [run4](https://github.com/belongtothenight/SMRBS-ESP32/tree/main/algorithm/pe_comparison/run4)
+       3. Result: [run5](https://github.com/belongtothenight/SMRBS-ESP32/tree/main/algorithm/pe_comparison/run5)
+       4. Result: [run6](https://github.com/belongtothenight/SMRBS-ESP32/tree/main/algorithm/pe_comparison/run6)
+       5. From the result, since white noise can be used to mask all environmental noises, it proves the weird gain difference between channels is not caused by environmental noise.
