@@ -18,6 +18,6 @@ Each subfolder contains a file named "summary.txt" contains all experiment relat
 
 ### "height" in "summary.txt"s
 
-microphone extension board height from table: 3 cm
-speaker height: 5.5 cm
-height: (bottom of speaker) - (microphone extension board)
+microphone extension board height from table: 3 cm<br>
+speaker height: 5.5 cm<br>
+height: (bottom of speaker) - (microphone extension board)<br>
