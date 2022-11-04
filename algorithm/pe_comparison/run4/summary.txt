@@ -5,7 +5,7 @@ Put the speaker at the relatively same location as the different microphones to 
 source: smartphone --bluetooth--> speaker
 volume: max * 0.6 https://noises.online/
 signal_type: white noise
-frequency_hz: 500
+frequency_hz: N/A
 sampling_rate_hz: 16000
 distance_cm: 5
 height_cm: 4
