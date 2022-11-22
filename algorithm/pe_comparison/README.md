@@ -13,6 +13,7 @@ Each subfolder contains a file named "summary.txt" contains all experiment relat
 | run4/          | White noise, full volume, speaker high.                     |  20221103   |
 | run5/          | White noise, 0.6 volume, speaker low.                       |  20221103   |
 | run6/          | White noise, full volume, speaker low.                      |  20221103   |
+| run7/          | Low chunk size                                              |  20221122   |
 
 ## Notice
 
