@@ -50,12 +50,12 @@ if __name__ == '__main__':
             break
 
     # run alg.py
-    chunk = 200
+    chunk = 1000
     pe = PE(chunk_=chunk)
     samp_dp = pe.samp_dp
     samp_ds = pe.samp_ds
     chunk = pe.chunk
-    alpha = pe.chunk
+    alpha = pe.alpha
     i = -1
     ch = []
     export_lines = {1:'', 2:'', 3:'', 4:'', 5:'', 6:''}
