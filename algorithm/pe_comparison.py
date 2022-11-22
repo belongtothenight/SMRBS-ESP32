@@ -33,7 +33,6 @@ def init_sumfile():
         
 
 if __name__ == '__main__':
-    init_sumfile()
     pe = PE(chunk_=chunk)
     i = -1
     ch = []
@@ -50,7 +49,8 @@ if __name__ == '__main__':
             for j in range(i):
                 pe.plt_pe1(maxch=ch[j], fi=j,
                                fn=export_path)
-            # export lines            
+            # export lines
+            init_sumfile()
             with open(export_path + export_summary_fn, 'a', encoding='utf-8') as f:
                 for j in range(len(export_lines)):
                     f.write(export_lines[j+1])
