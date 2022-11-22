@@ -12,7 +12,7 @@ while True:
     elif num == 'e':
         for j in range(i):
             pe.plt_pe1(maxch=ch[j], fi=j,
-                       fn='/home/pi/code_alg/pe_comparison/')
+                       fn='/home/pi/SMRBS-ESP32/algorithm/pe_comparison/run7/')
         pe.clear_data()
         i = -1
         ch = []
