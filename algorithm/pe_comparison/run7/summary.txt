@@ -11,6 +11,12 @@ distance_cm: 10
 height_cm: -3 (on table)
 run: 1
 
+>> Parameter:
+samp_dp = 20
+samp_ds = 2000
+chunk = 200
+alpha = 0.99
+
 >> Figure:
 content: power estimation result of each individual channel
 x-axis: samples
@@ -18,10 +24,14 @@ y-axis: Watt
 title: the channel facing the audio source
 legend: final power estimation value of each channel
 
->> Result: (2022/11/22:23:04:41)
-1 >> 4 >> pe: 19.2636 / 12.5220 / 27.6733 / 44.3213 / 0.0002 / 0.0002
-2 >> 6 >> pe: 16.3507 / 19.4349 / 0.0001 / 0.0000 / 35.8981 / 50.2252
-3 >> 2 >> pe: 9.4027 / 15.6170 / 14.9423 / 7.8731 / 6.4300 / 5.1795
-4 >> 6 >> pe: 0.0000 / 0.0000 / 24.2071 / 30.7326 / 44.2912 / 70.3242
-5 >> 5 >> pe: 20.5452 / 15.3950 / 13.0447 / 25.3670 / 51.9238 / 26.6238
-6 >> 6 >> pe: 39.0938 / 18.1552 / 14.0782 / 28.0925 / 41.1404 / 54.6726
+>> Result: (2022/11/22:23:26:47)
+1 >> 1 >> pe: 84.5906 / 34.4190 / 17.2245 / 16.1606 / 26.8239 / 48.0903
+2 >> 1 >> pe: 77.8071 / 37.5392 / 21.0363 / 17.5214 / 18.5677 / 0.0000
+3 >> 3 >> pe: 19.7742 / 32.3379 / 94.8520 / 49.6383 / 19.6649 / 14.0878
+4 >> 4 >> pe: 16.7233 / 18.6440 / 33.6374 / 68.1518 / 41.1061 / 17.9206
+5 >> 5 >> pe: 19.2462 / 11.8613 / 17.7871 / 32.2760 / 74.0896 / 35.7863
+6 >> 5 >> pe: 19.1184 / 12.7356 / 15.5291 / 32.3059 / 84.8065 / 0.0000
+
+channel 2,4,5,6 has too little number
+channel 6 often can't receive signal
+decrease "chunk" value doesn't seems to affect the result

@@ -1,11 +1,8 @@
 from alg import PE
 import datetime
+import os
 
-export_path = '/home/pi/SMRBS-ESP32/algorithm/pe_comparison/run7/'
-export_summary_fn = 'summary.txt'
-chunk = 500
-
-def init_sumfile():
+def init_sumfile(samp_dp, samp_ds, chunk, alpha):
     now = datetime.datetime.now()
     now = now.strftime("%Y/%m/%d:%H:%M:%S")
     with open(export_path + export_summary_fn, 'w', encoding='utf-8') as f:
@@ -22,6 +19,12 @@ def init_sumfile():
         f.write('height_cm: -3 (on table)\n')
         f.write('run: 1\n')
         f.write('\n')
+        f.write('>> Parameter\n')
+        f.write('samp_dp = {0}\n'.format(samp_dp))
+        f.write('samp_ds = {0}\n'.format(samp_ds))
+        f.write('chunk =   {0}\n'.format(chunk))
+        f.write('alpha =   {0}\n'.format(alpha))
+        f.write('\n')
         f.write('>> Figure:\n')
         f.write('content: power estimation result of each individual channel\n')
         f.write('x-axis: samples\n')
@@ -33,7 +36,26 @@ def init_sumfile():
         
 
 if __name__ == '__main__':
+    # set parameters
+    while True:
+        exp_num = input('Enter pe_comparison.py experiment run number: (number, \'q\' to quit) ')
+        export_path = '/home/pi/SMRBS-ESP32/algorithm/pe_comparison/run{0}/'.format(exp_num)
+        export_summary_fn = 'summary.txt'
+        if exp_num == 'q':
+            exit()
+        elif os.path.exists(export_path):
+            print('Folder already exist, delete it or give it a different number.')
+        else:
+            os.mkdir(export_path)
+            break
+
+    # run alg.py
+    chunk = 200
     pe = PE(chunk_=chunk)
+    samp_dp = pe.samp_dp
+    samp_ds = pe.samp_ds
+    chunk = pe.chunk
+    alpha = pe.chunk
     i = -1
     ch = []
     export_lines = {1:'', 2:'', 3:'', 4:'', 5:'', 6:''}
@@ -50,7 +72,7 @@ if __name__ == '__main__':
                 pe.plt_pe1(maxch=ch[j], fi=j,
                                fn=export_path)
             # export lines
-            init_sumfile()
+            init_sumfile(samp_dp, samp_ds, chunk, alpha)
             with open(export_path + export_summary_fn, 'a', encoding='utf-8') as f:
                 for j in range(len(export_lines)):
                     f.write(export_lines[j+1])
