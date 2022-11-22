@@ -156,3 +156,5 @@
        7. Something need to be done when channel 5 and 6 doesn't receive any value other than 0.
 23. 20221122
     1. Update ["pe_comparison.py"](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/pe_comparison.py) to add experiment log export functionality.
+    2. Check result at <https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/pe_comparison/run7/summary.txt>
+    3. Check result at <https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/pe_comparison/run8/summary.txt>
