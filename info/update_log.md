@@ -154,3 +154,5 @@
        5. From the result (run3.4), since white noise can be used to mask all environmental noises, it proves the weird gain difference between channels is not caused by environmental noise.
        6. From the result (run5.6), huge pe value and result difference can be seen when compare with run3.4, suggesting the speaker has to be put on the right angle from microphone to test data that matches realistic scenario.
        7. Something need to be done when channel 5 and 6 doesn't receive any value other than 0.
+23. 20221122
+    1. Update ["pe_comparison.py"](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/pe_comparison.py) to add experiment log export functionality.
