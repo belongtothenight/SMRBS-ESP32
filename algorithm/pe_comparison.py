@@ -71,7 +71,8 @@ if __name__ == '__main__':
             break
         elif num == 'e':
             # export plots & lines
-            print(pe.mem_pe11)
+            print(ch)
+            print(i)
             for j in range(i):
                 pe.plt_pe1(maxch=ch[j], fi=j,
                            fn=export_path)
