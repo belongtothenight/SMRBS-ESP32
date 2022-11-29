@@ -1,6 +1,5 @@
 from alg import PE
 from alg_report import init_sumfile
-import datetime
 import os
 
 
@@ -15,6 +14,11 @@ def init_directory():
             exit()
         elif os.path.exists(export_path):
             print('Folder already exist, delete it or give it a different number.')
+            print('Content of the folder:')
+            for (dirpath, dirnames, filenames) in os.walk(export_path):
+                # print('dirpath: {0}'.format(dirpath))
+                # print('dirnames: {0}'.format(dirnames))
+                print('filenames: {0}'.format(filenames))
             option = input('"y" to over write, "r" to re-enter, "q" to quit: ')
             if option == 'y':
                 os.system('rm -rf {0}'.format(export_path))
