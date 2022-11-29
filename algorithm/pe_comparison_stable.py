@@ -1,10 +1,43 @@
 from alg import PE
-from alg_report import init_sumfile
 import datetime
 import os
 
 
-def init_directory():
+def init_sumfile(samp_dp, samp_ds, chunk, alpha):
+    now = datetime.datetime.now()
+    now = now.strftime("%Y/%m/%d:%H:%M:%S")
+    with open(export_path + export_summary_fn, 'w', encoding='utf-8') as f:
+        f.write('>> Experiment detail:\n')
+        f.write('Put the speaker at the relatively same location as the different microphones to see whether all microphones have the same gain.\n')
+        f.write('\n')
+        f.write('>> Experiment setup:\n')
+        f.write('source: smartphone --bluetooth--> speaker\n')
+        f.write('volume: max * 1 https://noises.online/\n')
+        f.write('signal_type: white noise\n')
+        f.write('signal_frequency_hz: N/A\n')
+        f.write('sampling_rate_hz: 16000\n')
+        f.write('distance_cm: 10\n')
+        f.write('height_cm: -3 (on table)\n')
+        f.write('run: 1\n')
+        f.write('\n')
+        f.write('>> Parameter\n')
+        f.write('samp_dp = {0}\n'.format(samp_dp))
+        f.write('samp_ds = {0}\n'.format(samp_ds))
+        f.write('chunk =   {0}\n'.format(chunk))
+        f.write('alpha =   {0}\n'.format(alpha))
+        f.write('\n')
+        f.write('>> Figure:\n')
+        f.write('content: power estimation result of each individual channel\n')
+        f.write('x-axis: samples\n')
+        f.write('y-axis: Watt\n')
+        f.write('title: the channel facing the audio source\n')
+        f.write('legend: final power estimation value of each channel\n')
+        f.write('\n')
+        f.write('>> Result: ({0})\n'.format(now))
+
+
+if __name__ == '__main__':
+    # set parameters
     while True:
         exp_num = input(
             'Enter pe_comparison.py experiment run number: (number, \'q\' to quit) ')
@@ -24,12 +57,6 @@ def init_directory():
         else:
             os.mkdir(export_path)
             break
-    return export_path, export_summary_fn
-
-
-if __name__ == '__main__':
-    # set parameters
-    ep, esfn = init_directory()
 
     # run alg.py
     chunk = 1000
@@ -52,18 +79,17 @@ if __name__ == '__main__':
             # export plots & lines
             for j in range(i):
                 pe.plt_pe1(maxch=ch[j], fi=j,
-                           fn=ep)
-            print('Exported plots to {0}'.format(ep))
+                           fn=export_path)
+            print('Exported plots to {0}'.format(export_path))
             # export lines
-            init_sumfile(samp_dp, samp_ds, chunk, alpha,
-                         ep, esfn)
-            with open(ep + esfn, 'a', encoding='utf-8') as f:
+            init_sumfile(samp_dp, samp_ds, chunk, alpha)
+            with open(export_path + export_summary_fn, 'a', encoding='utf-8') as f:
                 for j in range(len(export_lines)):
                     f.write(export_lines[j+1])
             pe.clear_data()
             i = -1
             ch = []
-            print('Exported lines to {0}'.format(ep))
+            print('Exported lines to {0}'.format(export_path))
         else:
             num = int(num)
             ch.append(num)
