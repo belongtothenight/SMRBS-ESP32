@@ -2,6 +2,7 @@ from alg import PE
 import datetime
 import os
 
+
 def init_sumfile(samp_dp, samp_ds, chunk, alpha):
     now = datetime.datetime.now()
     now = now.strftime("%Y/%m/%d:%H:%M:%S")
@@ -33,13 +34,15 @@ def init_sumfile(samp_dp, samp_ds, chunk, alpha):
         f.write('legend: final power estimation value of each channel\n')
         f.write('\n')
         f.write('>> Result: ({0})\n'.format(now))
-        
+
 
 if __name__ == '__main__':
     # set parameters
     while True:
-        exp_num = input('Enter pe_comparison.py experiment run number: (number, \'q\' to quit) ')
-        export_path = '/home/pi/SMRBS-ESP32/algorithm/pe_comparison/run{0}/'.format(exp_num)
+        exp_num = input(
+            'Enter pe_comparison.py experiment run number: (number, \'q\' to quit) ')
+        export_path = '/home/pi/SMRBS-ESP32/algorithm/pe_comparison/run{0}/'.format(
+            exp_num)
         export_summary_fn = 'summary.txt'
         if exp_num == 'q':
             exit()
@@ -58,7 +61,7 @@ if __name__ == '__main__':
     alpha = pe.alpha
     i = -1
     ch = []
-    export_lines = {1:'', 2:'', 3:'', 4:'', 5:'', 6:''}
+    export_lines = {1: '', 2: '', 3: '', 4: '', 5: '', 6: ''}
     while True:
         num = input(
             '\nEnter number of testing channel: (\'q\' to quit, \'e\' export plots) ')
@@ -70,7 +73,7 @@ if __name__ == '__main__':
             # export plots & lines
             for j in range(i):
                 pe.plt_pe1(maxch=ch[j], fi=j,
-                               fn=export_path)
+                           fn=export_path)
             # export lines
             init_sumfile(samp_dp, samp_ds, chunk, alpha)
             with open(export_path + export_summary_fn, 'a', encoding='utf-8') as f:
@@ -82,9 +85,14 @@ if __name__ == '__main__':
         else:
             num = int(num)
             ch.append(num)
-            pe.read_data()
-            pe.pow()
-            pe.pe1()
+            while True:
+                pe.read_data()
+                pe.pow()
+                if pe.pe1():
+                    i -= 1
+                    continue
+                else:
+                    break
             pe.dc1()
             pe.store_data()
             # get export lines
@@ -95,11 +103,11 @@ if __name__ == '__main__':
                 pe.mem_pe14[-1][-1],
                 pe.mem_pe15[-1][-1],
                 pe.mem_pe16[-1][-1],
-                ]
+            ]
             max_ch = 1 + pe1data.index(max(pe1data))
             l = '{0} >> {1} >> pe: {2:.4f} / {3:.4f} / {4:.4f} / {5:.4f} / {6:.4f} / {7:.4f}\n'.format(
-                    num, max_ch, pe1data[0], pe1data[1], pe1data[2], pe1data[3], pe1data[4], pe1data[5]
-                )
+                num, max_ch, pe1data[0], pe1data[1], pe1data[2], pe1data[3], pe1data[4], pe1data[5]
+            )
             export_lines[num] = l
     pe.terminate()
     del pe
