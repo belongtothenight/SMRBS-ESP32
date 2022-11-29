@@ -36,7 +36,8 @@ def init_sumfile(samp_dp, samp_ds, chunk, alpha):
         f.write('>> Result: ({0})\n'.format(now))
 
 
-def init_file_directory():
+if __name__ == '__main__':
+    # set parameters
     while True:
         exp_num = input(
             'Enter pe_comparison.py experiment run number: (number, \'q\' to quit) ')
@@ -56,12 +57,6 @@ def init_file_directory():
         else:
             os.mkdir(export_path)
             break
-        return export_path, export_summary_fn
-
-
-if __name__ == '__main__':
-    # set parameters
-    export_path, export_summary_fn = init_file_directory()
 
     # run alg.py
     chunk = 1000
