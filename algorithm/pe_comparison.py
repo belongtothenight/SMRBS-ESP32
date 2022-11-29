@@ -1,5 +1,5 @@
 from alg import PE
-from alg_report import init_sumfile
+from alg_report_init import init_sumfile
 import os
 
 
