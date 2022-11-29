@@ -35,6 +35,12 @@ SIG3_SCALE = 1.0
 SIG4_SCALE = 1.0
 SIG5_SCALE = 1.0
 SIG6_SCALE = 1.0
+PE11_SCALE = 1.0
+PE12_SCALE = 1.0
+PE13_SCALE = 1.0
+PE14_SCALE = 1.0
+PE15_SCALE = 1.0
+PE16_SCALE = 1.0
 
 samp_dp = 20    # sample to drop at the beginning of each run
 samp_ds = 2000  # sample = sample / samp_ds (sample_downsize)
@@ -230,6 +236,7 @@ class PE():
         self.pe15.append(0)
         self.pe16 = []
         self.pe16.append(0)
+        # PE1
         for i in range(self.chunk - self.samp_dp):
             self.pe11.append(
                 self.alpha*self.pe11[i] + (1-self.alpha)*self.p1[i])
@@ -243,6 +250,14 @@ class PE():
                 self.alpha*self.pe15[i] + (1-self.alpha)*self.p5[i])
             self.pe16.append(
                 self.alpha*self.pe16[i] + (1-self.alpha)*self.p6[i])
+        # scale
+        self.pe11 = [x*PE11_SCALE for x in self.pe11]
+        self.pe12 = [x*PE12_SCALE for x in self.pe12]
+        self.pe13 = [x*PE13_SCALE for x in self.pe13]
+        self.pe14 = [x*PE14_SCALE for x in self.pe14]
+        self.pe15 = [x*PE15_SCALE for x in self.pe15]
+        self.pe16 = [x*PE16_SCALE for x in self.pe16]
+        # average
         self.pe11avg = sum(self.pe11)/len(self.pe11)
         self.pe12avg = sum(self.pe12)/len(self.pe12)
         self.pe13avg = sum(self.pe13)/len(self.pe13)
