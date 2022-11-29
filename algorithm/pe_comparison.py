@@ -71,9 +71,11 @@ if __name__ == '__main__':
             break
         elif num == 'e':
             # export plots & lines
+            print(pe.mem_pe11)
             for j in range(i):
                 pe.plt_pe1(maxch=ch[j], fi=j,
                            fn=export_path)
+            print('Exported plots to {0}'.format(export_path))
             # export lines
             init_sumfile(samp_dp, samp_ds, chunk, alpha)
             with open(export_path + export_summary_fn, 'a', encoding='utf-8') as f:
@@ -82,6 +84,7 @@ if __name__ == '__main__':
             pe.clear_data()
             i = -1
             ch = []
+            print('Exported lines to {0}'.format(export_path))
         else:
             num = int(num)
             ch.append(num)
