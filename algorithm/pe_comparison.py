@@ -48,6 +48,12 @@ if __name__ == '__main__':
             exit()
         elif os.path.exists(export_path):
             print('Folder already exist, delete it or give it a different number.')
+            if input('"y" to over write, "r" to re-enter, "q" to quit: ') == 'y':
+                os.system('rm -rf {0}'.format(export_path))
+                os.system('mkdir {0}'.format(export_path))
+                break
+            elif input('"r" to re-enter, "q" to quit: ') == 'q':
+                exit()
         else:
             os.mkdir(export_path)
             break
