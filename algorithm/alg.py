@@ -271,6 +271,7 @@ class PE():
 
     # ====================
     # PE core/process data
+
     def dc1(self, led=True):
         index_max = np.argmax([self.pe11[-1], self.pe12[-1], self.pe13[-1],
                               self.pe14[-1], self.pe15[-1], self.pe16[-1]])
@@ -807,13 +808,18 @@ class PE():
         # self.samp_ds =
         # self.chunk =
         # self.alpha =
+
         for i in range(times):
             print('{0}/{1}'.format(i+1, times), end='\r')
-            self.read_data()
-            self.pow()
-            if self.pe1():
-                i -= 1
-                continue
+            while True:
+                # loop run to make sure getting data
+                self.read_data()
+                self.pow()
+                if self.pe1():
+                    i -= 1
+                    continue
+                else:
+                    break
             self.dc1()
             self.store_data()
         print('\nend continuous run')
