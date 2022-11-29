@@ -35,12 +35,12 @@ SIG3_SCALE = 1.0
 SIG4_SCALE = 1.0
 SIG5_SCALE = 1.0
 SIG6_SCALE = 1.0
-PE11_SCALE = 1.0
-PE12_SCALE = 1.0
+PE11_SCALE = 1.2363
+PE12_SCALE = 1.1541
 PE13_SCALE = 1.0
-PE14_SCALE = 1.0
-PE15_SCALE = 1.0
-PE16_SCALE = 1.0
+PE14_SCALE = 1.1009
+PE15_SCALE = 1.2657
+PE16_SCALE = 1.2044
 
 samp_dp = 20    # sample to drop at the beginning of each run
 samp_ds = 2000  # sample = sample / samp_ds (sample_downsize)
