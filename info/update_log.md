@@ -158,3 +158,6 @@
     1. Update ["pe_comparison.py"](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/pe_comparison.py) to add experiment log export functionality.
     2. Check result at <https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/pe_comparison/run7/summary.txt>
     3. Check result at <https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/pe_comparison/run8/summary.txt>
+24. 20221129
+    1. Update ["pe_comparison.py"](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/pe_comparison.py) to auto re-run preventing no data received.
+    2. Try to adjusted power estimation based on maximum pe result in run11. Result in run12. It's not balanced. More adjustments are needed.
