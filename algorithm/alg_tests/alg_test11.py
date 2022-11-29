@@ -243,25 +243,25 @@ class PE():
                 self.alpha*self.pe15[i] + (1-self.alpha)*self.p5[i])
             self.pe16.append(
                 self.alpha*self.pe16[i] + (1-self.alpha)*self.p6[i])
-        # re-run if no value is received
-        if int(self.pe11[-1]) == 0:
-            self.pe1()
-        if int(self.pe12[-1]) == 0:
-            self.pe1()
-        if int(self.pe13[-1]) == 0:
-            self.pe1()
-        if int(self.pe14[-1]) == 0:
-            self.pe1()
-        if int(self.pe15[-1]) == 0:
-            self.pe1()
-        if int(self.pe16[-1]) == 0:
-            self.pe1()
         self.pe11avg = sum(self.pe11)/len(self.pe11)
         self.pe12avg = sum(self.pe12)/len(self.pe12)
         self.pe13avg = sum(self.pe13)/len(self.pe13)
         self.pe14avg = sum(self.pe14)/len(self.pe14)
         self.pe15avg = sum(self.pe15)/len(self.pe15)
         self.pe16avg = sum(self.pe16)/len(self.pe16)
+        # re-run if no value is received
+        if int(self.pe11avg) == 0:
+            self.pe1()
+        if int(self.pe12avg) == 0:
+            self.pe1()
+        if int(self.pe13avg) == 0:
+            self.pe1()
+        if int(self.pe14avg) == 0:
+            self.pe1()
+        if int(self.pe15avg) == 0:
+            self.pe1()
+        if int(self.pe16avg) == 0:
+            self.pe1()
 
     # ====================
     # PE core/process data
