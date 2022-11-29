@@ -2,6 +2,8 @@ import datetime
 
 
 def init_sumfile(samp_dp, samp_ds, chunk, alpha, fp, fn):
+    now = datetime.datetime.now()
+    now = now.strftime("%Y/%m/%d:%H:%M:%S")
     lines = [
         '>> Experiment detail:',
         '1. Put the speaker at the relatively same location as the different microphones to see whether all microphones have the same gain.'
@@ -32,8 +34,6 @@ def init_sumfile(samp_dp, samp_ds, chunk, alpha, fp, fn):
         '',
         '>> Result: ({0})\n'.format(now),
     ]
-    now = datetime.datetime.now()
-    now = now.strftime("%Y/%m/%d:%H:%M:%S")
     # with open(fp + fn, 'w', encoding='utf-8') as f:
     # f.write('>> Experiment detail:\n')
     # f.write('Put the speaker at the relatively same location as the different microphones to see whether all microphones have the same gain.\n')
