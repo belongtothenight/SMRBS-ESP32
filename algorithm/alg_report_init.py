@@ -11,7 +11,7 @@ def init_sumfile(samp_dp, samp_ds, chunk, alpha, fp, fn):
         '',
         '>> Experiment setup:',
         'source: smartphone --bluetooth--> speaker',
-        'volume: max * 1 https://noises.online/',
+        'volume: max * 0.1',
         'signal_type: white noise',
         'signal_frequency_hz: N/A',
         'sampling_rate_hz: 16000',
