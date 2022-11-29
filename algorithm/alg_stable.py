@@ -249,19 +249,6 @@ class PE():
         self.pe14avg = sum(self.pe14)/len(self.pe14)
         self.pe15avg = sum(self.pe15)/len(self.pe15)
         self.pe16avg = sum(self.pe16)/len(self.pe16)
-        # force re-run if no data is received
-        if int(self.pe11[-1]) == 0:
-            return True
-        if int(self.pe12[-1]) == 0:
-            return True
-        if int(self.pe13[-1]) == 0:
-            return True
-        if int(self.pe14[-1]) == 0:
-            return True
-        if int(self.pe15[-1]) == 0:
-            return True
-        if int(self.pe16[-1]) == 0:
-            return True
 
     # ====================
     # PE core/process data
@@ -805,9 +792,7 @@ class PE():
             print('{0}/{1}'.format(i+1, times), end='\r')
             self.read_data()
             self.pow()
-            if self.pe1():
-                i -= 1
-                continue
+            self.pe1()
             self.dc1()
             self.store_data()
         print('\nend continuous run')
