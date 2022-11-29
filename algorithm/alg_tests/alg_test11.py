@@ -250,17 +250,17 @@ class PE():
         self.pe15avg = sum(self.pe15)/len(self.pe15)
         self.pe16avg = sum(self.pe16)/len(self.pe16)
         # re-run if no value is received
-        if int(self.pe11avg) == 0:
+        if self.pe11avg == 0:
             self.pe1()
-        if int(self.pe12avg) == 0:
+        if self.pe12avg == 0:
             self.pe1()
-        if int(self.pe13avg) == 0:
+        if self.pe13avg == 0:
             self.pe1()
-        if int(self.pe14avg) == 0:
+        if self.pe14avg == 0:
             self.pe1()
-        if int(self.pe15avg) == 0:
+        if self.pe15avg == 0:
             self.pe1()
-        if int(self.pe16avg) == 0:
+        if self.pe16avg == 0:
             self.pe1()
 
     # ====================
