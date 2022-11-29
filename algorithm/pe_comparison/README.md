@@ -21,8 +21,14 @@ Each subfolder contains a file named "summary.txt" contains all experiment relat
 
 ## Notice
 
-### "height" in "summary.txt"s
+### "v_distance_cm" in "summary.txt"
 
+vertical distance in cm
 microphone extension board height from table: 3 cm<br>
 speaker height (top to bottom): 5.5 cm<br>
-height: (bottom of speaker) - (microphone extension board)<br>
+distance: (bottom of speaker) - (microphone extension board)<br>
+
+### "h_distance_cm" in "summary.txt"
+
+horizental distance in cm<br>
+distance: between mic and speaker

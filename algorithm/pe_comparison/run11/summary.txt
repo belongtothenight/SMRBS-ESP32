@@ -1,15 +1,15 @@
 >> Experiment detail:
 1. Put the speaker at the relatively same location as the different microphones to see whether all microphones have the same gain.
-2. .
+2. Gather data for channel gain adjustment.
 
 >> Experiment setup:
 source: smartphone --bluetooth--> speaker
-volume: max * 0.1
+volume: max * 1 https://noises.online/
 signal_type: white noise
 signal_frequency_hz: N/A
 sampling_rate_hz: 16000
-distance_cm: 10
-height_cm: -3 (on table)
+h_distance_cm: 0
+v_distance_cm: 7 (on table)
 run: 1
 
 >> Parameter
@@ -25,10 +25,10 @@ y-axis: Watt
 title: the channel facing the audio source
 legend: final power estimation value of each channel
 
->> Result: (2022/11/30:00:46:56)
-1 >> 1 >> pe: 21.4019 / 6.0105 / 4.0719 / 4.8507 / 5.7900 / 9.7302
-2 >> 2 >> pe: 7.4525 / 14.9408 / 6.9096 / 5.1676 / 3.4027 / 3.5233
-3 >> 3 >> pe: 4.0688 / 7.0244 / 30.1391 / 9.9707 / 4.2288 / 4.0021
-4 >> 4 >> pe: 4.5592 / 5.0623 / 9.2555 / 26.5795 / 10.3340 / 5.3893
-5 >> 5 >> pe: 4.4126 / 2.7617 / 3.7312 / 8.4142 / 16.7371 / 7.0963
-6 >> 6 >> pe: 9.1195 / 4.3843 / 4.5052 / 5.8488 / 10.7902 / 25.8386
+>> Result: (2022/11/30:01:06:53)
+1 >> 1 >> pe: 32.8887 / 13.9200 / 5.5594 / 8.4506 / 4.7836 / 12.2633
+2 >> 2 >> pe: 15.3685 / 35.2318 / 15.0045 / 10.5066 / 9.4785 / 10.2857
+3 >> 3 >> pe: 8.1756 / 15.0292 / 40.6605 / 14.1194 / 6.8801 / 7.5910
+4 >> 4 >> pe: 6.7111 / 5.9476 / 13.9928 / 36.9346 / 14.9852 / 7.6857
+5 >> 5 >> pe: 6.4374 / 6.6372 / 7.0486 / 12.7300 / 32.1240 / 14.8457
+6 >> 6 >> pe: 10.9569 / 6.4953 / 6.7418 / 6.2124 / 12.5915 / 33.7588
