@@ -166,3 +166,4 @@
        1. If the re-do condition is "last power estimation result is 0", the test result with white noise is 100% accurate.
        2. Only when the volume is big enough, the condition will not be fulfilled, thus makes a dicision.
        3. Adjustment is needed.
+       4. Need to add a minimum volume barrier to prevent frequent switching.
