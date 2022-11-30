@@ -161,3 +161,8 @@
 24. 20221129
     1. Update ["pe_comparison.py"](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/pe_comparison.py) to auto re-run preventing no data received.
     2. Try to adjusted power estimation based on maximum pe result in run11. Result in run12. It's not balanced. More adjustments are needed.
+25. 20221130
+    1. Do ['fc4'](https://github.com/belongtothenight/SMRBS-ESP32/tree/main/algorithm/fair_comparison/fc4).
+       1. If the re-do condition is "last power estimation result is 0", the test result with white noise is 100% accurate.
+       2. Only when the volume is big enough, the condition will not be fulfilled, thus makes a dicision.
+       3. Adjustment is needed.
