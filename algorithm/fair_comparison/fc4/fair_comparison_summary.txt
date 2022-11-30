@@ -1,0 +1,79 @@
+>> Experiment detail:
+1. Put the speaker at the relatively same location as the different microphones to see whether all microphones have the same gain.
+2. .
+
+>> Experiment setup:
+source: smartphone --bluetooth--> speaker
+volume: max * 0.1
+signal_type: white noise
+signal_frequency_hz: N/A
+sampling_rate_hz: 16000
+h_distance_cm: 0
+v_distance_cm: 7
+run: 1
+
+>> Parameter
+samp_dp = 100
+samp_ds = 100
+chunk =   100
+alpha =   0.1
+
+>> Figure:
+content: power estimation result of each individual channel
+x-axis: samples
+y-axis: Watt
+title: the channel facing the audio source
+legend: final power estimation value of each channel
+
+>> Result: (2022/11/30:13:16:31)
+
+Result of power estimation ch1
+ch1: 100		(100.00%)
+ch2: 0		(0.00%)
+ch3: 0		(0.00%)
+ch4: 0		(0.00%)
+ch5: 0		(0.00%)
+ch6: 0		(0.00%)
+
+Result of power estimation ch2
+ch1: 0		(0.00%)
+ch2: 100		(100.00%)
+ch3: 0		(0.00%)
+ch4: 0		(0.00%)
+ch5: 0		(0.00%)
+ch6: 0		(0.00%)
+
+Result of power estimation ch3
+ch1: 0		(0.00%)
+ch2: 0		(0.00%)
+ch3: 100		(100.00%)
+ch4: 0		(0.00%)
+ch5: 0		(0.00%)
+ch6: 0		(0.00%)
+
+Result of power estimation ch4
+ch1: 0		(0.00%)
+ch2: 0		(0.00%)
+ch3: 0		(0.00%)
+ch4: 100		(100.00%)
+ch5: 0		(0.00%)
+ch6: 0		(0.00%)
+
+Result of power estimation ch5
+ch1: 0		(0.00%)
+ch2: 0		(0.00%)
+ch3: 0		(0.00%)
+ch4: 0		(0.00%)
+ch5: 100		(100.00%)
+ch6: 0		(0.00%)
+
+Result of power estimation ch6
+ch1: 0		(0.00%)
+ch2: 0		(0.00%)
+ch3: 0		(0.00%)
+ch4: 0		(0.00%)
+ch5: 0		(0.00%)
+ch6: 100		(100.00%)
+
+Can't gather data of background noise.
+Since all data after power estimation is 0 will be skipped. New measure is needed.
