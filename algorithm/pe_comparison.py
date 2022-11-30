@@ -1,38 +1,6 @@
 from alg import PE
-from alg_report_init import init_sumfile
+from alg_report_init import init_sumfile, init_directory
 import os
-
-
-def init_directory():
-    while True:
-        exp_num = input(
-            'Enter pe_comparison.py experiment run number: (number, \'q\' to quit) ')
-        export_path = '/home/pi/SMRBS-ESP32/algorithm/pe_comparison/run{0}/'.format(
-            exp_num)
-        export_summary_fn = 'summary.txt'
-        if exp_num == 'q':
-            exit()
-        elif os.path.exists(export_path):
-            print('Folder already exist, delete it or give it a different number.')
-            print('Content of the folder:')
-            for (dirpath, dirnames, filenames) in os.walk(export_path):
-                print('dirpath: {0}'.format(dirpath))
-                print('dirnames: {0}'.format(dirnames))
-                print('filenames: {0}'.format(filenames))
-            option = input('"y" to over write, "r" to re-enter, "q" to quit: ')
-            if option == 'y':
-                os.system('rm -rf {0}'.format(export_path))
-                os.system('mkdir {0}'.format(export_path))
-                break
-            elif option == 'r':
-                continue
-            elif option == 'q':
-                exit()
-
-        else:
-            os.mkdir(export_path)
-            break
-    return export_path, export_summary_fn
 
 
 if __name__ == '__main__':
