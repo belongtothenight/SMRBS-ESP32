@@ -37,3 +37,7 @@ def init_sumfile(samp_dp, samp_ds, chunk, alpha, fp, fn):
     with open(fp + fn, 'w', encoding='utf-8') as f:
         for line in lines:
             f.write(line + '\n')
+
+
+if __name__ == '__main__':
+    init_sumfile(100, 100, 100, 0.1, 'D:\\', 'test.txt')
