@@ -3,7 +3,7 @@
 ## Directory Info
 
 Plots created by pe_comparison.py<br>
-Each subfolder contains a file named "summary.txt" contains all experiment related info.<br>
+Each subfolder contains a file named "summary.txt" containing all experiment-related info.<br>
 
 | Directory/File | Description                                                     | Update Date |
 | -------------- | --------------------------------------------------------------- | :---------: |
@@ -25,7 +25,7 @@ Each subfolder contains a file named "summary.txt" contains all experiment relat
 ### "v_distance_cm" in "summary.txt"
 
 vertical distance in cm
-microphone extension board height from table: 3 cm<br>
+microphone extension board height from the table: 3 cm<br>
 speaker height (top to bottom): 5.5 cm<br>
 distance: (bottom of speaker) - (microphone extension board)<br>
 
