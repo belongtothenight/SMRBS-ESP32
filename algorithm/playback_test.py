@@ -8,6 +8,8 @@ RESPEAKER_CHANNELS = 8
 RESPEAKER_WIDTH = 2
 RESPEAKER_INDEX = 2  # refer to input device id # run getDeviceInfo.py to get index
 
+# https://people.csail.mit.edu/hubert/pyaudio/#examples
+
 
 class main():
     def __init__(self):
