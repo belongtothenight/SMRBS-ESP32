@@ -22,7 +22,7 @@ class main():
             input=True,
             input_device_index=RESPEAKER_INDEX,
             output=True,
-            stream_callback=self.callback)
+            stream_callback=main.callback)
 
     def callback(in_data, frame_count, time_info, status):
         return (in_data, pyaudio.paContinue)
