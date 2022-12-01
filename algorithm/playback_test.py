@@ -9,6 +9,7 @@ RESPEAKER_WIDTH = 2
 RESPEAKER_INDEX = 2  # refer to input device id # run getDeviceInfo.py to get index
 
 # https://people.csail.mit.edu/hubert/pyaudio/#examples
+# https://raspberrypi.stackexchange.com/questions/38756/real-time-audio-input-output-in-python-with-pyaudio
 
 
 class main():
