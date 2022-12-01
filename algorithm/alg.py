@@ -290,24 +290,6 @@ class PE():
         if max(self.pe16) < pe_limit:
             print('no data received')
             return True
-        # if int(self.pe11[-1]) == 0:
-        #     print('no data received')
-        #     return True
-        # if int(self.pe12[-1]) == 0:
-        #     print('no data received')
-        #     return True
-        # if int(self.pe13[-1]) == 0:
-        #     print('no data received')
-        #     return True
-        # if int(self.pe14[-1]) == 0:
-        #     print('no data received')
-        #     return True
-        # if int(self.pe15[-1]) == 0:
-        #     print('no data received')
-        #     return True
-        # if int(self.pe16[-1]) == 0:
-        #     print('no data received')
-        #     return True
 
     # ====================
     # PE core/process data
