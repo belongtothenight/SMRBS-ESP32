@@ -52,7 +52,6 @@ samp_dp = 20    # sample to drop at the beginning of each run
 samp_ds = 2000  # sample = sample / samp_ds (sample_downsize)
 chunk = 100     # number of samples to read from stream
 alpha = 0.99    # power estimation coefficient
-pe_limit = 0.1  # power estimation limit
 
 img_path = '/home/pi/code_alg/alg/'
 
@@ -272,42 +271,24 @@ class PE():
         self.pe15avg = sum(self.pe15)/len(self.pe15)
         self.pe16avg = sum(self.pe16)/len(self.pe16)
         # force re-run if no data is received
-        if max(self.pe11) < pe_limit:
+        if int(self.pe11[-1]) == 0:
             print('no data received')
             return True
-        if max(self.pe12) < pe_limit:
+        if int(self.pe12[-1]) == 0:
             print('no data received')
             return True
-        if max(self.pe13) < pe_limit:
+        if int(self.pe13[-1]) == 0:
             print('no data received')
             return True
-        if max(self.pe14) < pe_limit:
+        if int(self.pe14[-1]) == 0:
             print('no data received')
             return True
-        if max(self.pe15) < pe_limit:
+        if int(self.pe15[-1]) == 0:
             print('no data received')
             return True
-        if max(self.pe16) < pe_limit:
+        if int(self.pe16[-1]) == 0:
             print('no data received')
             return True
-        # if int(self.pe11[-1]) == 0:
-        #     print('no data received')
-        #     return True
-        # if int(self.pe12[-1]) == 0:
-        #     print('no data received')
-        #     return True
-        # if int(self.pe13[-1]) == 0:
-        #     print('no data received')
-        #     return True
-        # if int(self.pe14[-1]) == 0:
-        #     print('no data received')
-        #     return True
-        # if int(self.pe15[-1]) == 0:
-        #     print('no data received')
-        #     return True
-        # if int(self.pe16[-1]) == 0:
-        #     print('no data received')
-        #     return True
 
     # ====================
     # PE core/process data
