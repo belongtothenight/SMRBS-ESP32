@@ -118,6 +118,7 @@ class main2():
 
     def write_data(self):
         self.select_channel()
+        self.d = self.d.tobytes()
         self.stream.write(self.d, self.chunk)
 
 
