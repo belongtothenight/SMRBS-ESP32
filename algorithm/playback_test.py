@@ -44,5 +44,7 @@ class main():
 
 if __name__ == '__main__':
     m = main()
+    print('initialized')
     m.run()
+    print('executed')
     m.terminate()
