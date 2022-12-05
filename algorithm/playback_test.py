@@ -68,6 +68,7 @@ class main2():
     def read_data(self, pf=False):
         # pf: print flag
         data = self.stream.read(self.chunk, exception_on_overflow=False)
+        print(data)
         # byte to list
         t = np.frombuffer(data, dtype=np.int16)[0::8]
         self.d1 = array.array('h')
@@ -120,6 +121,7 @@ class main2():
         self.select_channel()
         self.d = np.array(self.d, dtype='<u2')
         self.d = self.d.tobytes()
+        print(self.d)
         self.stream.write(self.d, self.chunk)
 
 
