@@ -128,6 +128,8 @@ class PE():
         pixel_ring.wakeup()
         # MIC
         self.p = pyaudio.PyAudio()
+        self.p.terminate()
+        self.p = pyaudio.PyAudio()
         self.stream = self.p.open(
             rate=RESPEAKER_RATE,
             format=self.p.get_format_from_width(RESPEAKER_WIDTH),
