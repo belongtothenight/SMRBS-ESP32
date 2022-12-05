@@ -167,3 +167,5 @@
        2. Only when the volume is big enough, the condition will not be fulfilled, thus makes a dicision.
        3. Adjustment is needed.
        4. Need to add a minimum volume barrier to prevent frequent switching.
+26. 20221205
+    1. Update ["playback_test.py"](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/playback_test.py) to test realtime playback.
