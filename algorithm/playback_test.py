@@ -29,7 +29,7 @@ class main():
             output_device_index=AUDIO_JACK_INDEX,)
 
     def callback(in_data, frame_count, time_info, status):
-        print(len(in_data))
+        print(type(in_data))
         return (in_data, pyaudio.paContinue)
 
     def run(self):
