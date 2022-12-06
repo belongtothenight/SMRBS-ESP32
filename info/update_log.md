@@ -188,3 +188,4 @@
        6. Based on the new params from "mean of 5-6", the test result in "mean of 7-10", which is still not actually balanced.
     3. Trying to add a new decision system. (in alg.py/PE/dc1/dc_mode=2)
        1. It sort of work, but once the audio stops, it stopped working.
+       2. Probably it need to be rewrite.
