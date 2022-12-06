@@ -53,7 +53,7 @@ samp_ds = 2000  # sample = sample / samp_ds (sample_downsize)
 chunk = 100     # number of samples to read from stream
 alpha = 0.99    # power estimation coefficient
 pe_limit = 0.5  # power estimation limit
-decision_threshold = 3  # decision threshold
+decision_threshold = 4  # decision threshold
 
 img_path = '/home/pi/code_alg/alg/'
 
@@ -314,7 +314,7 @@ class PE():
             # make decision based when count exceeds threshold
 
             # add to list
-            self.decision_arr[self.max_ch] += 1
+            self.decision_arr[self.max_ch] += 2
 
             # make decision
             max_index = self.decision_arr.index(max(self.decision_arr))
@@ -325,7 +325,7 @@ class PE():
 
             # reset
             for i in range(len(self.decision_arr)):
-                self.decision_arr[i] -= 0.2
+                self.decision_arr[i] -= 1
                 if self.decision_arr[i] < 0:
                     self.decision_arr[i] = 0
             print(self.decision_arr)
