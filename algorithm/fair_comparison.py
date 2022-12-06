@@ -80,8 +80,6 @@ if __name__ == '__main__':
 
     while True:
         ch_id = input('Enter run id (int), \'q\' to quit: ')
-        print(dir)
-        print(ch_id)
         if ch_id == 'q':
             break
         else:

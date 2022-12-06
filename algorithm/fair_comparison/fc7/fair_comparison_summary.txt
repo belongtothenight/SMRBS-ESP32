@@ -1,0 +1,48 @@
+
+Result of power estimation
+ch1: 100		(100.00%)
+ch2: 0		(0.00%)
+ch3: 0		(0.00%)
+ch4: 0		(0.00%)
+ch5: 0		(0.00%)
+ch6: 0		(0.00%)
+
+Result of power estimation
+ch1: 0		(0.00%)
+ch2: 100		(100.00%)
+ch3: 0		(0.00%)
+ch4: 0		(0.00%)
+ch5: 0		(0.00%)
+ch6: 0		(0.00%)
+
+Result of power estimation
+ch1: 0		(0.00%)
+ch2: 0		(0.00%)
+ch3: 100		(100.00%)
+ch4: 0		(0.00%)
+ch5: 0		(0.00%)
+ch6: 0		(0.00%)
+
+Result of power estimation
+ch1: 0		(0.00%)
+ch2: 0		(0.00%)
+ch3: 0		(0.00%)
+ch4: 100		(100.00%)
+ch5: 0		(0.00%)
+ch6: 0		(0.00%)
+
+Result of power estimation
+ch1: 0		(0.00%)
+ch2: 0		(0.00%)
+ch3: 0		(0.00%)
+ch4: 0		(0.00%)
+ch5: 100		(100.00%)
+ch6: 0		(0.00%)
+
+Result of power estimation
+ch1: 0		(0.00%)
+ch2: 0		(0.00%)
+ch3: 0		(0.00%)
+ch4: 0		(0.00%)
+ch5: 0		(0.00%)
+ch6: 100		(100.00%)
