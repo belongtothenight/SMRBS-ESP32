@@ -53,6 +53,7 @@ samp_ds = 2000  # sample = sample / samp_ds (sample_downsize)
 chunk = 100     # number of samples to read from stream
 alpha = 0.99    # power estimation coefficient
 pe_limit = 0.5  # power estimation limit
+decision_threshold = 3  # decision threshold
 
 img_path = '/home/pi/code_alg/alg/'
 
@@ -75,13 +76,16 @@ class PE():
 
     # ====================
     # PE core/setup
-    def __init__(self, sampdp=samp_dp, sampds=samp_ds, chunk_=chunk, alpha_=alpha, img_path_=img_path):
+    def __init__(self, sampdp=samp_dp, sampds=samp_ds, chunk_=chunk, alpha_=alpha, img_path_=img_path, pe_limit_=pe_limit, decision_threshold_=decision_threshold):
         # PARAM
         self.samp_dp = sampdp
         self.samp_ds = sampds
         self.chunk = chunk_
         self.alpha = alpha_
         self.img_path = img_path_
+        self.pe_limit = pe_limit_
+        self.decision_threshold = decision_threshold_
+        self.decision_dict = {1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0}
         # MEM
         self.mem_d1 = []
         self.mem_d2 = []
@@ -274,45 +278,70 @@ class PE():
         self.pe15avg = sum(self.pe15)/len(self.pe15)
         self.pe16avg = sum(self.pe16)/len(self.pe16)
         # force re-run if no data is received
-        if max(self.pe11) < pe_limit:
+        if max(self.pe11) < self.pe_limit:
             # print('no data received')
             return True
-        if max(self.pe12) < pe_limit:
+        if max(self.pe12) < self.pe_limit:
             # print('no data received')
             return True
-        if max(self.pe13) < pe_limit:
+        if max(self.pe13) < self.pe_limit:
             # print('no data received')
             return True
-        if max(self.pe14) < pe_limit:
+        if max(self.pe14) < self.pe_limit:
             # print('no data received')
             return True
-        if max(self.pe15) < pe_limit:
+        if max(self.pe15) < self.pe_limit:
             # print('no data received')
             return True
-        if max(self.pe16) < pe_limit:
+        if max(self.pe16) < self.pe_limit:
             # print('no data received')
             return True
 
     # ====================
     # PE core/process data
 
-    def dc1(self, led=True):
+    def dc1(self, led=True, dc_mode=0):
+        # get maximum channel value
         index_max = np.argmax([self.pe11[-1], self.pe12[-1], self.pe13[-1],
                               self.pe14[-1], self.pe15[-1], self.pe16[-1]])
         self.max_ch = index_max + 1
-        if led:
-            if self.max_ch == 1:
+
+        # makes decision
+        if dc_mode == 0:
+            # make decision based on every run
+            decision = self.max_ch
+        if dc_mode == 1:
+            # make decision based when count exceeds threshold
+            # self.decision_threshold
+            # self.decision_dict
+            self.decision_dict[self.max_ch] += 1
+            if self.decision_dict[self.max_ch] > self.decision_threshold:
+                decision = self.max_ch
+            for x in self.decision_dict:
+                self.decision_dict[x] -= 1
+                if self.decision_dict[x] < 0:
+                    self.decision_dict[x] = 0
+
+        # execute decision
+        if decision == 1:
+            if led:
                 pixel_ring.open1()
-            elif self.max_ch == 2:
+        elif decision == 2:
+            if led:
                 pixel_ring.open2()
-            elif self.max_ch == 3:
+        elif decision == 3:
+            if led:
                 pixel_ring.open3()
-            elif self.max_ch == 4:
+        elif decision == 4:
+            if led:
                 pixel_ring.open4()
-            elif self.max_ch == 5:
+        elif decision == 5:
+            if led:
                 pixel_ring.open5()
-            else:
+        else:
+            if led:
                 pixel_ring.open6()
+        return decision
 
     def store_data(self):
         '''
