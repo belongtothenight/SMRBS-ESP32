@@ -63,7 +63,9 @@ class main2():
             format=self.p.get_format_from_width(RESPEAKER_WIDTH),
             channels=RESPEAKER_CHANNELS,
             input=True,
-            input_device_index=RESPEAKER_INDEX,)
+            input_device_index=RESPEAKER_INDEX,
+            output=True,
+            output_device_index=AUDIO_JACK_INDEX,)
 
     def read_data(self, pf=False):
         # pf: print flag
