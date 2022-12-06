@@ -176,3 +176,7 @@
        3. Found <https://stackoverflow.com/questions/46386011/real-time-audio-signal-processing-using-python> about real time processing.
           1. Suggesting pyaudio reading chunk needs to be around 1024.
           2. The chunk used by pyaudio and by power estimation needs to be separated.
+       4. Found <https://staff.fnwi.uva.nl/r.vandenboomgaard/SP20162017/Python/Audio/realtimeaudio.html> regarding how to perform real time audio processing.
+       5. Found <https://www.youtube.com/watch?v=f9Qi5wsDido>, and <https://www.youtube.com/watch?v=E_QLQyHf_Yw>, he performs semi real time audio processing, but it's likely not achievable due to the computation expense.
+       6. Use probably multi-threading or multi-processing to do audio processing and channel volumn control is now prospond.
+    2. Test fc
