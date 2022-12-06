@@ -120,7 +120,8 @@ class main2():
     def write_data(self):
         self.select_channel()
         self.d = np.array(self.d, dtype='<u2')
-        self.d = self.d.tobytes()
+        # self.d = self.d.tobytes()
+        self.d = self.d.astype(np.float32).tostring()
         print(self.d)
         self.stream.write(self.d, self.chunk)
 
