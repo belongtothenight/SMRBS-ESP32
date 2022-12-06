@@ -79,7 +79,7 @@ if __name__ == '__main__':
             print('Folder does not exist. Try again.')
 
     while True:
-        ch_id = input('Enter run id (int), \'q\' to quit: ')
+        ch_id = input('Enter channel id (int), \'q\' to quit: ')
         if ch_id == 'q':
             break
         else:
