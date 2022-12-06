@@ -2,7 +2,7 @@ from alg import PE
 import pandas as pd
 pd.reset_option('display.float_format')
 
-export_path = 'fair_comparison/'
+export_path = 'fair_comparison/fc6/'
 runs = 100
 chunk = 300
 
