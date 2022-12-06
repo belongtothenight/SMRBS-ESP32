@@ -21,6 +21,7 @@ chunk = 100     # number of samples to read from stream
 
 class main1():
     def __init__(self):
+        self.select_ch = 1
         self.p = pyaudio.PyAudio()
         self.p.terminate()  # prevent channel occupation
         self.p = pyaudio.PyAudio()
@@ -34,8 +35,58 @@ class main1():
             stream_callback=main1.callback,
             output_device_index=AUDIO_JACK_INDEX,)
 
+    def read_data(self, data):
+        # print(data)
+        # byte to list
+        t = np.frombuffer(data, dtype=np.int16)[0::8]
+        self.d1 = array.array('h')
+        self.d1.frombytes(b''.join(t))
+        self.d1 = list(self.d1)
+        t = np.frombuffer(data, dtype=np.int16)[1::8]
+        self.d2 = array.array('h')
+        self.d2.frombytes(b''.join(t))
+        self.d2 = list(self.d2)
+        t = np.frombuffer(data, dtype=np.int16)[2::8]
+        self.d3 = array.array('h')
+        self.d3.frombytes(b''.join(t))
+        self.d3 = list(self.d3)
+        t = np.frombuffer(data, dtype=np.int16)[3::8]
+        self.d4 = array.array('h')
+        self.d4.frombytes(b''.join(t))
+        self.d4 = list(self.d4)
+        t = np.frombuffer(data, dtype=np.int16)[4::8]
+        self.d5 = array.array('h')
+        self.d5.frombytes(b''.join(t))
+        self.d5 = list(self.d5)
+        t = np.frombuffer(data, dtype=np.int16)[5::8]
+        self.d6 = array.array('h')
+        self.d6.frombytes(b''.join(t))
+        self.d6 = list(self.d6)
+
+    def select_channel(self):
+        if self.select_ch == 1:
+            self.d = self.d1
+        elif self.select_ch == 2:
+            self.d = self.d2
+        elif self.select_ch == 3:
+            self.d = self.d3
+        elif self.select_ch == 4:
+            self.d = self.d4
+        elif self.select_ch == 5:
+            self.d = self.d5
+        elif self.select_ch == 6:
+            self.d = self.d6
+
+    def write_data(self):
+        self.d = np.array(self.d)
+        self.d = self.d.astype(np.float32).tobytes()
+        return self.d
+
     def callback(in_data, frame_count, time_info, status):
-        print(type(in_data))
+        # print(type(in_data))
+        main1.read_data(in_data)
+        main1.select_channel()
+        in_data = main1.write_data()
         return (in_data, pyaudio.paContinue)
 
     def run(self):
