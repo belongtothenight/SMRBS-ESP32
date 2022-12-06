@@ -179,4 +179,4 @@
        4. Found <https://staff.fnwi.uva.nl/r.vandenboomgaard/SP20162017/Python/Audio/realtimeaudio.html> regarding how to perform real time audio processing.
        5. Found <https://www.youtube.com/watch?v=f9Qi5wsDido>, and <https://www.youtube.com/watch?v=E_QLQyHf_Yw>, he performs semi real time audio processing, but it's likely not achievable due to the computation expense.
        6. Use probably multi-threading or multi-processing to do audio processing and channel volumn control is now prospond.
-    2. Test fc
+    2. Test fc (change no data received and skip to not print, remove fc progress print, inspect whether fc5 and fc6 have same pe result)

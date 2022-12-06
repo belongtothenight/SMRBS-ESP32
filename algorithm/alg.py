@@ -275,22 +275,22 @@ class PE():
         self.pe16avg = sum(self.pe16)/len(self.pe16)
         # force re-run if no data is received
         if max(self.pe11) < pe_limit:
-            print('no data received')
+            # print('no data received')
             return True
         if max(self.pe12) < pe_limit:
-            print('no data received')
+            # print('no data received')
             return True
         if max(self.pe13) < pe_limit:
-            print('no data received')
+            # print('no data received')
             return True
         if max(self.pe14) < pe_limit:
-            print('no data received')
+            # print('no data received')
             return True
         if max(self.pe15) < pe_limit:
-            print('no data received')
+            # print('no data received')
             return True
         if max(self.pe16) < pe_limit:
-            print('no data received')
+            # print('no data received')
             return True
 
     # ====================
@@ -834,7 +834,7 @@ class PE():
         # self.alpha =
 
         for i in range(times):
-            print('{0}/{1}'.format(i+1, times), end='\r')
+            # print('{0}/{1}'.format(i+1, times), end='\r')
             while True:
                 # loop run to make sure getting data
                 self.read_data()
@@ -860,9 +860,13 @@ class PE():
         '''
         print('start run forever')
         while True:
-            self.read_data()
-            self.pow()
-            self.pe1()
+            while True:
+                self.read_data()
+                self.pow()
+                if self.pe1():
+                    continue
+                else:
+                    break
             self.dc1()
 
     def param_test1(self, param, min, max, inc, plot=True):
