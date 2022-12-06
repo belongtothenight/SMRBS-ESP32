@@ -326,6 +326,7 @@ class PE():
                         self.decision_arr[i] = 0
             else:
                 decision = 0
+            print(self.decision_arr)
 
         # execute decision
         if decision == 1:
