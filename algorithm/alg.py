@@ -318,6 +318,8 @@ class PE():
 
             # make decision
             max_index = self.decision_arr.index(max(self.decision_arr))
+            print(self.decision_arr[max_index])
+            print(self.decision_threshold)
             if self.decision_arr[max_index] > self.decision_threshold:
                 decision = self.max_ch
                 self.decision_arr[max_index] -= 1
