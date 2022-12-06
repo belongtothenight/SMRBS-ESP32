@@ -1,0 +1,28 @@
+>> Experiment detail:
+1. Put the speaker at the relatively same location as the different microphones to see whether all microphones have the same gain.
+2. .
+
+>> Experiment setup:
+source: smartphone --bluetooth--> speaker
+volume: max * 0.1
+signal_type: white noise
+signal_frequency_hz: N/A
+sampling_rate_hz: 16000
+h_distance_cm: 10
+v_distance_cm: -3 (on table)
+run: 1
+
+>> Parameter
+samp_dp = 100
+samp_ds = 100
+chunk =   100
+alpha =   0.1
+
+>> Figure:
+content: power estimation result of each individual channel
+x-axis: samples
+y-axis: Watt
+title: the channel facing the audio source
+legend: final power estimation value of each channel
+
+>> Result: (2022/12/06:22:58:37)

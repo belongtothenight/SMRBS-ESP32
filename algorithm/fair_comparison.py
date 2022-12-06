@@ -47,19 +47,20 @@ def run(export_path, ch_id):
     # export csv
     print()
     df = pd.DataFrame(data)
-    df.to_csv(export_path +
-              'fair_comparison_ch{0}.csv'.format(ch_id), index=False)
+    csv_path = os.path.join(export_path, 'fair_comparison_ch{0}.csv'.format(ch_id))
+    df.to_csv(csv_path, index=False)
     print(df.shape)
 
     # print summary
     stats = df.describe()
     stats.drop(['max_ch'], axis=1, inplace=True)
-    stats.to_csv(
-        export_path + 'fair_comparison_stats_ch{0}.csv'.format(ch_id))
+    csv_path = os.path.join(export_path, 'fair_comparison_stats_ch{0}.csv'.format(ch_id))
+    stats.to_csv(csv_path)
     print(stats.shape)
 
     # export txt
-    with open(export_path + 'fair_comparison_summary.txt', 'a') as f:
+    txt_path = os.path.join(export_path, 'fair_comparison_summary.txt')
+    with open(txt_path, 'a') as f:
         for x in pe.mem_evaluation:
             for y in x:
                 f.write(y + '\n')
@@ -79,6 +80,8 @@ if __name__ == '__main__':
 
     while True:
         ch_id = input('Enter run id (int), \'q\' to quit: ')
+        print(dir)
+        print(ch_id)
         if ch_id == 'q':
             break
         else:
