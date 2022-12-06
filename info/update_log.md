@@ -169,3 +169,10 @@
        4. Need to add a minimum volume barrier to prevent frequent switching.
 26. 20221205
     1. Update ["playback_test.py"](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/playback_test.py) to test realtime playback.
+27. 20221206
+    1. Update ["playback_test.py"](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/playback_test.py) to test realtime playback.
+       1. Result: it is not possible to execute audio processing between reading and writing.
+       2. Found resource about async in python <https://www.youtube.com/watch?v=6RbJYN7SoRs>, and found it's not useful in this case.
+       3. Found <https://stackoverflow.com/questions/46386011/real-time-audio-signal-processing-using-python> about real time processing.
+          1. Suggesting pyaudio reading chunk needs to be around 1024.
+          2. The chunk used by pyaudio and by power estimation needs to be separated.
