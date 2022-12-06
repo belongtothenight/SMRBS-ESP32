@@ -67,15 +67,15 @@ class main1():
     def select_channel(data, select_ch):
         if select_ch == 1:
             d = data[0]
-        elif self.select_ch == 2:
+        elif select_ch == 2:
             d = data[1]
-        elif self.select_ch == 3:
+        elif select_ch == 3:
             d = data[2]
-        elif self.select_ch == 4:
+        elif select_ch == 4:
             d = data[3]
-        elif self.select_ch == 5:
+        elif select_ch == 5:
             d = data[4]
-        elif self.select_ch == 6:
+        elif select_ch == 6:
             d = data[5]
         return d
 
@@ -198,11 +198,11 @@ if __name__ == '__main__':
                 2. Suffers from unsolved bug causing no audio generated.
     '''
     #m = main1()
-    #print('initialized')
-    #while True:
+    # print('initialized')
+    # while True:
     #    m.run()
-    #print('executed')
-    #m.terminate()
+    # print('executed')
+    # m.terminate()
 
     '''
     Experiment 2
@@ -210,11 +210,11 @@ if __name__ == '__main__':
     Result: Too much noise generated while performing audio processing. Too much time passed between read and write.
     '''
     #m = main2()
-    #print('initialized')
-    #while True:
-        #m.read_data()
-        #m.select_channel()
-        #m.write_data()
+    # print('initialized')
+    # while True:
+    # m.read_data()
+    # m.select_channel()
+    # m.write_data()
 
     '''
     Experiment 3
@@ -222,8 +222,8 @@ if __name__ == '__main__':
     Result: The audio is really clear comparing with Experiment 2. Proves that audio processing needs to be asynchronize.
     '''
     #m = main2()
-    #print('initialized')
-    #while True:
+    # print('initialized')
+    # while True:
     #    m.read_write()
 
     '''
