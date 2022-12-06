@@ -183,3 +183,4 @@
        1. The comparison result is at [fc_comparison.csv](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/fair_comparison/fc_comparison_summary.csv) / fc_comparison.xlsx
        2. Since fc5 and fc6 are performed in the exact same environment, the result shoudl be roughly the same. And in the result file, it is roughly the same and export similar result. Proves that there isn't much difference between different run, and the pe adjustment parameter can be based on this result.
        3. Likely the result is hugely improved after the auto skipp functionality added.
+       4. Compute new params with row "mean of 5-6" in [fc_comparison_summary.csv](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/fair_comparison/fc_comparison_summary.csv). It's basically the params computed by 200 runs of all channels.
