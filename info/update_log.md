@@ -186,3 +186,5 @@
        4. Compute new params with row "mean of 5-6" in [fc_comparison_summary.csv](https://github.com/belongtothenight/SMRBS-ESP32/blob/main/algorithm/fair_comparison/fc_comparison_summary.csv). It's basically the params computed by 200 runs of all channels.
        5. Update "fair_comparison.py" for bulk execution.
        6. Based on the new params from "mean of 5-6", the test result in "mean of 7-10", which is still not actually balanced.
+    3. Trying to add a new decision system. (in alg.py/PE/dc1/dc_mode=2)
+       1. It sort of work, but once the audio stops, it stopped working.

@@ -314,12 +314,13 @@ class PE():
             # make decision based when count exceeds threshold
 
             # add to list
-            self.decision_arr[self.max_ch] += 2
+            self.decision_arr[self.max_ch] += 1
 
             # make decision
             max_index = self.decision_arr.index(max(self.decision_arr))
             if self.decision_arr[max_index] > self.decision_threshold:
                 decision = self.max_ch
+                self.decision_arr[max_index] -= 1
             else:
                 decision = 0
 
