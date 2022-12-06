@@ -323,14 +323,13 @@ class PE():
             if self.decision_arr[max_index] > self.decision_threshold:
                 decision = self.max_ch
                 self.decision_arr[max_index] -= 1
+                # reset
+                for i in range(len(self.decision_arr)):
+                    self.decision_arr[i] -= 1
+                    if self.decision_arr[i] < 0:
+                        self.decision_arr[i] = 0
             else:
                 decision = 0
-
-            # reset
-            for i in range(len(self.decision_arr)):
-                self.decision_arr[i] -= 1
-                if self.decision_arr[i] < 0:
-                    self.decision_arr[i] = 0
             print(self.decision_arr)
 
         # execute decision
