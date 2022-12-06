@@ -325,7 +325,7 @@ class PE():
 
             # reset
             for i in range(len(self.decision_arr)):
-                self.decision_arr[i] -= 1
+                self.decision_arr[i] -= 0.2
                 if self.decision_arr[i] < 0:
                     self.decision_arr[i] = 0
             print(self.decision_arr)
