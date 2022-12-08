@@ -4,7 +4,7 @@
 
 >> Experiment setup:
 src1
-source: smartphone --bluetooth--> speaker
+source: smartphone
 SPI_dB(on/off): 69.4/55.1
 signal_type: sine
 signal_frequency_hz: 500
@@ -12,7 +12,7 @@ h_distance_cm: 10
 v_distance_cm: -3 (on table)
 
 src2
-source: ipad speaker
+source: smartphone
 SPI_dB(on/off): 77.9/55.1
 signal_type: sine
 signal_frequency_hz: 500
