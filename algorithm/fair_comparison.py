@@ -71,7 +71,7 @@ def run(export_path, ch_id):
 if __name__ == '__main__':
     # get folder name
     while True:
-        subfolder = 'fc' + input('Enter subfolder count in fc (int): ')
+        subfolder = 'nr' + input('Enter subfolder count in fc (int): ')
         dir = os.path.join(os.getcwd(), 'fair_comparison', subfolder)
         if os.path.exists(dir):
             break

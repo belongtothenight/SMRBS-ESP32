@@ -1,0 +1,38 @@
+>> Experiment detail (NR):
+1. Noise Resistance Test.
+2. .
+
+>> Experiment setup:
+src1
+source: smartphone --bluetooth--> speaker
+SPI_dB(on/off): 69.4/55.1
+signal_type: sine
+signal_frequency_hz: 500
+h_distance_cm: 10
+v_distance_cm: -3 (on table)
+
+src2
+source: ipad speaker
+SPI_dB(on/off): 77.9/55.1
+signal_type: sine
+signal_frequency_hz: 500
+h_distance_cm: 10
+v_distance_cm: -3 (on table)
+
+sampling_rate_hz: 16000
+run: 1
+
+>> Parameter
+samp_dp = 100
+samp_ds = 100
+chunk =   100
+alpha =   0.1
+
+>> Figure:
+content: power estimation result of each individual channel
+x-axis: samples
+y-axis: Watt
+title: the channel facing the audio source
+legend: final power estimation value of each channel
+
+>> Result: (2022/12/08:22:00:46)

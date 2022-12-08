@@ -9,7 +9,7 @@ def init_directory(path_select=1):
             export_path = '/home/pi/SMRBS-ESP32/algorithm/pe_comparison/run{0}/'.format(
                 exp_num)
         elif path_select == 2:
-            export_path = '/home/pi/SMRBS-ESP32/algorithm/fair_comparison/fc{0}/'.format(
+            export_path = '/home/pi/SMRBS-ESP32/algorithm/fair_comparison/nr{0}/'.format(
                 exp_num)
         export_summary_fn = 'summary.txt'
         if exp_num == 'q':
@@ -41,8 +41,8 @@ def init_sumfile(samp_dp, samp_ds, chunk, alpha, fp, fn):
     now = datetime.datetime.now()
     now = now.strftime("%Y/%m/%d:%H:%M:%S")
     lines = [
-        '>> Experiment detail:',
-        '1. Put the speaker at the relatively same location as the different microphones to see whether all microphones have the same gain.',
+        '>> Experiment detail (NR):',
+        '1. Noise Resistance Test.',
         '2. .',
         '',
         '>> Experiment setup:',
