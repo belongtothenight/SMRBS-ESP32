@@ -8,9 +8,11 @@
 
 ## Repo Structure
 
-- algorithm (Raspberry Pi 4 + ReSpeaker 6 Microphone Array)
+- esp32_src
+- ht32f52352_src
 - info
-- src (ESP32)
+- matlab_algorithm
+- rasp-pi_algorithm (Raspberry Pi 4 + ReSpeaker 6 Microphone Array)
 
 ## Documentations
 
