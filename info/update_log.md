@@ -189,3 +189,10 @@
     3. Trying to add a new decision system. (in alg.py/PE/dc1/dc_mode=2)
        1. It sort of work, but once the audio stops, it stopped working.
        2. Probably it need to be rewrite.
+28. 20221214
+    1. Things to test.
+       1. 正常: 六個麥克風位置(影片紅點)輪流測語音
+       2. 稍遠：六個播放語音位置由紅點往後20公分，再測試一次
+       3. 有噪音: 例如噪音在CH2，測試其他通道(紅點)有較大語音狀況
+       4. 不在指定位置:例如語音在CH3/4紅點之間，此時狀況為何? 只CH3/4其一或CH3/4都通過?這兩個都可，但自己要有個說法
+       5. 兩個語音同時發生、或是有人插話現象，例如at CH1/3，此時狀況如何?
