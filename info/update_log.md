@@ -196,3 +196,7 @@
        3. 有噪音: 例如噪音在CH2，測試其他通道(紅點)有較大語音狀況
        4. 不在指定位置:例如語音在CH3/4紅點之間，此時狀況為何? 只CH3/4其一或CH3/4都通過?這兩個都可，但自己要有個說法
        5. 兩個語音同時發生、或是有人插話現象，例如at CH1/3，此時狀況如何?
+    2. DOA testing
+       1. Initial installation works, no weird output, light up LED at the direction of incoming sound.
+       2. Re-run after rebooting, can't run due to missing module.
+       3. Second and third installation can execute, but have a lot of 0 when no sound, 2 when their is sound, no LED is lighten up.
