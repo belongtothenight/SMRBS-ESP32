@@ -53,7 +53,7 @@ samp_dp = 20    # sample to drop at the beginning of each run
 samp_ds = 2000  # sample = sample / samp_ds (sample_downsize)
 chunk = 100     # number of samples to read from stream
 alpha = 0.99    # power estimation coefficient
-pe_limit = 0.5  # power estimation limit
+pe_limit = 0.3  # power estimation limit
 decision_threshold = 4  # decision threshold
 decision_period = 100  # decision period (ms)
 
