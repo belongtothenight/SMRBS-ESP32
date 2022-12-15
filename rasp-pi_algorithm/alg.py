@@ -342,6 +342,8 @@ class PE():
             # make decision based on voting result in a period
             self.decision_dict[self.max_ch] += 1
             self.decision_period_end = timeit.default_timer()
+            print(self.decision_period_start)
+            print(self.decision_period_end)
             if (self.decision_period_end - self.decision_period_start) > self.decision_period:
                 # make decision
                 decision = max(self.decision_dict, key=self.decision_dict.get)
