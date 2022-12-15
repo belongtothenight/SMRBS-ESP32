@@ -347,6 +347,8 @@ class PE():
                 decision = max(self.decision_dict, key=self.decision_dict.get)
                 # reset
                 self.decision_dict = {1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0}
+            else
+            decision = 0
 
             # execute decision
         if decision == 1:
