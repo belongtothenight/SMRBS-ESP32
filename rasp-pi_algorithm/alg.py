@@ -54,7 +54,7 @@ samp_ds = 2000  # sample = sample / samp_ds (sample_downsize)
 chunk = 100     # number of samples to read from stream
 alpha = 0.99    # power estimation coefficient
 pe_limit = 0.3  # power estimation limit
-decision_threshold = 4  # decision threshold
+decision_threshold = 4  # decision threshold (not used for now)
 decision_period = 0.1  # decision period (s)
 
 img_path = '/home/pi/code_alg/alg/'
@@ -342,8 +342,6 @@ class PE():
             # make decision based on voting result in a period
             self.decision_dict[self.max_ch] += 1
             self.decision_period_end = timeit.default_timer()
-            # print(self.decision_period_start)
-            # print(self.decision_period_end)
             if (self.decision_period_end - self.decision_period_start) > self.decision_period:
                 # make decision
                 decision = max(self.decision_dict, key=self.decision_dict.get)
@@ -352,7 +350,6 @@ class PE():
                 self.decision_period_start = timeit.default_timer()
             else:
                 decision = 0
-            # print(self.decision_dict)
 
             # execute decision
         if decision == 1:

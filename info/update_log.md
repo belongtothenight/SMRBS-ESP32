@@ -200,3 +200,8 @@
        1. Initial installation works, no weird output, light up LED at the direction of incoming sound.
        2. Re-run after rebooting, can't run due to missing module.
        3. Second and third installation can execute, but have a lot of 0 when no sound, 2 when their is sound, no LED is lighten up.
+29. 20221215
+    1. Implement new decision mode: a voting system running in a designated period and vote out the candidate.
+       1. Result is successful.
+       2. The decision is a lot more stable comparing with original decision mode.
+    2. Still can't run DOA example from website.
