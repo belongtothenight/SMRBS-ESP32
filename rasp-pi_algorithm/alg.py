@@ -163,7 +163,6 @@ class PE():
     # PE core/gather data
     def read_data(self, pf=False):
         # pf: print flag
-        self.decision_period_start = timeit.default_timer()
         data = self.stream.read(self.chunk, exception_on_overflow=False)
         # byte to list
         t = np.frombuffer(data, dtype=np.int16)[0::8]
@@ -349,6 +348,7 @@ class PE():
                 decision = max(self.decision_dict, key=self.decision_dict.get)
                 # reset
                 self.decision_dict = {1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0}
+                self.decision_period_start = timeit.default_timer()
             else:
                 decision = 0
             print(self.decision_dict)
