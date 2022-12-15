@@ -55,7 +55,7 @@ chunk = 100     # number of samples to read from stream
 alpha = 0.99    # power estimation coefficient
 pe_limit = 0.3  # power estimation limit
 decision_threshold = 4  # decision threshold
-decision_period = 100  # decision period (ms)
+decision_period = 0.1  # decision period (s)
 
 img_path = '/home/pi/code_alg/alg/'
 
