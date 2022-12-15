@@ -349,6 +349,7 @@ class PE():
                 self.decision_dict = {1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0}
             else:
                 decision = 0
+            print(self.decision_dict)
 
             # execute decision
         if decision == 1:
