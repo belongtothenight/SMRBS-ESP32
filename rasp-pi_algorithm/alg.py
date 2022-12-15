@@ -2,6 +2,7 @@ import pyaudio
 import wave
 import math
 import array
+import timeit
 import numpy as np
 from os import system
 from os.path import join
@@ -54,6 +55,7 @@ chunk = 100     # number of samples to read from stream
 alpha = 0.99    # power estimation coefficient
 pe_limit = 0.5  # power estimation limit
 decision_threshold = 4  # decision threshold
+decision_period = 100  # decision period (ms)
 
 img_path = '/home/pi/code_alg/alg/'
 
@@ -76,7 +78,7 @@ class PE():
 
     # ====================
     # PE core/setup
-    def __init__(self, sampdp=samp_dp, sampds=samp_ds, chunk_=chunk, alpha_=alpha, img_path_=img_path, pe_limit_=pe_limit, decision_threshold_=decision_threshold):
+    def __init__(self, sampdp=samp_dp, sampds=samp_ds, chunk_=chunk, alpha_=alpha, img_path_=img_path, pe_limit_=pe_limit, decision_threshold_=decision_threshold, decision_period_=decision_period):
         # PARAM
         self.samp_dp = sampdp
         self.samp_ds = sampds
@@ -86,6 +88,10 @@ class PE():
         self.pe_limit = pe_limit_
         self.decision_threshold = decision_threshold_
         self.decision_arr = [0, 0, 0, 0, 0, 0]
+        self.decision_dict = {1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0}
+        self.decision_period = decision_period_
+        self.decision_period_start = 0
+        self.decision_period_end = 0
         # MEM
         self.mem_d1 = []
         self.mem_d2 = []
@@ -157,6 +163,7 @@ class PE():
     # PE core/gather data
     def read_data(self, pf=False):
         # pf: print flag
+        self.decision_period_start = timeit.default_timer()
         data = self.stream.read(self.chunk, exception_on_overflow=False)
         # byte to list
         t = np.frombuffer(data, dtype=np.int16)[0::8]
@@ -331,8 +338,17 @@ class PE():
                     if self.decision_arr[i] < 0:
                         self.decision_arr[i] = 0
             print(self.decision_arr)
+        if dc_mode == 2:
+            # make decision based on voting result in a period
+            self.decision_dict[self.max_ch] += 1
+            self.decision_period_end = timeit.default_timer()
+            if (self.decision_period_end - self.decision_period_start) > self.decision_period:
+                # make decision
+                decision = max(self.decision_dict, key=self.decision_dict.get)
+                # reset
+                self.decision_dict = {1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0}
 
-        # execute decision
+            # execute decision
         if decision == 1:
             if led:
                 pixel_ring.open1()
@@ -883,7 +899,7 @@ class PE():
                     continue
                 else:
                     break
-            self.dc1()
+            self.dc1(dc_mode=2)
             self.store_data()
         print('\nend continuous run')
         if plot:
@@ -906,7 +922,7 @@ class PE():
                     continue
                 else:
                     break
-            self.dc1()
+            self.dc1(dc_mode=2)
 
     def param_test1(self, param, min, max, inc, plot=True):
         '''
