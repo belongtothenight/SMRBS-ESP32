@@ -318,6 +318,7 @@ class PE():
             decision = self.max_ch
         if dc_mode == 1:
             # make decision based when count exceeds threshold
+            # under development
 
             # add to list
             self.decision_arr[index_max] += 1
@@ -341,8 +342,8 @@ class PE():
             # make decision based on voting result in a period
             self.decision_dict[self.max_ch] += 1
             self.decision_period_end = timeit.default_timer()
-            print(self.decision_period_start)
-            print(self.decision_period_end)
+            # print(self.decision_period_start)
+            # print(self.decision_period_end)
             if (self.decision_period_end - self.decision_period_start) > self.decision_period:
                 # make decision
                 decision = max(self.decision_dict, key=self.decision_dict.get)
@@ -351,7 +352,7 @@ class PE():
                 self.decision_period_start = timeit.default_timer()
             else:
                 decision = 0
-            print(self.decision_dict)
+            # print(self.decision_dict)
 
             # execute decision
         if decision == 1:
