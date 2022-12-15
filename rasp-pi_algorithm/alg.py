@@ -307,7 +307,7 @@ class PE():
     # ====================
     # PE core/process data
 
-    def dc1(self, led=True, dc_mode=0):
+    def dc1(self, led=True, dc_mode=2):
         # get maximum channel value
         index_max = np.argmax([self.pe11[-1], self.pe12[-1], self.pe13[-1],
                               self.pe14[-1], self.pe15[-1], self.pe16[-1]])
@@ -904,7 +904,7 @@ class PE():
                     continue
                 else:
                     break
-            self.dc1(dc_mode=2)
+            self.dc1()
             self.store_data()
         print('\nend continuous run')
         if plot:
@@ -927,7 +927,7 @@ class PE():
                     continue
                 else:
                     break
-            self.dc1(dc_mode=2)
+            self.dc1()
 
     def param_test1(self, param, min, max, inc, plot=True):
         '''
